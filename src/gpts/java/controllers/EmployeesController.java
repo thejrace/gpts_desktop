@@ -6,24 +6,30 @@
 package gpts.java.controllers;
 
 import com.jfoenix.controls.JFXButton;
-import gpts.java.EmpBox;
-import gpts.java.Employee;
-import gpts.java.WebRequest;
-import gpts.java.WebRequestCallback;
+import com.jfoenix.controls.JFXDialog;
+import gpts.java.*;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.net.URL;
 
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
+
+
 
 public class EmployeesController extends BaseContentController implements Initializable {
 
@@ -41,10 +47,25 @@ public class EmployeesController extends BaseContentController implements Initia
     @Override
     public void initialize(URL url, ResourceBundle res ){
 
+        PopupLoader.show("Veri alınıyor..");
         startDownloadThread();
 
         // open employee add form
         uiAddBtn.setOnMouseClicked( ev -> {
+            try {
+                JFXDialog dialog = new JFXDialog();
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/gpts/res/fxml/forms/employee_form.fxml"));
+                ScrollPane ui  = loader.load();
+                EmployeeFormController controller = loader.getController();
+                dialog.setContent( ui );
+                dialog.setOverlayClose(false);
+                dialog.show( (StackPane) ((Node) ev.getSource()).getScene().getRoot() );
+                // pass the dialog to controller to trigger close form cancel button
+                controller.setDialog( dialog );
+            } catch( IOException e ){
+                e.printStackTrace();
+            }
 
         });
 
@@ -83,6 +104,13 @@ public class EmployeesController extends BaseContentController implements Initia
                                     });
                                 }
                                 mDataDownloadInited = true;
+                                Platform.runLater(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        System.out.println("hide beybe");
+                                        PopupLoader.hide();
+                                    }
+                                });
                             } else {
                                 // boxes initalized, update them
                                 for( int k = 0; k < list.length(); k++ ){

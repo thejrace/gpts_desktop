@@ -33,16 +33,46 @@
 }
 
 .content-btn {
-    -fx-background-color: #505c72;
-    -fx-border-color: #3c4257;
-    -fx-text-fill:#d3d3d3;
+
     -fx-font-weight:bold;
     -fx-padding:5 10 5 10;
     -fx-border-radius:4;
 }
 
+.content-btn-default {
+    -fx-background-color: #505c72;
+    -fx-border-color: #3c4257;
+    -fx-text-fill:#d3d3d3;
+}
+.content-btn-success {
+    -fx-background-color: #29b95d;
+    -fx-border-color: #1e773c;
+    -fx-text-fill:#d3d3d3;
+}
+
+.content-btn-danger {
+    -fx-background-color: #d82806;
+    -fx-border-color: #981f06;
+    -fx-text-fill:#d3d3d3;
+}
+
 .content-btn-icon {
     -fx-fill:#d3d3d3;
+}
+
+.popup-form-container {
+    -fx-background-color: #2A2E37;
+}
+.popup-form-title-icon {
+    -fx-fill: #808fa8;
+}
+
+.text-field-popup-style {
+    -fx-text-fill:#b8b1b1;
+    -jfx-focus-color:#a754bb;
+    -jfx-unfocus-color: #6a497b;
+    -fx-prompt-text-fill: #7c7c7c;
+    -fx-font-weight: bold;
 }
 
 /* side bar styles */

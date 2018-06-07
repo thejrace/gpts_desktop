@@ -6,6 +6,7 @@
 package gpts.java.controllers;
 
 import gpts.java.Main;
+import gpts.java.PopupLoader;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +15,8 @@ import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -47,6 +50,8 @@ public class MainController implements Initializable {
             mBorderPane.setLeft( mSideBar );
             // make it static, we use it to dynamically change main content
             UICONTENTMAIN = (ScrollPane) mContent.lookup( ".content-main" );
+            // init loader
+            PopupLoader popupLoader = new PopupLoader( (StackPane)mBorderPane.getParent() );
         } catch( IOException e ){
             e.printStackTrace();
         }

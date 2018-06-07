@@ -59,20 +59,6 @@ public class ContentController implements Initializable {
         });
 
         uiAppLogoutBtn.setOnMouseClicked( ev -> {
-            try {
-                // test
-                JFXDialog dialog = new JFXDialog();
-
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/gpts/res/fxml/employees.fxml"));
-                VBox test  = loader.load();
-
-
-                dialog.setContent(test );
-                dialog.show((StackPane) ((Node) ev.getSource()).getScene().getRoot());
-            } catch( IOException e ){
-                e.printStackTrace();
-            }
         });
 
         // toggle side bar event

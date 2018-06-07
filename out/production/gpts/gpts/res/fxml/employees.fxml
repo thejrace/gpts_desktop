@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -20,13 +21,17 @@
          <children>
             <HBox alignment="CENTER_RIGHT" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
-                  <JFXButton fx:id="uiAddBtn" styleClass="content-btn" text="Ekle">
+                  <JFXButton fx:id="uiAddBtn" text="Ekle">
                      <graphic>
                         <FontAwesomeIconView glyphName="PLUS" styleClass="content-btn-icon" />
                      </graphic>
                      <HBox.margin>
                         <Insets top="10.0" />
                      </HBox.margin>
+                     <styleClass>
+                        <String fx:value="content-btn" />
+                        <String fx:value="content-btn-default" />
+                     </styleClass>
                   </JFXButton>
                </children>
             </HBox>

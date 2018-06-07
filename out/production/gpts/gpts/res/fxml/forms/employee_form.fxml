@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<?import java.net.URL?>
+<ScrollPane fx:controller="gpts.java.controllers.EmployeeFormController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="400.0" styleClass="popup-form-container" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1">
+   <stylesheets>
+      <URL value="@../../css/main.css" />
+   </stylesheets>
+   <content>
+      <VBox spacing="15.0">
+         <children>
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                  <FontAwesomeIconView glyphName="USER" size="2em" styleClass="popup-form-title-icon" />
+                  <Label styleClass="content-header" text="Personel Form" />
+               </children>
+            </HBox>
+            <VBox spacing="30.0">
+               <children>
+                  <JFXTextField fx:id="uiNameInput" prefWidth="300.0" promptText="İsim" styleClass="text-field-popup-style" />
+                  <JFXTextField fx:id="uiEmailInput" prefWidth="300.0" promptText="Eposta" styleClass="text-field-popup-style" />
+                  <JFXTextField fx:id="uiNickInput" prefWidth="300.0" promptText="Rumuz" styleClass="text-field-popup-style" />
+                  <JFXComboBox fx:id="uiGroupComboBox" prefWidth="300.0" promptText="Kullanıcı Grubu" styleClass="text-field-popup-style" />
+                  <JFXPasswordField fx:id="uiPasswordInput" prefWidth="300.0" promptText="Program Şifre" styleClass="text-field-popup-style" />
+                  <HBox alignment="CENTER" spacing="20.0">
+                     <children>
+                        <JFXButton fx:id="uiCancelBtn" alignment="TOP_LEFT" text="İptal">
+                           <styleClass>
+                              <String fx:value="content-btn" />
+                              <String fx:value="content-btn-danger" />
+                           </styleClass>
+                        </JFXButton>
+                        <JFXButton fx:id="uiSaveBtn" alignment="TOP_LEFT" text="Kaydet">
+                           <styleClass>
+                              <String fx:value="content-btn" />
+                              <String fx:value="content-btn-success" />
+                           </styleClass>
+                        </JFXButton>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="25.0" />
+               </padding>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+   </content>
+</ScrollPane>
