@@ -47,6 +47,6 @@
               </HBox>
           </children>
       </HBox>
-      <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="750.0" styleClass="content-main" />
+      <ScrollPane  fitToWidth="true" styleClass="content-main" />
    </children>
 </VBox>

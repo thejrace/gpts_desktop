@@ -61,12 +61,12 @@
             <Insets bottom="10.0" top="10.0" />
          </VBox.margin>
       </HBox>
-      <FlowPane fx:id="uiEmpBoxContainer" hgap="10.0" prefHeight="200.0" prefWidth="200.0" vgap="10.0" VBox.vgrow="ALWAYS">
+      <FlowPane fx:id="uiEmpBoxContainer" alignment="TOP_CENTER" hgap="10.0" prefHeight="200.0" prefWidth="200.0" vgap="10.0" VBox.vgrow="ALWAYS">
          <VBox.margin>
             <Insets />
          </VBox.margin>
          <padding>
-            <Insets left="10.0" right="10.0" />
+            <Insets bottom="10.0" left="10.0" right="10.0" />
          </padding></FlowPane>
    </children>
 </VBox>
