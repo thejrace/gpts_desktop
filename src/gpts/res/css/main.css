@@ -1,0 +1,150 @@
+/* Gitas main.css - 2018 Obarey Inc. */
+
+
+/* common styles */
+
+.root {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-box-border: transparent;
+    -fx-padding:0;
+}
+.scroll-pane {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-box-border: transparent;
+    -fx-background-color: transparent;
+}
+.scroll-pane > .viewport {
+    -fx-box-border: transparent;
+    -fx-background-color: transparent;
+}
+.button {
+    -fx-cursor:hand;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-background-insets: 0;
+}
+.text{
+    -fx-font-smoothing-type: gray;
+}
+.label {
+    -fx-font-smoothing-type: gray;
+}
+
+.content-btn {
+    -fx-background-color: #505c72;
+    -fx-border-color: #3c4257;
+    -fx-text-fill:#d3d3d3;
+    -fx-font-weight:bold;
+    -fx-padding:5 10 5 10;
+    -fx-border-radius:4;
+}
+
+.content-btn-icon {
+    -fx-fill:#d3d3d3;
+}
+
+/* side bar styles */
+.sidebar{
+    -fx-background-color: rgb(58,69,88);
+}
+.sidebar-user-btn{
+    -fx-background-color: transparent;
+    -fx-background-radius: 0px;
+    -fx-text-fill: #b8b1b1;
+}
+
+.sidebar-btn{
+    -fx-background-color: transparent;
+    -fx-background-radius: 0px;
+    -fx-text-fill: #b8b1b1;
+    -fx-cursor:hand;
+}
+.sidebar-btn:hover{
+    -fx-background-color: transparent;
+    -fx-background-radius: 0px;
+    -fx-text-fill: #b8b1b1;
+    -fx-border-color: #a754bb;
+    -fx-border-width: 0px 0px 0px 3px;
+}
+.label{
+    -fx-text-fill: #b8b1b1;
+}
+.sidebar-btn:pressed .label{
+    -fx-background-color: transparent;
+    -fx-background-radius: 0px;
+    -fx-text-fill: #a754bb;
+}
+.sidebar-btn:pressed .sidebar-btn-icon{
+    -fx-fill: #a754bb;
+}
+.sidebar-btn-icon{
+    -fx-fill: #b8b1b1;
+}
+
+/* top menu bar styles */
+.menu-bar-container {
+    -fx-background-color: rgb(66, 78, 99);
+}
+.menu-bar-btns{
+    -fx-background-color: #505c72;
+    -fx-border-color: #606e85;
+    -fx-border-width: 0px 0px 0px 1px;
+}
+.menu-bar-btns:hover{
+    -fx-background-color: #a754bb;
+}
+.menu-bar-btns-icon{
+    -fx-fill: #999;
+}
+.menu-bar-btns:hover .menu-bar-btns-icon{
+    -fx-fill: #fff;
+}
+
+/* content scroll pane styles  */
+.content-main-parent-vbox{
+    -fx-background-color: #2A2E37;
+}
+.content-main{
+    -fx-background-color: #2A2E37;
+}
+.content-header {
+    -fx-font-size:20;
+    -fx-text-fill: #808fa8;
+    -fx-padding:10 0 10 10;
+}
+
+/* employee box */
+
+.emp-box {
+    -fx-background-color: #232832;
+    -fx-border-radius:6;
+}
+
+.emp-box-title {
+    -fx-text-fill: #d3d3d3;
+    -fx-font-size:14;
+    -fx-font-weight:bold;
+}
+
+.emp-box-sub-title{
+    -fx-text-fill: #d3d3d3;
+    -fx-font-size:12;
+}
+
+.emp-box-icon {
+    -fx-fill:#a754bb;
+}
+
+.emp-box-ico-stats {
+    -fx-fill: #bbb74b;
+}
+
+.emp-box-btn-icon {
+    -fx-fill:#509be8
+}
+
+.emp-box-btn{
+
+}
