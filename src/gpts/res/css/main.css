@@ -40,6 +40,21 @@
     -fx-font-weight:bold;
 }
 
+.jfx-combo-box{
+    -jfx-focus-color:#a754bb;
+    -jfx-unfocus-color: #6a497b;
+    -fx-prompt-text-fill: #adadad;
+}
+
+
+.ctext-white {
+    -fx-text-fill:#fff;
+}
+.ctext-gitas {
+    -fx-text-fill:#a754bb;
+}
+
+
 .content-btn {
     -fx-font-weight:bold;
     -fx-padding:5 10 5 10;
@@ -89,6 +104,17 @@
     -fx-font-size:18;
     -fx-padding:10 0 10 10;
 }
+.popup-form-output {
+    -fx-font-weight:bold;
+    -fx-font-size:12;
+}
+.popup-form-output-error {
+    -fx-text-fill: #d33100;
+}
+.popup-form-output-success {
+    -fx-text-fill: #2dd327;
+}
+
 .text-field-popup-style {
     -fx-text-fill:#b8b1b1;
     -jfx-focus-color:#a754bb;
@@ -387,4 +413,10 @@
 }
 .plan-table-btn {
     -fx-background-color: transparent;
+}
+
+.plan-combo-box .cell{
+    -fx-font-size:20;
+    -fx-text-fill:#fff;
+    -fx-background-color: #343333;
 }

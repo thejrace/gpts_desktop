@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane prefWidth="850.0" styleClass="popup-form-container" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpts.java.controllers.EmpPlanPopupController">
+<ScrollPane styleClass="popup-form-container" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpts.java.controllers.EmpPlanPopupController">
    <content>
       <VBox prefWidth="850.0" spacing="15.0">
          <children>
@@ -21,7 +21,7 @@
                   <HBox alignment="CENTER" AnchorPane.leftAnchor="0.0">
                      <children>
                         <FontAwesomeIconView glyphName="CALENDAR" size="2em" styleClass="popup-form-title-icon" />
-                        <Label styleClass="popup-form-title" text="Serpil Boyacıoğlu" />
+                        <Label fx:id="uiEmployeeNameLbl" styleClass="popup-form-title" text="Serpil Boyacıoğlu" />
                         <Label layoutX="29.0" layoutY="10.0" styleClass="popup-form-title" text="Günlük Plan" />
                      </children>
                   </HBox>
@@ -45,8 +45,8 @@
                   </Label>
                   <AnchorPane prefWidth="200.0">
                      <children>
-                        <DatePicker styleClass="date-picker-popup" />
-                        <JFXButton text="Excel Çıktısı" AnchorPane.rightAnchor="15.0">
+                        <DatePicker fx:id="uiDatePicker" styleClass="date-picker-popup" />
+                        <JFXButton fx:id="uiExcelOutBtn" text="Excel Çıktısı" AnchorPane.rightAnchor="15.0">
                            <styleClass>
                               <String fx:value="content-btn" />
                               <String fx:value="content-btn-warning" />
@@ -54,41 +54,6 @@
                         </JFXButton>
                      </children>
                   </AnchorPane>
-               </children>
-            </VBox>
-            <VBox layoutX="20.0" layoutY="82.0">
-               <children>
-                  <Label text="PROFİL DETAYLARI">
-                     <styleClass>
-                        <String fx:value="popup-sub-title" />
-                        <String fx:value="popup-sub-title-yellow" />
-                     </styleClass>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <HBox alignment="CENTER_LEFT" prefHeight="73.0" prefWidth="830.0" styleClass="profile-details-container">
-                     <children>
-                        <Label prefHeight="30.0" prefWidth="255.0" styleClass="profile-details-name" text="Standart 8-5" />
-                        <VBox alignment="CENTER_LEFT" prefHeight="90.0" prefWidth="177.0">
-                           <children>
-                              <Label styleClass="profile-details-data" text="Başlangıç: 08:00" />
-                              <Label layoutX="10.0" layoutY="10.0" styleClass="profile-details-data" text="Bitiş: 17:00" />
-                              <Label layoutX="10.0" layoutY="27.0" styleClass="profile-details-data" text="Aralık: 60 Dakika" />
-                           </children>
-                        </VBox>
-                        <HBox alignment="CENTER_RIGHT" prefHeight="63.0" prefWidth="386.0">
-                           <children>
-                              <JFXButton text="Profili Değiştir">
-                                 <styleClass>
-                                    <String fx:value="content-btn" />
-                                    <String fx:value="content-btn-danger" />
-                                 </styleClass>
-                              </JFXButton>
-                           </children>
-                        </HBox>
-                     </children>
-                  </HBox>
                </children>
             </VBox>
             <VBox layoutX="20.0" layoutY="153.0">
@@ -104,7 +69,7 @@
                   </Label>
                   <HBox alignment="CENTER_LEFT" prefHeight="73.0" prefWidth="830.0" styleClass="profile-details-container">
                      <children>
-                        <JFXComboBox prefHeight="25.0" prefWidth="255.0" styleClass="text-field-popup-style" />
+                        <JFXComboBox fx:id="uiPlansComboBox" prefHeight="25.0" prefWidth="255.0" promptText="Profil" styleClass="plan-combo-box" />
                         <VBox alignment="CENTER_LEFT" prefHeight="90.0" prefWidth="177.0">
                            <children>
                               <Label styleClass="profile-details-data" text="Başlangıç: 08:00" />
@@ -117,10 +82,10 @@
                         </VBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="63.0" prefWidth="386.0">
                            <children>
-                              <JFXButton text="Kaydet">
+                              <JFXButton fx:id="uiChangePlan" text="Kaydet">
                                  <styleClass>
                                     <String fx:value="content-btn" />
-                                    <String fx:value="content-btn-success" />
+                                    <String fx:value="content-btn-danger" />
                                  </styleClass>
                               </JFXButton>
                            </children>

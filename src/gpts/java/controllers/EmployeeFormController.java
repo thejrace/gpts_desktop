@@ -9,7 +9,7 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class EmployeeFormController implements Initializable {
+public class EmployeeFormController extends PopupFormBaseController implements Initializable {
 
     @FXML private JFXTextField uiNameInput;
     @FXML private JFXTextField uiEmailInput;
@@ -18,22 +18,10 @@ public class EmployeeFormController implements Initializable {
     @FXML private JFXTextField uiPhone2Input;
     @FXML private JFXPasswordField uiPasswordInput;
     @FXML private JFXComboBox uiGroupComboBox;
-    @FXML private JFXButton uiCancelBtn;
-    @FXML private JFXButton uiSaveBtn;
-
-    private JFXDialog mParentDialog;
 
     @Override
     public void initialize(URL url, ResourceBundle rb ){
-
-        uiCancelBtn.setOnMouseClicked(ev->{
-            mParentDialog.close();
-        });
-
-    }
-
-    public void setDialog(JFXDialog dialog ){
-        mParentDialog = dialog;
+        super.initCommonEvents();
     }
 
     public void setEditData( Employee employee ){

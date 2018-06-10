@@ -132,11 +132,9 @@ class EmpTasksPopup extends EmpPopupBase {
 class EmpPlanPopup extends EmpPopupBase {
 
     private EmpPlanPopupController mController;
-
     public EmpPlanPopup( Employee employee ){
         mEmployee = employee;
     }
-
     public void initUI(){
         // get the loade from base class
         FXMLLoader loader = super.initFXMLLoader( "emp_plan_popup" );
@@ -148,14 +146,12 @@ class EmpPlanPopup extends EmpPopupBase {
             e.printStackTrace();
         }
     }
-
     public void show( MouseEvent ev ){
         super.show( ev );
         mController.setDialog( mDialog );
     }
-
     public void updateUI(){
-        //mController.setData( mEmployee.getDailyPlanData() );
+        mController.setData( mEmployee );
     }
 
 

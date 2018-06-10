@@ -7,4 +7,6 @@ package gpts.java.controllers;
  *
  * */
 public class BaseContentController {
+
+
 }

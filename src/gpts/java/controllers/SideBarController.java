@@ -1,10 +1,7 @@
 /* Gitaş - Obarey Inc 2018 */
 package gpts.java.controllers;
 
-import gpts.java.ui.BasePage;
-import gpts.java.ui.EmployeesPage;
-import gpts.java.ui.SettingsPage;
-import gpts.java.ui.TasksPage;
+import gpts.java.ui.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,9 +16,10 @@ import java.util.ResourceBundle;
 
 public class SideBarController implements Initializable {
 
-    @FXML private HBox uiSideBarBtn1;
-    @FXML private HBox uiSideBarBtn2;
-    @FXML private HBox uiSideBarBtn3;
+    @FXML private HBox uiSideBarBtn1; // employees
+    @FXML private HBox uiSideBarBtn2; // tasks
+    @FXML private HBox uiSideBarBtn3; // settings
+    @FXML private HBox uiSideBarBtn4; // plans
 
     private int mMainContentStateIndex = 0;
 
@@ -69,6 +67,17 @@ public class SideBarController implements Initializable {
             // set content
             MainController.UICONTENTMAIN.setContent( mPages.get(3).getUI());
             mPageIndex = 3;
+        });
+        uiSideBarBtn4.setOnMouseClicked(ev -> {
+            if( mPageIndex == 4 ) return;
+            if( !mPages.containsKey(4) ){
+                PlansPage page = new PlansPage();
+                page.initUI("plans");
+                mPages.put(4, page );
+            }
+            // set content
+            MainController.UICONTENTMAIN.setContent( mPages.get(4).getUI());
+            mPageIndex = 4;
         });
     }
 
