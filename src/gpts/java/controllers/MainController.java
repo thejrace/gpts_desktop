@@ -6,7 +6,7 @@
 package gpts.java.controllers;
 
 import gpts.java.Main;
-import gpts.java.PopupLoader;
+import gpts.java.ui.PopupLoader;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

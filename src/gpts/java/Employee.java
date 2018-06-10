@@ -5,7 +5,8 @@ import org.json.JSONObject;
 
 public class Employee {
 
-    private String mName, mNick, mEmail, mID, mGroupID;
+    private String mName, mNick, mEmail, mID, mGroup;
+    private int mTaskCount, mTaskStatus;
 
     // empty constructor
     public Employee(){
@@ -18,7 +19,9 @@ public class Employee {
             mNick = data.getString("nick");
             mEmail = data.getString("email");
             mID = data.getString("id");
-            mGroupID = data.getString("group_id");
+            mGroup = data.getString("group");
+            mTaskCount = data.getInt("task_count");
+            mTaskStatus = data.getInt("task_status");
         } catch( JSONException e ){
             e.printStackTrace();
         }
@@ -35,8 +38,14 @@ public class Employee {
     public String getID(){
         return mID;
     }
-    public String getGroupID(){
-        return mGroupID;
+    public String getGroup(){
+        return mGroup;
+    }
+    public int getTaskCount(){
+        return mTaskCount;
+    }
+    public int getTaskStatus(){
+        return mTaskStatus;
     }
 
 }

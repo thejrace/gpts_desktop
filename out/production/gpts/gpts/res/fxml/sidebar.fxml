@@ -21,9 +21,7 @@
          </VBox.margin>
       </ImageView>
       <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" text="Ana Menü" textFill="#b8b1b1">
-         <font>
-            <Font name="Calibri Bold" size="13.0" />
-         </font>
+
          <padding>
             <Insets left="10.0" />
          </padding>
@@ -41,9 +39,7 @@
          <children>
             <FontAwesomeIconView glyphName="USERS" size="1.2em" styleClass="sidebar-btn-icon" />
             <Label text="PERSONEL VT" textFill="#b8b1b1">
-               <font>
-                  <Font name="Consolas Bold" size="14.0" />
-               </font>
+
                <HBox.margin>
                   <Insets left="15.0" />
                </HBox.margin>
@@ -57,9 +53,7 @@
          <children>
             <FontAwesomeIconView glyphName="TASKS" size="1.2em" styleClass="sidebar-btn-icon" />
             <Label text="İŞ TANIMLAMALARI" textFill="#b8b1b1">
-               <font>
-                  <Font name="Consolas Bold" size="14.0" />
-               </font>
+
                <HBox.margin>
                   <Insets left="15.0" />
                </HBox.margin>
@@ -67,9 +61,7 @@
          </children>
       </HBox>
       <Label layoutX="10.0" layoutY="101.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" text="Kullanıcı" textFill="#b8b1b1">
-         <font>
-            <Font name="Calibri Bold" size="13.0" />
-         </font>
+
          <padding>
             <Insets left="10.0" />
          </padding>
@@ -88,9 +80,7 @@
                </HBox.margin>
             </FontAwesomeIconView>
             <Label text="AYARLAR" textFill="#b8b1b1">
-               <font>
-                  <Font name="Consolas Bold" size="14.0" />
-               </font>
+
                <HBox.margin>
                   <Insets left="15.0" />
                </HBox.margin>

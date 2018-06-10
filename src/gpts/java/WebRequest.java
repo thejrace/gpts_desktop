@@ -12,7 +12,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Map;
-
 public class WebRequest {
 
     private String mURL, mOutput;
@@ -26,11 +25,11 @@ public class WebRequest {
         mParams = params;
     }
 
-    public void action( WebRequestCallback callback ){
+    public void action( gpts.java.WebRequestCallback callback ){
         download( callback );
     }
 
-    public void actionAsync( WebRequestCallback callback ){
+    public void actionAsync( gpts.java.WebRequestCallback callback ){
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -41,7 +40,7 @@ public class WebRequest {
         thread.start();
     }
 
-    private void download( WebRequestCallback callback ){
+    private void download( gpts.java.WebRequestCallback callback ){
         HttpURLConnection connection = null;
         try {
             ArrayList<String> paramsSerializedArray = new ArrayList<>();

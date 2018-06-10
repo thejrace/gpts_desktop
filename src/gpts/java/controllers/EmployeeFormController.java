@@ -13,6 +13,8 @@ public class EmployeeFormController implements Initializable {
     @FXML private JFXTextField uiNameInput;
     @FXML private JFXTextField uiEmailInput;
     @FXML private JFXTextField uiNickInput;
+    @FXML private JFXTextField uiPhone1Input;
+    @FXML private JFXTextField uiPhone2Input;
     @FXML private JFXPasswordField uiPasswordInput;
     @FXML private JFXComboBox uiGroupComboBox;
     @FXML private JFXButton uiCancelBtn;

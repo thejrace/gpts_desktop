@@ -25,7 +25,7 @@ public class Main extends Application {
 
         Parent content = loader.load();
         primaryStage.initStyle(StageStyle.UNDECORATED);
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("GPTS");
         primaryStage.setScene(new Scene(content, 1224, 768));
         stage = primaryStage;
         primaryStage.show();

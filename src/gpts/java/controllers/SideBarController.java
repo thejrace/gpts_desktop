@@ -5,6 +5,10 @@
 
 package gpts.java.controllers;
 
+import gpts.java.ui.BasePage;
+import gpts.java.ui.EmployeesPage;
+import gpts.java.ui.SettingsPage;
+import gpts.java.ui.TasksPage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -28,34 +32,47 @@ public class SideBarController implements Initializable {
     private Map<Integer, BaseContentController> mControllers = new HashMap<>();
     private Map<Integer, Parent> mUIs = new HashMap<>();
 
+    private int mPageIndex = 0;
+    private Map<Integer, BasePage> mPages = new HashMap<>();
+
     @Override
     public void initialize(URL url, ResourceBundle rb ){
+
+        // TODO - generalize it, research: reflection in java
         uiSideBarBtn1.setOnMouseClicked(ev -> {
-            setContentUI("employees", 1, new ControllerCallback() {
-                @Override
-                public void onLoad(BaseContentController controller) {
-                    EmployeesController castedController = (EmployeesController)controller;
-                    castedController.testMethod();
-                }
-            });
+            // check if we already in this page
+            if( mPageIndex == 1 ) return;
+            // initialize the page if it didnt
+            if( !mPages.containsKey(1) ){
+                EmployeesPage page = new EmployeesPage();
+                page.initUI("employees");
+                mPages.put(1, page );
+            }
+            // set content
+            MainController.UICONTENTMAIN.setContent( mPages.get(1).getUI());
+            mPageIndex = 1;
         });
         uiSideBarBtn2.setOnMouseClicked(ev -> {
-            setContentUI("tasks", 2, new ControllerCallback() {
-                @Override
-                public void onLoad(BaseContentController controller) {
-                    TasksController castedController = (TasksController)controller;
-                    castedController.testMethod();
-                }
-            });
+            if( mPageIndex == 2 ) return;
+            if( !mPages.containsKey(2) ){
+                TasksPage page = new TasksPage();
+                page.initUI("tasks");
+                mPages.put(2, page );
+            }
+            // set content
+            MainController.UICONTENTMAIN.setContent( mPages.get(2).getUI());
+            mPageIndex = 2;
         });
         uiSideBarBtn3.setOnMouseClicked(ev -> {
-            setContentUI("settings", 3, new ControllerCallback() {
-                @Override
-                public void onLoad(BaseContentController controller) {
-                    SettingsController castedController = (SettingsController)controller;
-                    castedController.testMethod();
-                }
-            });
+            if( mPageIndex == 3 ) return;
+            if( !mPages.containsKey(3) ){
+                SettingsPage page = new SettingsPage();
+                page.initUI("settings");
+                mPages.put(3, page );
+            }
+            // set content
+            MainController.UICONTENTMAIN.setContent( mPages.get(3).getUI());
+            mPageIndex = 3;
         });
     }
 
@@ -64,6 +81,7 @@ public class SideBarController implements Initializable {
     *  - @fxml  : fxml file's name to be loaded
     *  - @index : fxml state for avoiding the loading same content again
     * */
+    @Deprecated
     private void setContentUI( String fxml, int index, ControllerCallback cb ){
         try {
             // if already in this layout, don't do anything

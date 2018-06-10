@@ -6,7 +6,6 @@
 package gpts.java.controllers;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDialog;
 import gpts.java.Main;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -17,8 +16,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.WindowEvent;
 
 import java.io.IOException;
