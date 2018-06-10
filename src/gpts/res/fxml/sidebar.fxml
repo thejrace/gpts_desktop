@@ -19,7 +19,7 @@
             <Insets bottom="20.0" top="5.0" />
          </VBox.margin>
       </ImageView>
-      <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" text="Ana Menü" textFill="#b8b1b1">
+      <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" text="Personel" textFill="#b8b1b1">
 
          <padding>
             <Insets left="10.0" />
@@ -36,7 +36,7 @@
             <Insets left="20.0" />
          </padding>
          <children>
-            <FontAwesomeIconView glyphName="USERS" size="1.2em" styleClass="sidebar-btn-icon" />
+            <FontAwesomeIconView glyphName="USER" size="1.2em" styleClass="sidebar-btn-icon" />
             <Label text="PERSONEL VT" textFill="#b8b1b1">
 
                <HBox.margin>
@@ -45,14 +45,13 @@
             </Label>
          </children>
       </HBox>
-      <HBox fx:id="uiSideBarBtn2" alignment="CENTER_LEFT" layoutX="10.0" layoutY="128.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" styleClass="sidebar-btn">
+      <HBox fx:id="uiSideBarBtn5" alignment="CENTER_LEFT" layoutX="10.0" layoutY="128.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" styleClass="sidebar-btn">
          <padding>
             <Insets left="20.0" />
          </padding>
          <children>
-            <FontAwesomeIconView glyphName="TASKS" size="1.2em" styleClass="sidebar-btn-icon" />
-            <Label text="İŞ TANIMLAMALARI" textFill="#b8b1b1">
-
+            <FontAwesomeIconView glyphName="USERS" size="1.2em" styleClass="sidebar-btn-icon" />
+            <Label text="GRUPLAR" textFill="#b8b1b1">
                <HBox.margin>
                   <Insets left="15.0" />
                </HBox.margin>
@@ -72,8 +71,30 @@
             </Label>
          </children>
       </HBox>
-      <Label layoutX="10.0" layoutY="101.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" text="Kullanıcı" textFill="#b8b1b1">
+      <Label layoutX="10.0" layoutY="101.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" text="İş" textFill="#b8b1b1">
 
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+         <VBox.margin>
+            <Insets bottom="10.0" top="10.0" />
+         </VBox.margin>
+      </Label>
+      <HBox fx:id="uiSideBarBtn2" alignment="CENTER_LEFT" layoutX="10.0" layoutY="128.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" styleClass="sidebar-btn">
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+         <children>
+            <FontAwesomeIconView glyphName="TASKS" size="1.2em" styleClass="sidebar-btn-icon" />
+            <Label text="İŞ TANIMLAMALARI" textFill="#b8b1b1">
+
+               <HBox.margin>
+                  <Insets left="15.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <Label layoutX="10.0" layoutY="278.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" text="Kullanıcı" textFill="#b8b1b1">
          <padding>
             <Insets left="10.0" />
          </padding>

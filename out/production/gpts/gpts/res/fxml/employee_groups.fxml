@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox styleClass="main-bg-color" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpts.java.controllers.TasksController">
+<VBox styleClass="main-bg-color" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpts.java.controllers.EmployeeGroupsController">
    <stylesheets>
       <URL value="@../css/main.css" />
    </stylesheets>
@@ -37,7 +37,7 @@
             </HBox>
             <HBox AnchorPane.leftAnchor="0.0">
                <children>
-                  <Label styleClass="content-header" text="İş Tanımlamaları">
+                  <Label styleClass="content-header" text="Personel Grupları">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

@@ -10,14 +10,14 @@ import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PlansController extends BaseContentController implements Initializable {
+public class EmployeeGroupsController extends BaseContentController implements Initializable {
 
-    @FXML private JFXButton uiAddBtn;
+    @FXML
+    private JFXButton uiAddBtn;
     @FXML private JFXButton uiSearchBtn;
     @FXML private TextField uiSearchInput;
 
@@ -32,7 +32,7 @@ public class PlansController extends BaseContentController implements Initializa
 
         // open add form
         uiAddBtn.setOnMouseClicked( ev -> {
-            try {
+            /*try {
                 JFXDialog dialog = new JFXDialog();
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("/gpts/res/fxml/forms/plan_form.fxml"));
@@ -45,7 +45,7 @@ public class PlansController extends BaseContentController implements Initializa
                 controller.setDialog( dialog );
             } catch( IOException e ){
                 e.printStackTrace();
-            }
+            }*/
         });
 
         // search employees
@@ -53,10 +53,6 @@ public class PlansController extends BaseContentController implements Initializa
             if( mEnableSearch ) return;
         });
 
-    }
-
-    public void testMethod(){
-        System.out.println("Employeiiii teeeesssttt");
     }
 
 }
