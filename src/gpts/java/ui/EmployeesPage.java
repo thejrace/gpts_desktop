@@ -1,10 +1,10 @@
+/* Gitaş - Obarey Inc 2018 */
 package gpts.java.ui;
-
 
 import gpts.java.Employee;
 import gpts.java.WebRequest;
-import gpts.java.WebRequestCallback;
 import gpts.java.controllers.EmployeesController;
+import gpts.java.interfaces.WebRequestCallback;
 import javafx.application.Platform;
 import org.json.JSONArray;
 import org.json.JSONObject;

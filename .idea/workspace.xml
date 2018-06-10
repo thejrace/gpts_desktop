@@ -2,49 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/jfoenix_8_0_4_retrolambda.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gpts.iml" beforeDir="false" afterPath="$PROJECT_DIR$/gpts.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/gpts/gpts/java/EmpBox.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/gpts/gpts/java/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/gpts/gpts/java/Employee.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/gpts/gpts/java/controllers/ContentController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/gpts/gpts/java/controllers/ContentController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/gpts/gpts/java/controllers/ContentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/gpts/gpts/java/controllers/ContentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/gpts/gpts/java/controllers/EmpBoxController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/gpts/gpts/java/controllers/EmpBoxController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/gpts/gpts/java/controllers/EmployeeFormController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/gpts/gpts/java/controllers/EmployeeFormController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/gpts/gpts/java/controllers/EmployeesController$1$1$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/gpts/gpts/java/controllers/EmployeesController$1$1$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/gpts/gpts/java/controllers/EmployeesController$1$1$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/gpts/gpts/java/controllers/EmployeesController$1$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/gpts/gpts/java/controllers/EmployeesController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/gpts/gpts/java/controllers/EmployeesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/gpts/gpts/java/controllers/EmployeesController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/gpts/gpts/java/controllers/MainController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/gpts/gpts/java/controllers/MainController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/gpts/gpts/java/controllers/MainController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/gpts/gpts/java/controllers/MainController$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/gpts/gpts/java/controllers/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/gpts/gpts/java/controllers/MainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/gpts/gpts/res/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/gpts/gpts/res/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/gpts/gpts/res/fxml/content.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/gpts/gpts/res/fxml/content.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/gpts/gpts/res/fxml/employees.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/gpts/gpts/res/fxml/employees.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/gpts/gpts/res/fxml/forms/employee_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/gpts/gpts/res/fxml/forms/employee_form.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/gpts/gpts/res/fxml/settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/gpts/gpts/res/fxml/settings.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/gpts/gpts/res/fxml/tasks.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/gpts/gpts/res/fxml/tasks.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gpts/java/EmpBox.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gpts/java/Common.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gpts/java/Common.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gpts/java/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gpts/java/Employee.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gpts/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gpts/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gpts/java/PopupLoader.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gpts/java/WebRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gpts/java/WebRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gpts/java/WebRequestCallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gpts/java/controllers/BaseContentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gpts/java/controllers/BaseContentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gpts/java/controllers/ContentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gpts/java/controllers/ContentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gpts/java/controllers/ControllerCallback.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gpts/java/controllers/ControllerCallback.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gpts/java/controllers/EmpBoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gpts/java/controllers/EmpBoxController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gpts/java/controllers/EmployeeFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gpts/java/controllers/EmployeeFormController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gpts/java/controllers/EmployeesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gpts/java/controllers/EmployeesController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gpts/java/controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gpts/java/controllers/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gpts/java/controllers/PopupLoaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gpts/java/controllers/PopupLoaderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gpts/java/controllers/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gpts/java/controllers/SettingsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gpts/java/controllers/SideBarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gpts/java/controllers/SideBarController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gpts/res/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/gpts/res/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gpts/res/fxml/content.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gpts/res/fxml/content.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gpts/res/fxml/employees.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gpts/res/fxml/employees.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gpts/res/fxml/forms/employee_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gpts/res/fxml/forms/employee_form.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gpts/res/fxml/settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gpts/res/fxml/settings.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gpts/res/fxml/sidebar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gpts/res/fxml/sidebar.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gpts/res/fxml/tasks.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gpts/res/fxml/tasks.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gpts/java/controllers/TasksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gpts/java/controllers/TasksController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gpts/java/interfaces/Callback.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gpts/java/interfaces/Callback.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gpts/java/interfaces/WebRequestCallback.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gpts/java/interfaces/WebRequestCallback.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gpts/java/ui/BasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gpts/java/ui/BasePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gpts/java/ui/EmpBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gpts/java/ui/EmpBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gpts/java/ui/EmployeesPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gpts/java/ui/EmployeesPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gpts/java/ui/PopupLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gpts/java/ui/PopupLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gpts/java/ui/SettingsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gpts/java/ui/SettingsPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gpts/java/ui/TasksPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gpts/java/ui/TasksPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gpts/res/fxml/emp_plan_popup.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gpts/res/fxml/emp_plan_popup.fxml" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -102,96 +84,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gpts/res/css/main.css">
+      <file leaf-file-name="EmpBoxController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/gpts/java/controllers/EmpBoxController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="351" column="1" selection-start-line="351" selection-start-column="1" selection-end-line="351" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EmployeesController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gpts/java/controllers/EmployeesController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="615">
-              <caret line="91" column="5" lean-forward="true" selection-start-line="91" selection-start-column="5" selection-end-line="91" selection-end-column="5" />
+            <state relative-caret-position="632">
+              <caret line="71" column="11" lean-forward="true" selection-start-line="71" selection-start-column="11" selection-end-line="71" selection-end-column="11" />
               <folding>
-                <element signature="n#!!doc" expanded="true" />
-                <element signature="imports" expanded="true" />
-                <element signature="e#2701#2702#0" expanded="true" />
-                <element signature="e#2770#2771#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SideBarController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gpts/java/controllers/SideBarController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="70" column="37" lean-forward="true" selection-start-line="70" selection-start-column="37" selection-end-line="70" selection-end-column="37" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="git.bat" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/git.bat">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="TasksPage.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gpts/java/ui/TasksPage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EmployeesPage.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gpts/java/ui/EmployeesPage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2107#2108#0" expanded="true" />
-                <element signature="e#2234#2235#0" expanded="true" />
-                <element signature="e#3049#3050#0" expanded="true" />
-                <element signature="e#3163#3164#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BasePage.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gpts/java/ui/BasePage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#805#806#0" expanded="true" />
-                <element signature="e#830#831#0" expanded="true" />
-                <element signature="e#805#806#0" expanded="true" />
-                <element signature="e#839#840#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gpts/java/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="30" column="28" lean-forward="true" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
@@ -226,7 +124,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/gpts/Controller.java" />
         <option value="$PROJECT_DIR$/src/gpts/Main.java" />
         <option value="$PROJECT_DIR$/src/gpts/sample.fxml" />
         <option value="$PROJECT_DIR$/src/gpts/java/Controller.java" />
@@ -234,15 +131,9 @@
         <option value="$PROJECT_DIR$/src/gpts/res/fxml/menu_bar.fxml" />
         <option value="$PROJECT_DIR$/src/gpts/java/controllers/MenuBarController.java" />
         <option value="$PROJECT_DIR$/src/gpts/res/fxml/main.fxml" />
-        <option value="$PROJECT_DIR$/src/gpts/java/controllers/BaseContentController.java" />
-        <option value="$PROJECT_DIR$/src/gpts/java/controllers/TasksController.java" />
-        <option value="$PROJECT_DIR$/src/gpts/java/controllers/SettingsController.java" />
-        <option value="$PROJECT_DIR$/src/gpts/java/controllers/ControllerCallback.java" />
         <option value="$PROJECT_DIR$/src/gpts/java/WebRequestCallback.java" />
-        <option value="$PROJECT_DIR$/src/gpts/java/Common.java" />
         <option value="$PROJECT_DIR$/src/gpts/res/fxml/emp_box.fxml" />
         <option value="$PROJECT_DIR$/src/gpts/res/fxml/popup_loader.fxml" />
-        <option value="$PROJECT_DIR$/src/gpts/java/controllers/PopupLoaderController.java" />
         <option value="$PROJECT_DIR$/src/gpts/java/PopupLoader.java" />
         <option value="$PROJECT_DIR$/src/gpts/res/fxml/forms/employee_form.fxml" />
         <option value="$PROJECT_DIR$/src/gpts/java/Callback.java" />
@@ -250,26 +141,40 @@
         <option value="$PROJECT_DIR$/src/gpts/res/fxml/settings.fxml" />
         <option value="$PROJECT_DIR$/src/gpts/res/fxml/tasks.fxml" />
         <option value="$PROJECT_DIR$/src/gpts/res/fxml/emp_box_v2.fxml" />
-        <option value="$PROJECT_DIR$/src/gpts/java/Employee.java" />
         <option value="$PROJECT_DIR$/src/gpts/java/EmpBox.java" />
-        <option value="$PROJECT_DIR$/src/gpts/java/controllers/EmpBoxController.java" />
-        <option value="$PROJECT_DIR$/src/gpts/java/controllers/ContentController.java" />
-        <option value="$PROJECT_DIR$/src/gpts/java/controllers/EmployeeFormController.java" />
         <option value="$PROJECT_DIR$/src/gpts/res/fxml/content.fxml" />
         <option value="$PROJECT_DIR$/src/gpts/res/fxml/sidebar.fxml" />
-        <option value="$PROJECT_DIR$/src/gpts/java/Main.java" />
         <option value="$PROJECT_DIR$/src/gpts/res/css/main.css" />
-        <option value="$PROJECT_DIR$/src/gpts/java/ui/PopupLoader.java" />
-        <option value="$PROJECT_DIR$/src/gpts/java/controllers/MainController.java" />
-        <option value="$PROJECT_DIR$/src/gpts/java/ui/EmpBox.java" />
-        <option value="$PROJECT_DIR$/src/gpts/java/WebRequest.java" />
-        <option value="$PROJECT_DIR$/src/gpts/java/ui/BasePage.java" />
+        <option value="$PROJECT_DIR$/git.bat" />
+        <option value="$PROJECT_DIR$/src/gpts/res/fxml/emp_plan_popup.fxml" />
+        <option value="$PROJECT_DIR$/src/gpts/java/controllers/EmpPopupBaseController.java" />
+        <option value="$PROJECT_DIR$/src/gpts/java/controllers/EmpPlanPopupController.java" />
+        <option value="$PROJECT_DIR$/src/gpts/java/controllers/EmpMessagePopupController.java" />
+        <option value="$PROJECT_DIR$/src/gpts/java/controllers/EmpDetailsPopupController.java" />
+        <option value="$PROJECT_DIR$/src/gpts/java/controllers/EmpTasksPopupController.java" />
+        <option value="$PROJECT_DIR$/src/gpts/java/controllers/BaseContentController.java" />
+        <option value="$PROJECT_DIR$/src/gpts/java/controllers/ContentController.java" />
+        <option value="$PROJECT_DIR$/src/gpts/java/controllers/ControllerCallback.java" />
+        <option value="$PROJECT_DIR$/src/gpts/java/controllers/EmployeeFormController.java" />
         <option value="$PROJECT_DIR$/src/gpts/java/controllers/EmployeesController.java" />
+        <option value="$PROJECT_DIR$/src/gpts/java/controllers/MainController.java" />
+        <option value="$PROJECT_DIR$/src/gpts/java/controllers/PopupLoaderController.java" />
+        <option value="$PROJECT_DIR$/src/gpts/java/controllers/SettingsController.java" />
+        <option value="$PROJECT_DIR$/src/gpts/java/controllers/SideBarController.java" />
+        <option value="$PROJECT_DIR$/src/gpts/java/controllers/TasksController.java" />
+        <option value="$PROJECT_DIR$/src/gpts/java/interfaces/Callback.java" />
+        <option value="$PROJECT_DIR$/src/gpts/java/interfaces/WebRequestCallback.java" />
+        <option value="$PROJECT_DIR$/src/gpts/java/ui/BasePage.java" />
+        <option value="$PROJECT_DIR$/src/gpts/java/ui/EmpBox.java" />
         <option value="$PROJECT_DIR$/src/gpts/java/ui/EmployeesPage.java" />
+        <option value="$PROJECT_DIR$/src/gpts/java/ui/PopupLoader.java" />
         <option value="$PROJECT_DIR$/src/gpts/java/ui/SettingsPage.java" />
         <option value="$PROJECT_DIR$/src/gpts/java/ui/TasksPage.java" />
-        <option value="$PROJECT_DIR$/src/gpts/java/controllers/SideBarController.java" />
-        <option value="$PROJECT_DIR$/git.bat" />
+        <option value="$PROJECT_DIR$/src/gpts/java/Common.java" />
+        <option value="$PROJECT_DIR$/src/gpts/java/Employee.java" />
+        <option value="$PROJECT_DIR$/src/gpts/java/Main.java" />
+        <option value="$PROJECT_DIR$/src/gpts/java/WebRequest.java" />
+        <option value="$PROJECT_DIR$/src/gpts/java/controllers/EmpBoxController.java" />
       </list>
     </option>
   </component>
@@ -299,7 +204,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -344,7 +250,30 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="gpts" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="interfaces" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gpts" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gpts" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="gpts" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="ui" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gpts" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gpts" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="gpts" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gpts" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gpts" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="gpts" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
+              <item name="fxml" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="gpts" type="b2602c69:ProjectViewProjectNode" />
@@ -354,8 +283,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -508,7 +436,8 @@
       <workItem from="1528369419542" duration="30059000" />
       <workItem from="1528418436686" duration="7356000" />
       <workItem from="1528484335623" duration="11616000" />
-      <workItem from="1528554647287" duration="12083000" />
+      <workItem from="1528554647287" duration="12156000" />
+      <workItem from="1528638608132" duration="5962000" />
     </task>
     <task id="LOCAL-00001" summary="changed some of content scrollpane attributes to center boxes">
       <created>1528411793278</created>
@@ -535,7 +464,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="62416000" />
+    <option name="totallyTimeSpent" value="68451000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -555,7 +484,7 @@
       <window_info anchor="bottom" id="Terminal" order="14" weight="0.32897604" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.17110874" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.17270789" />
       <window_info anchor="right" id="Database" order="5" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -594,22 +523,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/gpts/Controller.java" />
-    <entry file="file://$PROJECT_DIR$/src/gpts/Main.java" />
-    <entry file="file://$PROJECT_DIR$/src/gpts/java/Controller.java" />
     <entry file="file://$PROJECT_DIR$/src/gpts/res/fxml/main.java" />
     <entry file="file://$PROJECT_DIR$/src/gpts/java/controllers/MenuBarController.java" />
     <entry file="file://$PROJECT_DIR$/src/gpts/java/controllers/BaseController.java" />
-    <entry file="file://$PROJECT_DIR$/src/gpts/java/PopupLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="27" column="33" lean-forward="true" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gpts/java/PopupLoader.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/javafx-src.zip!/javafx/concurrent/Worker.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3176">
@@ -673,23 +590,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gpts/java/Callback.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gpts/java/WebRequestCallback.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="35" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/javafx-src.zip!/javafx/util/Callback.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gpts/java/Callback.java" />
+    <entry file="file://$PROJECT_DIR$/src/gpts/java/WebRequestCallback.java" />
     <entry file="jar://$PROJECT_DIR$/libs/jfoenix-8.0.4-retrolambda.jar!/css/jfoenix-design.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-17830">
@@ -703,14 +605,6 @@
           <caret line="34" column="25" lean-forward="true" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="25" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gpts/res/fxml/main.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="12" lean-forward="true" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="jar://$PROJECT_DIR$/libs/JFoenix-master.jar!/com/jfoenix/controls/JFXButton.class">
       <provider selected="true" editor-type-id="text-editor">
@@ -726,61 +620,118 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gpts/res/fxml/sidebar.fxml">
+    <entry file="file://$PROJECT_DIR$/src/gpts/java/EmpBox.java" />
+    <entry file="file://$PROJECT_DIR$/src/gpts/res/fxml/emp_plan_popup.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1394">
-          <caret line="82" selection-start-line="82" selection-end-line="82" />
+        <state relative-caret-position="272">
+          <caret line="16" column="44" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gpts/res/fxml/content.fxml">
+    <entry file="file://$PROJECT_DIR$/src/gpts/java/controllers/EmpPasksPopup.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        <state relative-caret-position="34">
+          <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gpts/java/EmpBox.java">
+    <entry file="file://$PROJECT_DIR$/src/gpts/java/controllers/EmpPopupBaseController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="33" lean-forward="true" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
+        <state>
+          <caret selection-end-column="29" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
+            <element signature="e#645#646#0" expanded="true" />
+            <element signature="e#677#678#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gpts/java/controllers/EmpMessagePopupController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#289#290#0" expanded="true" />
+            <element signature="e#314#315#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gpts/java/controllers/EmpDetailsPopupController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#294#295#0" expanded="true" />
+            <element signature="e#317#318#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gpts/java/controllers/EmpTasksPopupController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#395#396#0" expanded="true" />
+            <element signature="e#414#415#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gpts/java/controllers/BaseContentController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gpts/java/controllers/ControllerCallback.java">
+    <entry file="file://$PROJECT_DIR$/src/gpts/java/controllers/ContentController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gpts/java/controllers/EmpBoxController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="5" lean-forward="true" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/gpts/java/controllers/ControllerCallback.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/gpts/java/controllers/EmployeeFormController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="36" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="36" />
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gpts/java/controllers/EmployeesController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="38" column="4" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gpts/java/controllers/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -789,8 +740,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gpts/java/controllers/PopupLoaderController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -799,10 +750,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gpts/java/controllers/SettingsController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="4" lean-forward="true" selection-start-line="14" selection-start-column="4" selection-end-line="17" selection-end-column="5" />
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gpts/java/controllers/SideBarController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1102">
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
+          <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -810,61 +770,97 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gpts/java/controllers/TasksController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
+            <element signature="e#626#627#0" expanded="true" />
+            <element signature="e#689#690#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gpts/java/interfaces/Callback.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="32" selection-start-line="3" selection-start-column="32" selection-end-line="3" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gpts/java/interfaces/WebRequestCallback.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="28" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gpts/java/ui/BasePage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#801#802#0" expanded="true" />
+            <element signature="e#839#840#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gpts/java/ui/EmpBox.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="9" column="38" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gpts/java/ui/EmployeesPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gpts/java/ui/PopupLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gpts/java/ui/SettingsPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gpts/java/ui/TasksPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gpts/java/Common.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gpts/res/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="351" column="1" selection-start-line="351" selection-start-column="1" selection-end-line="351" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gpts/java/WebRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-558">
-          <caret line="13" column="21" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gpts/java/Employee.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="42" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
+        <state relative-caret-position="122">
+          <caret line="23" column="31" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -873,108 +869,50 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gpts/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="28" lean-forward="true" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gpts/java/controllers/ContentController.java">
+    <entry file="file://$PROJECT_DIR$/src/gpts/java/WebRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-133">
+          <caret line="41" column="27" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gpts/res/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="122">
-          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+          <caret line="351" column="1" selection-start-line="351" selection-start-column="1" selection-end-line="351" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gpts/java/controllers/EmpPlanPopupController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gpts/java/controllers/MainController.java">
+    <entry file="file://$PROJECT_DIR$/src/gpts/java/controllers/EmpBoxController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="58" selection-start-line="58" selection-end-line="58" />
+        <state relative-caret-position="632">
+          <caret line="71" column="11" lean-forward="true" selection-start-line="71" selection-start-column="11" selection-end-line="71" selection-end-column="11" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gpts/java/ui/SettingsPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="41" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gpts/java/ui/BasePage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#805#806#0" expanded="true" />
-            <element signature="e#830#831#0" expanded="true" />
-            <element signature="e#805#806#0" expanded="true" />
-            <element signature="e#839#840#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gpts/java/controllers/EmployeesController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="91" column="5" lean-forward="true" selection-start-line="91" selection-start-column="5" selection-end-line="91" selection-end-column="5" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="imports" expanded="true" />
-            <element signature="e#2701#2702#0" expanded="true" />
-            <element signature="e#2770#2771#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gpts/java/ui/EmployeesPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2107#2108#0" expanded="true" />
-            <element signature="e#2234#2235#0" expanded="true" />
-            <element signature="e#3049#3050#0" expanded="true" />
-            <element signature="e#3163#3164#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gpts/java/ui/TasksPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gpts/java/controllers/SideBarController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="70" column="37" lean-forward="true" selection-start-line="70" selection-start-column="37" selection-end-line="70" selection-end-column="37" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://F:/gitas_fts_v2/filo_hibrit_git.bat">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/git.bat">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
   <component name="masterDetails">

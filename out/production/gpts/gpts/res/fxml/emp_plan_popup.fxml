@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane prefWidth="850.0" styleClass="popup-form-container" stylesheets="@../css/main.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.161">
+<ScrollPane prefWidth="850.0" styleClass="popup-form-container" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpts.java.controllers.EmpPlanPopupController">
    <content>
       <VBox prefWidth="850.0" spacing="15.0">
          <children>
@@ -25,7 +25,7 @@
                         <Label layoutX="29.0" layoutY="10.0" styleClass="popup-form-title" text="Günlük Plan" />
                      </children>
                   </HBox>
-                  <JFXButton prefWidth="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+                  <JFXButton fx:id="uiCloseBtn" prefWidth="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
                      <graphic>
                         <FontAwesomeIconView glyphName="CLOSE" size="18" styleClass="popup-form-title-icon" />
                      </graphic>

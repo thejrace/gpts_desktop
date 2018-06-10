@@ -1,8 +1,7 @@
-/**
- * Obarey Inc. 2018
- */
+/* Gitaş - Obarey Inc 2018 */
 package gpts.java;
 
+import gpts.java.interfaces.WebRequestCallback;
 import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -25,11 +24,11 @@ public class WebRequest {
         mParams = params;
     }
 
-    public void action( gpts.java.WebRequestCallback callback ){
+    public void action( WebRequestCallback callback ){
         download( callback );
     }
 
-    public void actionAsync( gpts.java.WebRequestCallback callback ){
+    public void actionAsync( WebRequestCallback callback ){
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -40,7 +39,7 @@ public class WebRequest {
         thread.start();
     }
 
-    private void download( gpts.java.WebRequestCallback callback ){
+    private void download( WebRequestCallback callback ){
         HttpURLConnection connection = null;
         try {
             ArrayList<String> paramsSerializedArray = new ArrayList<>();

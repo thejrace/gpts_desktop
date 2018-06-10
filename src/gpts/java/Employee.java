@@ -1,5 +1,7 @@
+/* Gitaş - Obarey Inc 2018 */
 package gpts.java;
 
+import gpts.java.interfaces.WebRequestCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -10,6 +12,28 @@ public class Employee {
 
     // empty constructor
     public Employee(){
+    }
+
+    public Employee( String id ){
+        mID = id;
+    }
+
+    public void downloadPlan( WebRequestCallback cb ){
+        Thread th = new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+
+                try {
+                    Thread.sleep(3000);
+                } catch( InterruptedException e ){
+                    e.printStackTrace();
+                }
+                cb.onFinish( new JSONObject() );
+            }
+        });
+        th.setDaemon(true);
+        th.start();
     }
 
     // set constructor with data

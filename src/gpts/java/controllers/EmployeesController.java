@@ -1,19 +1,12 @@
-/***
- *  Gitaş - Obarey Inc. 2018
- *
- * */
-
+/* Gitaş - Obarey Inc 2018 */
 package gpts.java.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXToggleButton;
-import gpts.java.*;
-import gpts.java.WebRequestCallback;
 import gpts.java.ui.EmpBox;
 import gpts.java.ui.PopupLoader;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,8 +16,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URL;
@@ -46,9 +37,7 @@ public class EmployeesController extends BaseContentController implements Initia
     @FXML private JFXToggleButton uiFilterLateToggle;
     @FXML private JFXComboBox uiFilterGroupComboBox;
 
-    private boolean mDownloadThreadActive = true;
     private boolean mEnableSearch = false;
-    private boolean mDataDownloadInited = false;
 
     private Map<String, EmpBox> mEmpBoxes = new HashMap<>();
 
@@ -56,8 +45,6 @@ public class EmployeesController extends BaseContentController implements Initia
     public void initialize(URL url, ResourceBundle res ){
 
         PopupLoader.show("Veri alınıyor..");
-        startDownloadThread();
-
         // open employee add form
         uiAddBtn.setOnMouseClicked( ev -> {
             try {
@@ -83,13 +70,6 @@ public class EmployeesController extends BaseContentController implements Initia
 
     }
 
-    public void updateEmpBoxes(){
-
-    }
-
-    private void startDownloadThread(){
-
-    }
 
     public void addEmpBox( Parent boxUI){
         uiEmpBoxContainer.getChildren().add( boxUI );

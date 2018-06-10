@@ -1,8 +1,4 @@
-/***
- *  Gitaş - Obarey Inc. 2018
- *
- * */
-
+/* Gitaş - Obarey Inc 2018 */
 package gpts.java.controllers;
 
 import gpts.java.Main;
