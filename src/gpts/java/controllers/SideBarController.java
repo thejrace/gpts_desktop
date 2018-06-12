@@ -92,40 +92,4 @@ public class SideBarController implements Initializable {
             mPageIndex = 5;
         });
     }
-
-    /*
-    *  - method that loads the fxml to the content.fxml -> ScrollPane's content
-    *  - @fxml  : fxml file's name to be loaded
-    *  - @index : fxml state for avoiding the loading same content again
-    * */
-    @Deprecated
-    private void setContentUI( String fxml, int index, ControllerCallback cb ){
-        try {
-            // if already in this layout, don't do anything
-            if( mMainContentStateIndex == index ) return;
-            Parent contentUI;
-            BaseContentController controller;
-            // if we have the UI already initialized we use that
-            if( mControllers.containsKey(index) && mUIs.containsKey(index) ){
-                contentUI = mUIs.get(index);
-                controller = mControllers.get(index);
-            } else {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/gpts/res/fxml/"+fxml+".fxml"));
-                contentUI  = loader.load();
-                // get controllers and pass them to callback
-                controller = loader.getController();
-                // store the controller and layout
-                mControllers.put( index, controller );
-                mUIs.put(index, contentUI );
-            }
-            cb.onLoad( controller );
-            // set content
-            MainController.UICONTENTMAIN.setContent(contentUI);
-            mMainContentStateIndex = index;
-        } catch( IOException e ){
-            e.printStackTrace();
-        }
-    }
-
 }

@@ -38,6 +38,7 @@ public class PlansController extends BaseContentController implements Initializa
                 loader.setLocation(getClass().getResource("/gpts/res/fxml/forms/plan_form.fxml"));
                 ScrollPane ui  = loader.load();
                 PlanFormController controller = loader.getController();
+                // todo eklenme listener a yapilacak
                 dialog.setContent( ui );
                 dialog.setOverlayClose(false);
                 dialog.show( (StackPane) ((Node) ev.getSource()).getScene().getRoot() );

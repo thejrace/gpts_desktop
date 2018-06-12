@@ -33,13 +33,13 @@
             </Label>
             <VBox spacing="30.0">
                <children>
-                  <JFXTextField fx:id="uiNameInput" prefWidth="300.0" promptText="İsim" styleClass="text-field-popup-style" />
-                  <JFXTextField fx:id="uiEmailInput" prefWidth="300.0" promptText="Eposta" styleClass="text-field-popup-style" />
-                  <JFXTextField fx:id="uiNickInput" layoutX="35.0" layoutY="120.0" prefWidth="300.0" promptText="Rumuz" styleClass="text-field-popup-style" />
-                  <JFXTextField fx:id="uiPhone1Input" layoutX="35.0" layoutY="354.0" prefWidth="300.0" promptText="Tel 1" styleClass="text-field-popup-style" />
-                  <JFXTextField fx:id="uiPhone2Input" prefWidth="300.0" promptText="Tel 2" styleClass="text-field-popup-style" />
-                  <JFXComboBox fx:id="uiGroupComboBox" prefWidth="300.0" promptText="Kullanıcı Grubu" styleClass="text-field-popup-style" />
-                  <JFXPasswordField fx:id="uiPasswordInput" prefWidth="300.0" promptText="Program Şifre" styleClass="text-field-popup-style" />
+                  <JFXTextField fx:id="uiNameInput" labelFloat="true" prefWidth="300.0" promptText="İsim" styleClass="text-field-popup-style" />
+                  <JFXTextField fx:id="uiEmailInput" labelFloat="true" prefWidth="300.0" promptText="Eposta" styleClass="text-field-popup-style" />
+                  <JFXTextField fx:id="uiNickInput" labelFloat="true" layoutX="35.0" layoutY="120.0" prefWidth="300.0" promptText="Rumuz" styleClass="text-field-popup-style" />
+                  <JFXTextField fx:id="uiPhone1Input" labelFloat="true" layoutX="35.0" layoutY="354.0" prefWidth="300.0" promptText="Tel 1" styleClass="text-field-popup-style" />
+                  <JFXTextField fx:id="uiPhone2Input" labelFloat="true" prefWidth="300.0" promptText="Tel 2" styleClass="text-field-popup-style" />
+                  <JFXComboBox fx:id="uiGroupComboBox" labelFloat="true" prefWidth="300.0" promptText="Kullanıcı Grubu" styleClass="text-field-popup-style" />
+                  <JFXPasswordField fx:id="uiPasswordInput" labelFloat="true" prefWidth="300.0" promptText="Program Şifre" styleClass="text-field-popup-style" />
                   <HBox alignment="CENTER" spacing="20.0">
                      <children>
                         <JFXButton fx:id="uiCancelBtn" alignment="TOP_LEFT" text="İptal">
