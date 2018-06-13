@@ -18,6 +18,9 @@ public class WebRequest {
 
     public static String SERVICE_URL = "http://localhost/gpts/service.php";
 
+    public static String STATUS_FLAG = "ok",
+                         RETURN_TEXT = "text";
+
     // @todo internet baglantisi yoksa hata ver
     public WebRequest( String url, Map<String, String> params ) {
         mURL = url;

@@ -17,6 +17,7 @@ public class PopupLoader {
     public static int MESSAGE_SUCCESS = 1,
                       MESSAGE_ERROR = 2;
     public static String LOADER_FXML = "/gpts/res/fxml/popup_loader.fxml";
+    public static String PLEASE_WAIT = "Lütfen bekleyin..";
 
     public PopupLoader( StackPane root ){
         ROOT = root;

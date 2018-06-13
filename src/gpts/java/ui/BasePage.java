@@ -4,6 +4,7 @@ package gpts.java.ui;
 import gpts.java.controllers.BaseContentController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.input.ScrollEvent;
 
 import java.io.IOException;
 
@@ -32,7 +33,6 @@ public class BasePage {
     public BaseContentController getBaseController(){
         return mBaseController;
     }
-
 
 
 }

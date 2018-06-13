@@ -1,11 +1,20 @@
 /* Gitaş - Obarey Inc 2018 */
 package gpts.java;
 
-import java.util.ArrayList;
+import gpts.java.interfaces.ActionCallback;
+import gpts.java.interfaces.WebRequestCallback;
+import gpts.java.ui.PopupLoader;
+import javafx.application.Platform;
+import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+// daily plan data class
 public class DailyPlan {
 
-    private String mStart, mFinish, mName, mID, mInterval;
+    private String mStart, mEnd, mName, mID, mPlanInterval;
     private ArrayList<String> mPlanTable;
 
 
@@ -18,26 +27,64 @@ public class DailyPlan {
     public DailyPlan(){
 
     }
+    public DailyPlan( String id, String name, String start, String end, String planInterval ){
+        mName = name;
+        mStart = start;
+        mEnd = end;
+        mPlanInterval = planInterval;
+        mID = id;
+    }
 
-    public boolean update( String name, String start, String finish, String interval ){
+    public boolean update( String name, String start, String end, String planInterval ){
 
         return false;
     }
 
-    public boolean add( String name, String start, String finish, String interval ){
+    public void add( String name, String start, String end, String planInterval, ActionCallback cb ){
         FormValidation validation = new FormValidation();
         boolean inputCheck = validation.checkInputs( new ValidationInput[]{
                 new ValidationInput("İsim", name, FormValidation.CHECK_REQ ),
-                new ValidationInput("Başlangıç", start, FormValidation.CHECK_REQ ),
-                new ValidationInput("Bitiş", finish, FormValidation.CHECK_REQ ),
-                new ValidationInput("Aralık", interval, new int[]{ FormValidation.CHECK_REQ, FormValidation.CHECK_NUMERIC } )
+                new ValidationInput("Başlangıç", start, new int[]{ FormValidation.CHECK_REQ, FormValidation.CHECK_HOUR_FORMAT } ),
+                new ValidationInput("Bitiş", end, new int[]{ FormValidation.CHECK_REQ, FormValidation.CHECK_HOUR_FORMAT } ),
+                new ValidationInput("Aralık", planInterval, new int[]{ FormValidation.CHECK_REQ, FormValidation.CHECK_NUMERIC } )
         });
         if( !inputCheck ){
             mReturnText = validation.getMessage();
-            return false;
+            cb.onError(ActionStatusCode.VALIDATION_ERROR);
+            return;
         }
-        mReturnText = "İşlem başarılı.";
-        return true;
+        // show before thread
+        PopupLoader.show(PopupLoader.PLEASE_WAIT);
+        Thread th = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // send request
+                Map<String, String> params = new HashMap<>();
+                params.put("name", name );
+                params.put("start", start );
+                params.put("end", end);
+                params.put("plan_interval", planInterval );
+                params.put("req", "add_daily_plan_schema" );
+                WebRequest req = new WebRequest( WebRequest.SERVICE_URL, params );
+                req.action(new WebRequestCallback() {
+                    @Override
+                    public void onFinish(JSONObject output) {
+                        mReturnText = output.getString(WebRequest.RETURN_TEXT);
+                        if( output.getInt(WebRequest.STATUS_FLAG) == 1 ){
+                            Platform.runLater(() -> {
+                                cb.onSuccess();
+                            });
+                        } else {
+                            Platform.runLater(() -> {
+                                cb.onError( ActionStatusCode.ERROR );
+                            });
+                        }
+                    }
+                });
+            }
+        });
+        th.setDaemon(true);
+        th.start();
     }
 
     public String getReturnText(){
@@ -54,14 +101,14 @@ public class DailyPlan {
     public String getStart(){
         return mStart;
     }
-    public String getFinish(){
-        return mFinish;
+    public String getEnd(){
+        return mEnd;
     }
     public String getID(){
         return mID;
     }
-    public String getInterval(){
-        return mInterval;
+    public String getPlanInterval(){
+        return mPlanInterval;
     }
 
 }

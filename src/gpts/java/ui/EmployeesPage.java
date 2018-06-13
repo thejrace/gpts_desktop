@@ -38,7 +38,7 @@ public class EmployeesPage extends BasePage{
                 while( mDownloadThreadActive ){
                     // download data
                     WebRequest request = new WebRequest(WebRequest.SERVICE_URL, downloadParams );
-                    request.actionAsync(new WebRequestCallback() {
+                    request.action(new WebRequestCallback() {
                         @Override
                         public void onFinish(JSONObject output) {
                             JSONArray list = output.getJSONArray("data");
@@ -60,7 +60,6 @@ public class EmployeesPage extends BasePage{
                                 Platform.runLater(new Runnable() {
                                     @Override
                                     public void run() {
-                                        System.out.println("hide beybe");
                                         PopupLoader.hide();
                                     }
                                 });

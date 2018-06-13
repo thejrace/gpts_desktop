@@ -3,6 +3,7 @@ package gpts.java.controllers;
 
 import com.jfoenix.controls.JFXTextField;
 import gpts.java.DailyPlan;
+import gpts.java.interfaces.ActionCallback;
 import gpts.java.ui.PopupLoader;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,14 +24,20 @@ public class PlanFormController extends PopupFormBaseController implements Initi
         uiSaveBtn.setOnMouseClicked( ev -> {
             uiSaveBtn.setDisable(true);
             DailyPlan plan = new DailyPlan();
-            if( !plan.add( uiNameInput.getText(), uiStartInput.getText(), uiEndInput.getText(), uiIntervalInput.getText() ) ){
-                outputError(plan.getReturnText());
-                uiSaveBtn.setDisable(false);
-            } else {
-                mParentDialog.close();
-                PopupLoader.showMessage(plan.getReturnText(), PopupLoader.MESSAGE_SUCCESS );
-                // todo -> eklenen, listeye dahil edilecek
-            }
+            plan.add(uiNameInput.getText(), uiStartInput.getText(), uiEndInput.getText(), uiIntervalInput.getText(), new ActionCallback() {
+                @Override
+                public void onSuccess() {
+                    mParentDialog.close();
+                    PopupLoader.showMessage(plan.getReturnText(), PopupLoader.MESSAGE_SUCCESS );
+                    // todo -> eklenen, listeye dahil edilecek
+                }
+                @Override
+                public void onError( int type ) {
+                    outputError(plan.getReturnText());
+                    uiSaveBtn.setDisable(false);
+                    PopupLoader.hide();
+                }
+            });
         });
 
 

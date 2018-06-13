@@ -3,12 +3,8 @@ package gpts.java.controllers;
 
 import gpts.java.ui.*;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.layout.HBox;
-
-import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,18 +18,13 @@ public class SideBarController implements Initializable {
     @FXML private HBox uiSideBarBtn4; // plans
     @FXML private HBox uiSideBarBtn5; // employee groups
 
-    private int mMainContentStateIndex = 0;
-
-    private Map<Integer, BaseContentController> mControllers = new HashMap<>();
-    private Map<Integer, Parent> mUIs = new HashMap<>();
-
     private int mPageIndex = 0;
     private Map<Integer, BasePage> mPages = new HashMap<>();
 
     @Override
     public void initialize(URL url, ResourceBundle rb ){
 
-        // TODO - generalize it, research: reflection in java
+        // TODO - bunu fonksiyon haline getir, bak -> reflection in java
         uiSideBarBtn1.setOnMouseClicked(ev -> {
             // check if we already in this page
             if( mPageIndex == 1 ) return;

@@ -11,10 +11,11 @@ public class FormValidation {
 
     public static int CHECK_REQ = 1,
                       CHECK_EMAIL = 2,
-                      CHECK_NUMERIC = 3;
+                      CHECK_NUMERIC = 3,
+                      CHECK_HOUR_FORMAT = 4;
 
     public boolean check( ValidationInput input ){
-        Pair params = new Pair<String, String>( input.getKey(), input.getValue() );
+        Pair params = new Pair<String, String>( input.getKey(), input.getValue().trim() );
         int validator;
         // multiple validators
         if( input.getMultipleValidatorFlag() ){
@@ -38,6 +39,8 @@ public class FormValidation {
             return checkEmail( params );
         } else if ( validator == CHECK_NUMERIC ){
             return checkNumeric( params );
+        } else if ( validator == CHECK_HOUR_FORMAT ){
+            return checkHourFormat( params );
         } else {
             mMessage = "Bilinmeyen validator.";
             return false;
@@ -66,12 +69,30 @@ public class FormValidation {
     }
 
     public boolean checkNumeric( Pair<String, String> input ){
-        String regex = "\\d+";
-        Pattern pattern = Pattern.compile(regex);
-        if( pattern.matcher(input.getValue()).matches()){
+        final Pattern NUMERIC_PATTERN = Pattern.compile("\\d+");
+        Matcher matcher = NUMERIC_PATTERN.matcher(input.getValue());
+        if( matcher.find()){
             return true;
         } else {
             mMessage = input.getKey() + " yalnızca rakam içermelidir.";
+            return false;
+        }
+    }
+
+    // XX:XX format check
+    public boolean checkHourFormat( Pair<String, String> input ){
+        // length control
+        String val = Common.regexTrim( input.getValue() );
+        if( val.length() != 5 ){
+            mMessage = input.getKey() + " gerçersiz formatta.";
+            return false;
+        }
+        final Pattern TIME24HOURS_PATTERN = Pattern.compile("^([0-1]\\d|2[0-3]):([0-5]\\d)$");
+        Matcher matcher = TIME24HOURS_PATTERN.matcher(input.getValue());
+        if( matcher.find() ){
+            return true;
+        } else {
+            mMessage = input.getKey() + " gerçersiz formatta.";
             return false;
         }
     }
@@ -85,6 +106,8 @@ public class FormValidation {
         }
         return true;
     }
+
+
 
     public String getMessage(){
         return mMessage;

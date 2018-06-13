@@ -74,9 +74,10 @@
 }
 
 .content-btn-warning {
-    -fx-background-color: #b9b848;
-    -fx-border-color: #848334;
+    -fx-background-color: #ffd835;
+    -fx-border-color: #ffc668;
     -fx-text-fill: #626127;
+    -jfx-rippler-fill:#ff0000;
 }
 
 .content-btn-danger {
@@ -85,8 +86,14 @@
     -fx-text-fill:#d3d3d3;
 }
 
+.content-btn-info {
+    -fx-background-color: #48bdd8;
+    -fx-border-color: #559fd8;
+    -fx-text-fill:#fff;
+}
+
 .content-btn-icon {
-    -fx-fill:#d3d3d3;
+    -fx-fill: #f1f1f1;
 }
 
 .content-btn-icon-warning {
@@ -419,4 +426,22 @@
     -fx-font-size:20;
     -fx-text-fill:#fff;
     -fx-background-color: #343333;
+}
+.plan-data-row {
+    -fx-background-color:#3e3e3e;
+}
+
+.plan-data-row .ico-calendar {
+    -fx-fill:#ffd200;
+}
+.plan-data-row  .ico-edit {
+    -fx-fill:#cfcfcf;
+}
+.plan-data-row .ico-users {
+    -fx-fill:#42aafb;
+}
+.plan-data-row .label {
+    -fx-text-fill:#fff;
+    -fx-font-weight:bold;
+    -fx-font-size:14;
 }

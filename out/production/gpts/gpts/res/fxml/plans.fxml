@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox styleClass="main-bg-color" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpts.java.controllers.PlansController">
+<VBox alignment="CENTER" styleClass="main-bg-color" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpts.java.controllers.PlansController">
    <stylesheets>
       <URL value="@../css/main.css" />
    </stylesheets>
@@ -21,17 +21,29 @@
          <children>
             <HBox alignment="CENTER_RIGHT" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
-                  <JFXButton fx:id="uiAddBtn" text="Ekle">
+                  <JFXButton fx:id="uiDownloadBtn" text="Veri Al">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="REFRESH" styleClass="content-btn-icon" />
+                     </graphic>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                     <styleClass>
+                        <String fx:value="content-btn" />
+                        <String fx:value="content-btn-info" />
+                     </styleClass>
+                  </JFXButton>
+                  <JFXButton fx:id="uiAddBtn" alignment="CENTER" layoutX="382.0" layoutY="20.0" text="Ekle">
                      <graphic>
                         <FontAwesomeIconView glyphName="PLUS" styleClass="content-btn-icon" />
                      </graphic>
-                     <HBox.margin>
-                        <Insets top="10.0" />
-                     </HBox.margin>
                      <styleClass>
                         <String fx:value="content-btn" />
                         <String fx:value="content-btn-default" />
                      </styleClass>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
                   </JFXButton>
                </children>
             </HBox>
@@ -70,12 +82,21 @@
             <Insets bottom="10.0" top="10.0" />
          </VBox.margin>
       </HBox>
-      <FlowPane alignment="TOP_CENTER" hgap="10.0" prefHeight="200.0" prefWidth="200.0" vgap="10.0" VBox.vgrow="ALWAYS">
+      <FlowPane fx:id="uiBoxContainer" alignment="TOP_CENTER" hgap="10.0" prefHeight="200.0" prefWidth="200.0" vgap="10.0" VBox.vgrow="ALWAYS">
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" />
          </padding></FlowPane>
+      <JFXButton fx:id="uiMoreBtn" text="Daha Fazla">
+         <styleClass>
+            <String fx:value="content-btn" />
+            <String fx:value="content-btn-warning" />
+         </styleClass>
+         <VBox.margin>
+            <Insets bottom="10.0" top="10.0" />
+         </VBox.margin>
+      </JFXButton>
    </children>
 </VBox>
