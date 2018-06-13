@@ -5,8 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane fx:controller="gpts.java.controllers.PlanDataRowController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="330.0" styleClass="plan-data-row" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="300.0" styleClass="plan-data-row" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpts.java.controllers.PlanDataRowController">
    <children>
       <Label fx:id="uiNameLbl" prefHeight="20.0" prefWidth="216.0" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="8.0" />
       <FontAwesomeIconView glyphName="CALENDAR" size="18" styleClass="ico-calendar" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="9.0" />

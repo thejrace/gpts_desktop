@@ -72,7 +72,8 @@ public class DailyPlan {
                         mReturnText = output.getString(WebRequest.RETURN_TEXT);
                         if( output.getInt(WebRequest.STATUS_FLAG) == 1 ){
                             Platform.runLater(() -> {
-                                cb.onSuccess();
+                                // data is lastInsertedId
+                                cb.onSuccess( output.getString("data") );
                             });
                         } else {
                             Platform.runLater(() -> {

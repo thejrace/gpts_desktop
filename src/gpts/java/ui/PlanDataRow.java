@@ -24,6 +24,7 @@ public class PlanDataRow {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/gpts/res/fxml/plan_data_row.fxml"));
             mUI  = loader.load();
+            mUI.setId( mDailyPlan.getName() );
             mController = loader.getController();
             updateUI();
         } catch( IOException e ){
@@ -45,7 +46,8 @@ public class PlanDataRow {
         updateUI();
     }
 
-
-
+    public DailyPlan getData(){
+        return mDailyPlan;
+    }
 
 }
