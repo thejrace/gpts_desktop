@@ -38,8 +38,8 @@ public class PlansController extends BaseContentController implements Initializa
     @FXML private TextField uiSearchInput;
     @FXML private FlowPane uiBoxContainer;
 
-
     private boolean mEnableSearch = false;
+    private boolean mMoreBtnState = false;
     private PlansPage mPage;
     private ObservableList<Node> dataRowsTemp;
 
@@ -89,12 +89,12 @@ public class PlansController extends BaseContentController implements Initializa
             }
         });
 
-        // download data
+        // todo download data
         // if another user added a new plan we should get it with this button
         // rather than restart the application
-        uiDownloadBtn.setOnMouseClicked(ev -> {
+        /*uiDownloadBtn.setOnMouseClicked(ev -> {
 
-        });
+        });*/
 
         // load more rows
         uiMoreBtn.setOnMouseClicked( ev -> {
@@ -136,13 +136,14 @@ public class PlansController extends BaseContentController implements Initializa
     // after search return the first state
     public void restoreFirstState(){
         uiBoxContainer.getChildren().setAll(dataRowsTemp);
+        uiMoreBtn.setDisable( mMoreBtnState );
     }
 
-    public void disableMoreBtn(){
-        uiMoreBtn.setDisable(true);
-    }
-    public void enableMoreBtn(){
-        uiMoreBtn.setDisable(false);
+    public void saveMoreBtnState(){
+        mMoreBtnState = uiMoreBtn.isDisable();
     }
 
+    public void disableMoreBtn( boolean flag ){
+        uiMoreBtn.setDisable( flag );
+    }
 }

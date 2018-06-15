@@ -6,7 +6,6 @@ import gpts.java.WebRequest;
 import gpts.java.controllers.PlansController;
 import gpts.java.interfaces.WebRequestCallback;
 import javafx.application.Platform;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,28 +13,12 @@ import java.util.Map;
 public class PlansPage extends BasePage {
 
     private PlansController mController;
-
-    // record count to download
-    private int mRRP = 24;
-    // data download index
-    private int mLastItemIndex = 0;
-    // data download index temp holder for restoring it after search
-    private int mLastItemIndexTemp = 0;
-    // last downloaded data
-    private JSONArray mData;
     // Rows holder lists
-    private Map<String, PlanDataRow> mRows = new HashMap<>();
-    private Map<String, PlanDataRow> mSearchRows = new HashMap<>();
-    // first download flag for PopupLoader
-    private boolean mDownloadInited = false;
-    // search state flag
-    private boolean mSearchFlag = false;
-    private String mSearchKeyword;
-
+    protected Map<String, PlanDataRow> mRows = new HashMap<>();
+    protected Map<String, PlanDataRow> mSearchRows = new HashMap<>();
     public PlansPage(){
 
     }
-
     @Override
     public void initUI( String fxml ){
         super.initUI(fxml);
@@ -54,7 +37,7 @@ public class PlansPage extends BasePage {
         // first download loader inited from planscontroller
         if( mDownloadInited ) PopupLoader.show("Veri alınıyor..");
         if( !mDownloadInited ) mDownloadInited = true;
-        mController.enableMoreBtn();
+        mController.disableMoreBtn( false );
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -72,7 +55,18 @@ public class PlansPage extends BasePage {
                     @Override
                     public void onFinish(JSONObject output) {
                         mData = output.getJSONArray("data");
-                        addItems();
+                        addItems(new BasePage.AddItemCallback() {
+                            @Override
+                            public void action( int length ) {
+                                if( length < mRRP ) mController.disableMoreBtn( true );
+                                JSONObject temp;
+                                for( int k = 0; k < length; k++ ){
+                                    temp = mData.getJSONObject(k);
+                                    PlanDataRow row = new PlanDataRow( new DailyPlan( temp.getString("id"), temp.getString("name"), temp.getString("start"), temp.getString("end"), temp.getString("plan_interval") ));
+                                    addItem( temp.getString("id"), row, false );
+                                }
+                            }
+                        });
                     }
                 });
             }
@@ -81,56 +75,34 @@ public class PlansPage extends BasePage {
         thread.start();
     }
 
-    // adds data rows to layout
-    private void addItems( ){
-        JSONObject temp;
-        int length = mData.length();
-        // mLastItemIndex 0 indexed add length everytime user shows more
-        mLastItemIndex += length;
-        // if last downloaded data is less than RRP means that
-        // there aren't any data left to download
-        // therefore we disable the button to avoid user making useless requests
-        if( length < mRRP ) mController.disableMoreBtn();
-        for( int k = 0; k < length; k++ ){
-            temp = mData.getJSONObject(k);
-            PlanDataRow row = new PlanDataRow( new DailyPlan( temp.getString("id"), temp.getString("name"), temp.getString("start"), temp.getString("end"), temp.getString("plan_interval") ));
-            addItem( temp.getString("id"), row, false );
-        }
-        Platform.runLater(()->{ PopupLoader.hide(); } );
-    }
 
     /* add single item
-    *   @key  : mRows key
-    *   @row  : PlanDataRows object
-    *   @sort : if true, datarows sorted according to their node ID's ( names for this case )
-    */
+     *   @key  : mRows key
+     *   @row  : PlanDataRows object
+     *   @sort : if true, datarows sorted according to their node ID's ( names for this case )
+     */
     public void addItem( String key, PlanDataRow row, boolean sort ){
         if( mSearchFlag ){
             mSearchRows.put( key, row );
         } else {
             mRows.put( key, row );
         }
-        Platform.runLater(()->{
-            mController.addRow( row.getUI(), sort );
-        });
+        Platform.runLater( () -> { mController.addRow( row.getUI(), sort); } );
     }
 
-    // search plan
+    @Override
     public void search( String keyword ){
-        mSearchFlag = true;
-        mSearchKeyword = keyword;
-        // do it once, after first search
-        // if we do it every search call, when user searched twice in a row
-        // we would lost the first state index
-        if( mLastItemIndexTemp == 0 ) mLastItemIndexTemp = mLastItemIndex;
-        // reset item index
-        mLastItemIndex = 0;
+        // if user makes search repeateadly, we avoid overwriting
+        // first state's moreBtton state, that's why we only save it
+        // if no search flag is set
+        if( !mSearchFlag ) mController.saveMoreBtnState();
+        super.search( keyword );
         clearItems();
         downloadData();
     }
 
     // remove all datarows
-    public void clearItems(){
+    private void clearItems(){
         Platform.runLater(()->{
             mController.clearItems();
         });
@@ -138,11 +110,7 @@ public class PlansPage extends BasePage {
 
     // cancel search return first state
     public void cancelSearch(){
-        mSearchFlag = false;
-        // restore first state index for data download
-        mLastItemIndex = mLastItemIndexTemp;
-        // reset temp index
-        mLastItemIndexTemp = 0;
+        super.cancelSearch();
         mController.restoreFirstState();
     }
 
