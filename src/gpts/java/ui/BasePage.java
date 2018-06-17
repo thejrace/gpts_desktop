@@ -51,9 +51,6 @@ public class BasePage {
         int length = mData.length();
         // mLastItemIndex 0 indexed add length everytime user shows more
         mLastItemIndex += length;
-        // if last downloaded data is less than RRP means that
-        // there aren't any data left to download
-        // therefore we disable the button to avoid user making useless requests
         cb.action( length );
         Platform.runLater(()->{ PopupLoader.hide(); } );
     }
@@ -66,7 +63,7 @@ public class BasePage {
         // if we do it every search call, when user searched twice in a row
         // we would lost the first state index
         if( mLastItemIndexTemp == 0 ) mLastItemIndexTemp = mLastItemIndex;
-        // reset item index
+        // reset item index, it will be used for searched data during searching action
         mLastItemIndex = 0;
     }
 
