@@ -88,58 +88,6 @@ public class DailyPlanSchema {
         th.start();
     }
 
-    /*
-    *  - creates DailyPlan rows for schema
-    * */
-    public void generatePlan(){
-        // explode timeformats
-        String[] startExploded = mStart.split(":");
-        String[] endExploded = mEnd.split(":");
-        // get them as integers
-        int startHours = Integer.valueOf(startExploded[0]);
-        int endHours = Integer.valueOf( endExploded[0] );
-        int startMins = Integer.valueOf( startExploded[1] );
-        int endMins = Integer.valueOf( endExploded[1] );
-        // vars for loop
-        int nextHour = startHours,
-            nextMin = startMins,
-            minCounter = startMins + Integer.valueOf(mPlanInterval);
-        String prevHourStr = mStart;
-        boolean breakFlag = false;
-        while( !breakFlag ){
-            if( minCounter >= 60 ){
-                // if previous min + interval bigger than 60
-                // next min will be mod of it
-                nextMin = minCounter % 60;
-                // we increment hour by how many 60 mins in total min
-                nextHour += minCounter / 60;
-                // after 24:00 go back to 01..
-                if( nextHour >= 24 ) nextHour = 24 - nextHour;
-                // if we pass the end and adding interval passes the end, break the loop
-                if( nextHour == endHours && nextMin > endMins ){
-                    nextMin = endMins;
-                    breakFlag = true;
-                }
-                // if check above fails for nextMin > endMin means that
-                // there is a time left which is smaller than interval
-                // we add a last orer item for it
-                if( nextHour > endHours ){
-                    nextMin = endMins;
-                    // next hour is incremented in last iteration if we're in here
-                    // we make it equal to endHour
-                    nextHour = endHours;
-                    breakFlag = true;
-                }
-            }
-            System.out.println( prevHourStr + " - " + Common.convertTimeFormat(nextHour) + ":" + Common.convertTimeFormat(nextMin) );
-            // min counter is always = previous_min + interval
-            // we set here for next iteration
-            minCounter = nextMin + Integer.valueOf(mPlanInterval);
-            prevHourStr = Common.convertTimeFormat(nextHour) + ":" + Common.convertTimeFormat(nextMin);
-        }
-    }
-
-
     public String getReturnText(){
         return mReturnText;
     }
