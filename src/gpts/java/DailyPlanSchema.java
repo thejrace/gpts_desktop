@@ -131,11 +131,11 @@ public class DailyPlanSchema {
                     breakFlag = true;
                 }
             }
-            System.out.println( prevHourStr + " - " + nextHour + ":" + nextMin );
+            System.out.println( prevHourStr + " - " + Common.convertTimeFormat(nextHour) + ":" + Common.convertTimeFormat(nextMin) );
             // min counter is always = previous_min + interval
             // we set here for next iteration
             minCounter = nextMin + Integer.valueOf(mPlanInterval);
-            prevHourStr = nextHour + ":" + nextMin;
+            prevHourStr = Common.convertTimeFormat(nextHour) + ":" + Common.convertTimeFormat(nextMin);
         }
     }
 
