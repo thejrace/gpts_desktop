@@ -11,11 +11,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-// daily plan data class
+// daily plan schema data class
 public class DailyPlanSchema {
 
     private String mStart, mEnd, mName, mID, mPlanInterval;
-    private ArrayList<String> mPlanTable;
+    private ArrayList<DailyPlan> mPlanTable;
 
 
     private String mReturnText;
@@ -87,6 +87,8 @@ public class DailyPlanSchema {
         th.setDaemon(true);
         th.start();
     }
+
+
 
     public String getReturnText(){
         return mReturnText;
