@@ -70,5 +70,15 @@ public class Common {
         return str.replaceAll("\u00A0", "");
     }
 
+    // outputs 1..9   -> 01..
+    // outputs 10..23 -> 10..
+    public static String convertTimeFormat( int time ){
+        if( time < 10 ){
+            return "0"+String.valueOf(time);
+        } else {
+            return String.valueOf(time);
+        }
+    }
+
 }
 
