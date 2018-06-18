@@ -2,7 +2,7 @@
 package gpts.java.controllers;
 
 import com.jfoenix.controls.JFXTextField;
-import gpts.java.DailyPlan;
+import gpts.java.DailyPlanSchema;
 import gpts.java.interfaces.ActionCallback;
 import gpts.java.interfaces.FormActionListener;
 import gpts.java.ui.PopupLoader;
@@ -26,13 +26,13 @@ public class PlanFormController extends PopupFormBaseController implements Initi
 
         uiSaveBtn.setOnMouseClicked( ev -> {
             uiSaveBtn.setDisable(true);
-            DailyPlan plan = new DailyPlan();
+            DailyPlanSchema plan = new DailyPlanSchema();
             plan.add(uiNameInput.getText(), uiStartInput.getText(), uiEndInput.getText(), uiIntervalInput.getText(), new ActionCallback() {
                 @Override
                 public void onSuccess( String[] args ) {
                     mParentDialog.close();
                     PopupLoader.showMessage(plan.getReturnText(), PopupLoader.MESSAGE_SUCCESS );
-                    mAddListener.onFinish( new DailyPlan( args[0], uiNameInput.getText(), uiStartInput.getText(), uiEndInput.getText(), uiIntervalInput.getText() ));
+                    mAddListener.onFinish( new DailyPlanSchema( args[0], uiNameInput.getText(), uiStartInput.getText(), uiEndInput.getText(), uiIntervalInput.getText() ));
                 }
                 @Override
                 public void onError( int type ) {

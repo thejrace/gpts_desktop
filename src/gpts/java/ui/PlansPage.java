@@ -1,7 +1,7 @@
 /* Gitaş - Obarey Inc 2018 */
 package gpts.java.ui;
 
-import gpts.java.DailyPlan;
+import gpts.java.DailyPlanSchema;
 import gpts.java.WebRequest;
 import gpts.java.controllers.PlansController;
 import gpts.java.interfaces.WebRequestCallback;
@@ -65,7 +65,7 @@ public class PlansPage extends BasePage {
                                 JSONObject temp;
                                 for( int k = 0; k < length; k++ ){
                                     temp = mData.getJSONObject(k);
-                                    PlanDataRow row = new PlanDataRow( new DailyPlan( temp.getString("id"), temp.getString("name"), temp.getString("start"), temp.getString("end"), temp.getString("plan_interval") ));
+                                    PlanDataRow row = new PlanDataRow( new DailyPlanSchema( temp.getString("id"), temp.getString("name"), temp.getString("start"), temp.getString("end"), temp.getString("plan_interval") ));
                                     addItem( temp.getString("id"), row, false );
                                 }
                             }

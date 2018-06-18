@@ -2,7 +2,7 @@
 package gpts.java.controllers;
 
 import com.jfoenix.controls.JFXButton;
-import gpts.java.DailyPlan;
+import gpts.java.DailyPlanSchema;
 import gpts.java.ui.PopupLoader;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -27,7 +27,7 @@ public class PlanDataRowController extends DataRowBaseController implements Init
 
     }
 
-    public void setData( DailyPlan plan ){
+    public void setData( DailyPlanSchema plan ){
         // update ui
         uiNameLbl.setText( plan.getName() + " [ "+plan.getID()+" ]" );
     }

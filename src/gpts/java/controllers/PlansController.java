@@ -3,10 +3,7 @@ package gpts.java.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
-import gpts.java.DailyPlan;
-import gpts.java.Employee;
-import gpts.java.FormValidation;
-import gpts.java.ValidationInput;
+import gpts.java.DailyPlanSchema;
 import gpts.java.interfaces.FormActionListener;
 import gpts.java.ui.PlanDataRow;
 import gpts.java.ui.PlansPage;
@@ -58,7 +55,7 @@ public class PlansController extends BaseContentController implements Initializa
                 controller.setAddFormListener(new FormActionListener() {
                     @Override
                     public void onFinish(Object object) {
-                        DailyPlan addedObject = (DailyPlan) object;
+                        DailyPlanSchema addedObject = (DailyPlanSchema) object;
                         PlanDataRow row = new PlanDataRow( addedObject );
                         // when we added like this, we inform PlanPage to sort datarows
                         mPage.addItem( row.getData().getID(), row, true );

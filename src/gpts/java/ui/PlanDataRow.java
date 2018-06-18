@@ -1,7 +1,7 @@
 /* Gitaş - Obarey Inc 2018 */
 package gpts.java.ui;
 
-import gpts.java.DailyPlan;
+import gpts.java.DailyPlanSchema;
 import gpts.java.controllers.PlanDataRowController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -10,11 +10,11 @@ import java.io.IOException;
 
 public class PlanDataRow {
 
-    private DailyPlan mDailyPlan;
+    private DailyPlanSchema mDailyPlan;
     private AnchorPane mUI;
     private PlanDataRowController mController;
 
-    public PlanDataRow( DailyPlan plan ){
+    public PlanDataRow( DailyPlanSchema plan ){
         mDailyPlan = plan;
         initUI();
     }
@@ -41,12 +41,12 @@ public class PlanDataRow {
     }
 
     // after edit, update data and ui
-    public void updateData( DailyPlan plan ){
+    public void updateData( DailyPlanSchema plan ){
         mDailyPlan = plan;
         updateUI();
     }
 
-    public DailyPlan getData(){
+    public DailyPlanSchema getData(){
         return mDailyPlan;
     }
 
