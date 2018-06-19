@@ -117,6 +117,7 @@ public class DailyPlanSchema {
                 prevHourStr = nextHour + ":" + nextMin;
             }
         } else {
+            if( startHour == 0 ) startHour = 24;
             if( startHour > endHour ){
                 startHour *= -1;
                 reverseFlag = true;
@@ -139,6 +140,9 @@ public class DailyPlanSchema {
                         nextHour *= -1;
                         positived = false;
                     }
+                } else {
+                    if( nextHour == 24 ) nextHour = 24 - nextHour;
+                    if( nextHour == -24 ) nextHour = 24 + nextHour;
                 }
                 if( (Common.convertTimeFormat(nextHour) + ":" + Common.convertTimeFormat(nextMin)).equals(mEnd) ){
                     nextMin = endMin;
@@ -171,6 +175,7 @@ public class DailyPlanSchema {
                 if( loopCounter == 150 ) break;
             }
         }
+        System.out.println("######### " + mStart + " - " + mEnd + " #########");
         for( String print : testPrint ) System.out.println(print);
     }
 
