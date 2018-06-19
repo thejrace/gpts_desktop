@@ -73,12 +73,14 @@ public class Common {
     // outputs 1..9   -> 01..
     // outputs 10..23 -> 10..
     public static String convertTimeFormat( int time ){
+        if( time < 0 ) time *= -1;
         if( time < 10 ){
             return "0"+String.valueOf(time);
         } else {
             return String.valueOf(time);
         }
     }
+
 
 }
 
