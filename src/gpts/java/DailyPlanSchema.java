@@ -7,6 +7,7 @@ import gpts.java.ui.PopupLoader;
 import javafx.application.Platform;
 import org.json.JSONObject;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -86,6 +87,91 @@ public class DailyPlanSchema {
         });
         th.setDaemon(true);
         th.start();
+    }
+
+    public void generatePlan(){
+        String[] startExploded = mStart.split(":");
+        String[] endExploded = mEnd.split(":");
+        int startHour = Integer.valueOf( startExploded[0] );
+        int startMin = Integer.valueOf( startExploded[1] );
+        int endHour = Integer.valueOf( endExploded[0] );
+        int endMin = Integer.valueOf( endExploded[1] );
+        ArrayList<String> testPrint = new ArrayList<>();
+        int loopCounter = 0;
+        int nextHour, nextMin;
+        String prevHourStr;
+        boolean breakFlag = false,
+                reverseFlag = false,
+                positived = false;
+        if( startHour == endHour ){
+            nextHour = startHour;
+            nextMin = startMin;
+            prevHourStr = mStart;
+            while( !breakFlag ){
+                nextMin += Integer.valueOf(mPlanInterval);
+                if( nextMin >= endMin ){
+                    breakFlag = true;
+                    nextMin = endMin;
+                }
+                testPrint.add( prevHourStr + " - " + nextHour + ":" + nextMin );
+                prevHourStr = nextHour + ":" + nextMin;
+            }
+        } else {
+            if( startHour > endHour ){
+                startHour *= -1;
+                reverseFlag = true;
+            }
+            // regular counting
+            nextHour = startHour;
+            nextMin  = startMin;
+            prevHourStr = mStart;
+            while( !breakFlag ){
+                nextMin += Integer.valueOf(mPlanInterval);
+                if( nextMin >= 60 ){
+                    if( nextHour < 0 ){
+                        nextHour *= -1;
+                        positived = true;
+                    }
+                    nextHour += nextMin / 60;
+                    nextMin = nextMin % 60;
+                    if( nextHour >= 24 ) nextHour = 24 - nextHour;
+                    if( positived ){
+                        nextHour *= -1;
+                        positived = false;
+                    }
+                }
+                if( (Common.convertTimeFormat(nextHour) + ":" + Common.convertTimeFormat(nextMin)).equals(mEnd) ){
+                    nextMin = endMin;
+                    nextHour = endHour;
+                    breakFlag = true;
+                } else {
+                    if( !reverseFlag ){
+                        if(TimeDifference.isPast( (nextHour + ":" + nextMin), mEnd )){
+                            nextMin = endMin;
+                            nextHour = endHour;
+                            breakFlag = true;
+                        }
+                    } else {
+                        if( nextHour > endHour ){
+                            nextMin = endMin;
+                            nextHour = endHour;
+                            breakFlag = true;
+                        } else if( nextHour == endHour ){
+                            if(TimeDifference.isPast( (nextHour + ":" + nextMin), mEnd )){
+                                nextMin = endMin;
+                                nextHour = endHour;
+                                breakFlag = true;
+                            }
+                        }
+                    }
+                }
+                testPrint.add(prevHourStr + " - " + Common.convertTimeFormat(nextHour) + ":" + Common.convertTimeFormat(nextMin));
+                prevHourStr = Common.convertTimeFormat(nextHour) + ":" + Common.convertTimeFormat(nextMin);
+                loopCounter++;
+                if( loopCounter == 150 ) break;
+            }
+        }
+        for( String print : testPrint ) System.out.println(print);
     }
 
     public String getReturnText(){
