@@ -27,18 +27,6 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(content, 1224, 768));
         stage = primaryStage;
         primaryStage.show();
-
-        String start = "08:00";
-        String end   = "17:30";
-        int interval = 25;
-        DailyPlanSchema test = new DailyPlanSchema("xx", "xx", start, end, String.valueOf(interval));
-        test.generatePlanStandart();
-
-
-
-
-
-
     }
 
 
