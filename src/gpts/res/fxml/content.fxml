@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
+<?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-
-<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.text.Font?>
 
 <VBox styleClass="content-main-parent-vbox" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpts.java.controllers.ContentController">
    <children>
@@ -25,11 +24,19 @@
               </HBox>
               <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="974.0" HBox.hgrow="ALWAYS">
                   <children>
-                      <Label fx:id="uiUserInfoLbl" text="Hoşgeldin, @huseyinozbekk">
-                          <HBox.margin>
-                              <Insets right="15.0" />
-                          </HBox.margin>
-                      </Label>
+                  <VBox alignment="CENTER" spacing="5.0">
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                     <children>
+                            <Label fx:id="uiUserInfoLbl" styleClass="ctext-white" text="Hoşgeldin, @huseyinozbekk" />
+                        <Label fx:id="uiSyncInfoLbl" layoutX="10.0" layoutY="10.0" styleClass="ctext-gray1" text="Son Senkron: 15:44">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
                       <JFXButton fx:id="uiAppLogoutBtn" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" ripplerFill="#6a497b" styleClass="menu-bar-btns">
                           <graphic>
                               <FontAwesomeIconView glyphName="SIGN_OUT" size="2em" styleClass="menu-bar-btns-icon" />
