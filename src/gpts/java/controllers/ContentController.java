@@ -25,7 +25,8 @@ public class ContentController implements Initializable {
     @FXML private JFXButton uiAppTerminateBtn;
     @FXML private JFXButton uiAppLogoutBtn;
     @FXML private JFXButton uiAppMinimizeBtn;
-    @FXML private Label uiUserInfoLbl;
+    @FXML private static Label uiUserInfoLbl;
+    @FXML private static Label uiSyncInfoLbl;
 
     private boolean mSideBarVisibleFlag = true;
 
@@ -74,6 +75,14 @@ public class ContentController implements Initializable {
         });
 
 
+    }
+
+    // static status update methods
+    public static void updateSyncStatus(String msg){
+        Platform.runLater(()->{ uiSyncInfoLbl.setText(msg); });
+    }
+    public static void updateUserStatus(String msg){
+        Platform.runLater(()->{ uiUserInfoLbl.setText(msg); });
     }
 
 }
