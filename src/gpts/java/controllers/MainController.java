@@ -25,6 +25,7 @@ public class MainController implements Initializable {
     private Parent mSideBar, mContent;
 
     public static ScrollPane UICONTENTMAIN;
+    public static ContentController CONTENT_CONTROLLER;
 
     // for stage drag
     private double xOffset = 0;
@@ -46,6 +47,8 @@ public class MainController implements Initializable {
             mBorderPane.setLeft( mSideBar );
             // make it static, we use it to dynamically change main content
             UICONTENTMAIN = (ScrollPane) mContent.lookup( ".content-main" );
+            // for status and sync labels
+            CONTENT_CONTROLLER = loader2.getController();
             // init loader
             PopupLoader popupLoader = new PopupLoader( (StackPane)mBorderPane.getParent() );
         } catch( IOException e ){
