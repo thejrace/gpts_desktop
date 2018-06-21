@@ -6,7 +6,9 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXToggleButton;
 import gpts.java.ui.EmpBox;
+import gpts.java.ui.EmployeesPage;
 import gpts.java.ui.PopupLoader;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -30,15 +32,9 @@ import java.util.ResourceBundle;
 public class EmployeesController extends BaseContentController implements Initializable {
 
     @FXML private JFXButton uiAddBtn;
-    @FXML private JFXButton uiSearchBtn;
-    @FXML private TextField uiSearchInput;
-    @FXML private FlowPane uiEmpBoxContainer;
-
     @FXML private JFXToggleButton uiFilterLateToggle;
     @FXML private JFXComboBox uiFilterGroupComboBox;
-
-    private boolean mEnableSearch = false;
-
+    private EmployeesPage mPage;
 
     @Override
     public void initialize(URL url, ResourceBundle res ){
@@ -52,6 +48,7 @@ public class EmployeesController extends BaseContentController implements Initia
                 loader.setLocation(getClass().getResource("/gpts/res/fxml/forms/employee_form.fxml"));
                 ScrollPane ui  = loader.load();
                 EmployeeFormController controller = loader.getController();
+
                 dialog.setContent( ui );
                 dialog.setOverlayClose(false);
                 dialog.show( (StackPane) ((Node) ev.getSource()).getScene().getRoot() );
@@ -62,21 +59,37 @@ public class EmployeesController extends BaseContentController implements Initia
             }
         });
 
-        // search employees
+        // search
         uiSearchBtn.setOnMouseClicked( ev -> {
-            if( mEnableSearch ) return;
+            int searchActionType = super.searchAction();
+            if( searchActionType == BaseContentController.SEARCH ){
+                String searchKeyword = uiSearchInput.getText().trim();
+                mPage.search( searchKeyword );
+            } else if( searchActionType == BaseContentController.SEARCHCANCEL ){
+                mPage.cancelSearch();
+            }
+        });
+
+        // todo download data
+        // if another user added a new plan we should get it with this button
+        // rather than restart the application
+        /*uiDownloadBtn.setOnMouseClicked(ev -> {
+
+        });*/
+
+        // load more rows
+        uiMoreBtn.setOnMouseClicked( ev -> {
+            mPage.downloadData();
         });
 
     }
 
 
-    public void addEmpBox( Parent boxUI){
-        uiEmpBoxContainer.getChildren().add( boxUI );
+
+    public void setPageObject( EmployeesPage page ){
+        mPage = page;
     }
 
-    public void testMethod(){
-        System.out.println("Employeiiii teeeesssttt");
-    }
 
 
 
