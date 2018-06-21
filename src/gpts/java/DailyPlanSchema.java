@@ -5,6 +5,7 @@ import gpts.java.interfaces.ActionCallback;
 import gpts.java.interfaces.WebRequestCallback;
 import gpts.java.ui.PopupLoader;
 import javafx.application.Platform;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.Time;
@@ -28,12 +29,16 @@ public class DailyPlanSchema {
     public DailyPlanSchema(){
 
     }
-    public DailyPlanSchema( String id, String name, String start, String end, String planInterval ){
-        mName = name;
-        mStart = start;
-        mEnd = end;
-        mPlanInterval = planInterval;
-        mID = id;
+    public DailyPlanSchema( JSONObject data ){
+        try {
+            mName = data.getString("name");
+            mStart = data.getString("start");
+            mEnd = data.getString("end");
+            mPlanInterval = data.getString("plan_interval");
+            mID = data.getString("id");
+        } catch (JSONException e ){
+            e.printStackTrace();
+        }
     }
 
     public boolean update( String name, String start, String end, String planInterval ){
