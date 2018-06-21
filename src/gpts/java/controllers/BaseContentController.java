@@ -28,6 +28,10 @@ public class BaseContentController {
     private boolean mMoreBtnState = false;
     protected ObservableList<Node> dataRowsTemp;
 
+    public static int SEARCHNOTENABLED = 0,
+                      SEARCHCANCEL = 1,
+                      SEARCH = 3;
+
 
     public void addRow(Parent row, boolean sort ){
         uiBoxContainer.getChildren().add(row);
@@ -58,6 +62,21 @@ public class BaseContentController {
     public void restoreFirstState(){
         uiBoxContainer.getChildren().setAll(dataRowsTemp);
         uiMoreBtn.setDisable( mMoreBtnState );
+    }
+
+    protected int searchAction(){
+        if( mEnableSearch ) return SEARCHNOTENABLED;
+        String searchKeyword = uiSearchInput.getText().trim();
+        if( searchKeyword.equals("") ){
+            // todo direk bişi yazmadan butona basınca dataRowsTemp null oldugu icin, cancelSearch te Nullpointer atıyor, düzelt
+            // cancel search, return previous state
+            clearItems();
+            return SEARCHCANCEL;
+        } else {
+            // get last state
+            if( dataRowsTemp == null ) dataRowsTemp = FXCollections.observableArrayList( uiBoxContainer.getChildren() );
+            return SEARCH;
+        }
     }
 
     public void saveMoreBtnState(){
