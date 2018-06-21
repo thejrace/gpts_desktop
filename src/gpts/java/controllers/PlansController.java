@@ -63,19 +63,14 @@ public class PlansController extends BaseContentController implements Initializa
             }
         });
 
-        // search employees
+        // search
         uiSearchBtn.setOnMouseClicked( ev -> {
-            if( mEnableSearch ) return;
-            String searchKeyword = uiSearchInput.getText().trim();
-            if( searchKeyword.equals("") ){
-                // todo direk bişi yazmadan butona basınca dataRowsTemp null oldugu icin, cancelSearch te Nullpointer atıyor, düzelt
-                // cancel search, return previous state
-                clearItems();
-                mPage.cancelSearch();
-            } else {
-                // get last state
-                if( dataRowsTemp == null ) dataRowsTemp = FXCollections.observableArrayList( uiBoxContainer.getChildren() );
+            int searchActionType = super.searchAction();
+            if( searchActionType == BaseContentController.SEARCH ){
+                String searchKeyword = uiSearchInput.getText().trim();
                 mPage.search( searchKeyword );
+            } else if( searchActionType == BaseContentController.SEARCHCANCEL ){
+                mPage.cancelSearch();
             }
         });
 
