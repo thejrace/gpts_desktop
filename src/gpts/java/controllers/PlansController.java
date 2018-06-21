@@ -29,20 +29,12 @@ import java.util.ResourceBundle;
 public class PlansController extends BaseContentController implements Initializable {
 
     @FXML private JFXButton uiAddBtn;
-    @FXML private JFXButton uiSearchBtn;
     @FXML private JFXButton uiDownloadBtn;
-    @FXML private JFXButton uiMoreBtn;
-    @FXML private TextField uiSearchInput;
-    @FXML private FlowPane uiBoxContainer;
 
-    private boolean mEnableSearch = false;
-    private boolean mMoreBtnState = false;
     private PlansPage mPage;
-    private ObservableList<Node> dataRowsTemp;
 
     @Override
     public void initialize(URL url, ResourceBundle res ){
-
         PopupLoader.show("Veri alınıyor..");
         // open add form
         uiAddBtn.setOnMouseClicked( ev -> {
@@ -76,6 +68,7 @@ public class PlansController extends BaseContentController implements Initializa
             if( mEnableSearch ) return;
             String searchKeyword = uiSearchInput.getText().trim();
             if( searchKeyword.equals("") ){
+                // todo direk bişi yazmadan butona basınca dataRowsTemp null oldugu icin, cancelSearch te Nullpointer atıyor, düzelt
                 // cancel search, return previous state
                 clearItems();
                 mPage.cancelSearch();
@@ -105,42 +98,5 @@ public class PlansController extends BaseContentController implements Initializa
         mPage = page;
     }
 
-    public void addRow( Parent row, boolean sort ){
-        uiBoxContainer.getChildren().add(row);
-        if( sort ) sortItems();
-    }
 
-    private void sortItems(){
-        try {
-            ObservableList<Node> dataRows = FXCollections.observableArrayList( uiBoxContainer.getChildren() );
-            Collections.sort(dataRows, new Comparator<Node>(){
-                @Override
-                public int compare( Node vb1, Node vb2 ){
-                    return vb1.getId().compareTo(vb2.getId());
-                }
-            });
-            uiBoxContainer.getChildren().setAll(dataRows);
-        } catch (IndexOutOfBoundsException e ){
-            e.printStackTrace();
-        }
-    }
-
-    // remove all datarows
-    public void clearItems(){
-        uiBoxContainer.getChildren().clear();
-    }
-
-    // after search return the first state
-    public void restoreFirstState(){
-        uiBoxContainer.getChildren().setAll(dataRowsTemp);
-        uiMoreBtn.setDisable( mMoreBtnState );
-    }
-
-    public void saveMoreBtnState(){
-        mMoreBtnState = uiMoreBtn.isDisable();
-    }
-
-    public void disableMoreBtn( boolean flag ){
-        uiMoreBtn.setDisable( flag );
-    }
 }
