@@ -61,7 +61,7 @@ public class PlansPage extends BasePage {
                                 // if last downloaded data is less than RRP means that
                                 // there aren't any data left to download
                                 // therefore we disable the button to avoid user making useless requests
-                                if( length < mRRP ) mController.disableMoreBtn( true );
+                                if( length <= mRRP ) mController.disableMoreBtn( true );
                                 JSONObject temp;
                                 for( int k = 0; k < length; k++ ){
                                     temp = mData.getJSONObject(k);
