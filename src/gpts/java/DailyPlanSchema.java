@@ -29,6 +29,8 @@ public class DailyPlanSchema {
     public DailyPlanSchema(){
 
     }
+
+    // create object with downloaded data
     public DailyPlanSchema( JSONObject data ){
         try {
             mName = data.getString("name");
@@ -39,6 +41,14 @@ public class DailyPlanSchema {
         } catch (JSONException e ){
             e.printStackTrace();
         }
+    }
+    // create object with form data
+    public DailyPlanSchema( String id, String name, String start, String end, String planInterval ){
+        mName = name;
+        mStart = start;
+        mEnd = end;
+        mPlanInterval = planInterval;
+        mID = id;
     }
 
     public boolean update( String name, String start, String end, String planInterval ){
