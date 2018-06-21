@@ -65,7 +65,7 @@ public class PlansPage extends BasePage {
                                 JSONObject temp;
                                 for( int k = 0; k < length; k++ ){
                                     temp = mData.getJSONObject(k);
-                                    PlanDataRow row = new PlanDataRow( new DailyPlanSchema( temp.getString("id"), temp.getString("name"), temp.getString("start"), temp.getString("end"), temp.getString("plan_interval") ));
+                                    PlanDataRow row = new PlanDataRow( new DailyPlanSchema( temp ));
                                     addItem( temp.getString("id"), row, false );
                                 }
                             }
