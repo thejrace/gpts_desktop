@@ -8,10 +8,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class Common {
 
@@ -81,6 +86,68 @@ public class Common {
         }
     }
 
+    public static String getComputerName(){
+        String hostname = "Bilinmiyor";
+        try {
+            InetAddress addr;
+            addr = InetAddress.getLocalHost();
+            hostname = addr.getHostName();
+        } catch (UnknownHostException ex)        {
+            System.out.println("Bilgisayar adi alinamadi.");
+        }
+        return hostname;
+    }
+
+    public static String revDatetime( String dt ){
+        String date = dt.substring(0, 10);
+        String[] exp = date.split("-");
+        return exp[2]+"-"+exp[1]+"-"+exp[0]+ " " + dt.substring(11);
+    }
+
+    public static String revDate( String dt ){
+        String[] exp = dt.split("-");
+        return  exp[2]+"-"+exp[1]+"-"+exp[0];
+    }
+
+    public static Map<String, Integer> getScreenRes(){
+        Map<String, Integer> out = new HashMap<>();
+        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        int width = gd.getDisplayMode().getWidth();
+        int height = gd.getDisplayMode().getHeight();
+        out.put("W", width );
+        out.put("H", height );
+        return out;
+    }
+
+    public static long getUnix() {
+        return (System.currentTimeMillis() / 1000L) - 3600;
+    }
+
+    public static String getCurrentDatetime(){
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    public static String getCurrentDate(){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    public static String getCurrentHmin(){
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm");
+        Date date = new Date();
+        return dateFormat.format(date);
+
+    }
+
+    public static String getYesterdayDate() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, -1);
+        return dateFormat.format(cal.getTime());
+    }
 
 }
 
