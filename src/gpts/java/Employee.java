@@ -33,6 +33,17 @@ public class Employee {
         }
     }
 
+    public void add(){
+        Thread th = new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        });
+        th.setDaemon(true);
+        th.start();
+    }
+
     public void downloadPlan( WebRequestCallback cb ){
         Thread th = new Thread(new Runnable() {
             @Override

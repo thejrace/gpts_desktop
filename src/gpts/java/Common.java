@@ -31,9 +31,9 @@ public class Common {
         return sb.toString();
     }
 
-    private static String readStaticData(){
+    private static String readStaticData( String file ){
         try {
-            FileReader fr = new FileReader("src/gpts/config/static_data.json");
+            FileReader fr = new FileReader("src/gpts/config/"+file+".json");
             BufferedReader br = new BufferedReader(fr);
             StringBuilder sb = new StringBuilder();
             String line = br.readLine();
@@ -49,22 +49,22 @@ public class Common {
         return null;
     }
 
-    public static void readStaticDataJO( String key, ReadJOCallback cb ){
+    public static void readStaticDataJO( String filename, ReadJOCallback cb ){
         Thread read = new Thread(new Runnable() {
             @Override
             public void run() {
-                cb.onFinish( new JSONObject( readStaticData() ).getJSONObject(key) );
+                cb.onFinish( new JSONObject( readStaticData(filename) ) );
             }
         });
         read.setDaemon(true);
         read.start();
     }
 
-    public static void readStaticDataJA( String key, ReadJACallback cb ){
+    public static void readStaticDataJA( String filename, ReadJACallback cb ){
         Thread read = new Thread(new Runnable() {
             @Override
             public void run() {
-                cb.onFinish( new JSONObject( readStaticData() ).getJSONArray(key) );
+                cb.onFinish( new JSONArray( readStaticData(filename) ) );
             }
         });
         read.setDaemon(true);
