@@ -26,6 +26,9 @@ public class Main extends Application {
         primaryStage.setTitle("GPTS");
         primaryStage.setScene(new Scene(content, 1224, 768));
         stage = primaryStage;
+
+        ServerSync.start();
+
         primaryStage.show();
     }
 

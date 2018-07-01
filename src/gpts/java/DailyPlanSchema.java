@@ -57,6 +57,7 @@ public class DailyPlanSchema {
     }
 
     public void add( String name, String start, String end, String planInterval, ActionCallback cb ){
+        PopupLoader.show(PopupLoader.PLEASE_WAIT);
         FormValidation validation = new FormValidation();
         boolean inputCheck = validation.checkInputs( new ValidationInput[]{
                 new ValidationInput("İsim", name, FormValidation.CHECK_REQ ),
@@ -69,8 +70,6 @@ public class DailyPlanSchema {
             cb.onError(ActionStatusCode.VALIDATION_ERROR);
             return;
         }
-        // show before thread
-        PopupLoader.show(PopupLoader.PLEASE_WAIT);
         Thread th = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -88,6 +87,11 @@ public class DailyPlanSchema {
                         mReturnText = output.getString(WebRequest.RETURN_TEXT);
                         if( output.getInt(WebRequest.STATUS_FLAG) == 1 ){
                             Platform.runLater(() -> {
+                                mID = output.getString("data");
+                                mName = name;
+                                mStart = start;
+                                mEnd = end;
+                                mPlanInterval = planInterval;
                                 // data is lastInsertedId
                                 cb.onSuccess( output.getString("data") );
                             });

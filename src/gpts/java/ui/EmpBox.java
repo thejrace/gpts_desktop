@@ -23,11 +23,17 @@ public class EmpBox{
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/gpts/res/fxml/emp_box_v2.fxml"));
             mUI  = loader.load();
+            System.out.println(mEmployee.getName());
+            mUI.setId( mEmployee.getName() );
             mController = loader.getController();
             updateUI();
         } catch( IOException e ){
             e.printStackTrace();
         }
+    }
+
+    public Employee getData(){
+        return mEmployee;
     }
 
     public void updateData( Employee employee ){

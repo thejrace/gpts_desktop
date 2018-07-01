@@ -39,7 +39,6 @@
                   <JFXTextField fx:id="uiPhone1Input" labelFloat="true" layoutX="35.0" layoutY="354.0" prefWidth="300.0" promptText="Tel 1" styleClass="text-field-popup-style" />
                   <JFXTextField fx:id="uiPhone2Input" labelFloat="true" prefWidth="300.0" promptText="Tel 2" styleClass="text-field-popup-style" />
                   <JFXComboBox fx:id="uiGroupComboBox" labelFloat="true" prefWidth="300.0" promptText="Kullanıcı Grubu" styleClass="text-field-popup-style" />
-                  <JFXPasswordField fx:id="uiPasswordInput" labelFloat="true" prefWidth="300.0" promptText="Program Şifre" styleClass="text-field-popup-style" />
                   <HBox alignment="CENTER" spacing="20.0">
                      <children>
                         <JFXButton fx:id="uiCancelBtn" alignment="TOP_LEFT" text="İptal">

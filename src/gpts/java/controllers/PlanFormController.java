@@ -32,7 +32,7 @@ public class PlanFormController extends PopupFormBaseController implements Initi
                 public void onSuccess( String[] args ) {
                     mParentDialog.close();
                     PopupLoader.showMessage(plan.getReturnText(), PopupLoader.MESSAGE_SUCCESS );
-                    mAddListener.onFinish( new DailyPlanSchema( args[0], uiNameInput.getText(), uiStartInput.getText(), uiEndInput.getText(), uiIntervalInput.getText() ));
+                    mAddListener.onFinish( plan );
                 }
                 @Override
                 public void onError( int type ) {

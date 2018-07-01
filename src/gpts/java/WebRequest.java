@@ -49,6 +49,13 @@ public class WebRequest {
             for (Map.Entry<String, String> param : mParams.entrySet()) {
                 paramsSerializedArray.add( param.getKey() + "=" + param.getValue() );
             }
+            // test user params
+            paramsSerializedArray.add("api_email=ahmet@obarey.com");
+            paramsSerializedArray.add("api_password=wazzabii308");
+            paramsSerializedArray.add("api_device_hash=test hash 3");
+            paramsSerializedArray.add("api_device_name=test device name 2");
+            paramsSerializedArray.add("api_device_type=1");
+            paramsSerializedArray.add("api_device_os=Windows");
             String serializedParams = Common.stringArrayListJoin(paramsSerializedArray, "&");
 
             URL url = new URL(mURL);

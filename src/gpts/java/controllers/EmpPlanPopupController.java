@@ -30,7 +30,7 @@ public class EmpPlanPopupController extends EmpPopupBaseController implements In
         super.initCommonEvents();
 
         // set comboBox data from json file
-        Common.readStaticDataJA("plan_schemas", new ReadJACallback() {
+        Common.readStaticDataJA("plan_schemas.json", new ReadJACallback() {
             @Override
             public void onFinish(JSONArray output) {
                 Platform.runLater(new Runnable() {

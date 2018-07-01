@@ -12,6 +12,7 @@ import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.text.DateFormat;
@@ -19,6 +20,18 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Common {
+
+    public static boolean writeStaticData( String file, String content ){
+        try{
+            PrintWriter writer = new PrintWriter("src/gpts/config/"+file+".json", "UTF-8");
+            writer.println(content);
+            writer.close();
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     // join an arraylist with connector character
     public static String stringArrayListJoin(ArrayList<String> array, String con ){
@@ -31,7 +44,17 @@ public class Common {
         return sb.toString();
     }
 
-    private static String readStaticData( String file ){
+    public static boolean checkStaticData( String file ){
+        try {
+            FileReader fr = new FileReader("src/gpts/config/"+file+".json");
+            return true;
+        } catch( IOException e ){
+            //e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static String readStaticData( String file ){
         try {
             FileReader fr = new FileReader("src/gpts/config/"+file+".json");
             BufferedReader br = new BufferedReader(fr);
