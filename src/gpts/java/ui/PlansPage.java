@@ -17,7 +17,7 @@ public class PlansPage extends BasePage {
     protected Map<String, PlanDataRow> mRows = new HashMap<>();
     protected Map<String, PlanDataRow> mSearchRows = new HashMap<>();
     public PlansPage(){
-
+        mItemDataKey = "name";
     }
     @Override
     public void initUI( String fxml ){
@@ -61,12 +61,12 @@ public class PlansPage extends BasePage {
                                 // if last downloaded data is less than RRP means that
                                 // there aren't any data left to download
                                 // therefore we disable the button to avoid user making useless requests
-                                if( length <= mRRP ) mController.disableMoreBtn( true );
+                                if( length < mRRP ) mController.disableMoreBtn( true );
                                 JSONObject temp;
                                 for( int k = 0; k < length; k++ ){
                                     temp = mData.getJSONObject(k);
                                     PlanDataRow row = new PlanDataRow( new DailyPlanSchema( temp ));
-                                    addItem( temp.getString("id"), row, false );
+                                    addItem( temp.getString(mItemDataKey), row, false, false );
                                 }
                             }
                         });
@@ -84,13 +84,14 @@ public class PlansPage extends BasePage {
      *   @row  : PlanDataRows object
      *   @sort : if true, datarows sorted according to their node ID's ( names for this case )
      */
-    public void addItem( String key, PlanDataRow row, boolean sort ){
+    public void addItem( String key, PlanDataRow row, boolean sort, boolean formFlag ){
+        if( formFlag && mSearchFlag ) cancelSearch();
         if( mSearchFlag ){
             mSearchRows.put( key, row );
         } else {
             mRows.put( key, row );
         }
-        Platform.runLater( () -> { mController.addRow( row.getUI(), sort); } );
+        Platform.runLater( () -> { mController.addRow( row.getUI(), sort, mSearchFlag); } );
     }
 
     @Override
@@ -114,6 +115,7 @@ public class PlansPage extends BasePage {
     // cancel search return first state
     public void cancelSearch(){
         super.cancelSearch();
+        mSearchRows = new HashMap<>();
         mController.restoreFirstState();
     }
 

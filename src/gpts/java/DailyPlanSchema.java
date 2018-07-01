@@ -7,8 +7,6 @@ import gpts.java.ui.PopupLoader;
 import javafx.application.Platform;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,14 +39,6 @@ public class DailyPlanSchema {
         } catch (JSONException e ){
             e.printStackTrace();
         }
-    }
-    // create object with form data
-    public DailyPlanSchema( String id, String name, String start, String end, String planInterval ){
-        mName = name;
-        mStart = start;
-        mEnd = end;
-        mPlanInterval = planInterval;
-        mID = id;
     }
 
     public boolean update( String name, String start, String end, String planInterval ){

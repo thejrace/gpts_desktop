@@ -25,12 +25,8 @@ public class BasePage {
     // search state flag
     protected boolean mSearchFlag = false;
     protected String mSearchKeyword;
-    // enabled-disabled flag for ShowMoreBtn
-    // after search, when user returns the first state
-    // we make the button return to first state, otherwise
-    // after search, if button is disabled, remains disabled after canceling search
-    // even though there are data to download
-    protected boolean mMoreBtnState = true;
+    // which key is ui items are saved in the list, for api triggers
+    protected String mItemDataKey;
 
     public void initUI( String fxml ){
         try{

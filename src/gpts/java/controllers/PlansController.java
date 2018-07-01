@@ -50,7 +50,7 @@ public class PlansController extends BaseContentController implements Initializa
                         DailyPlanSchema addedObject = (DailyPlanSchema) object;
                         PlanDataRow row = new PlanDataRow( addedObject );
                         // when we added like this, we inform PlanPage to sort datarows
-                        mPage.addItem( row.getData().getID(), row, true );
+                        mPage.addItem( row.getData().getID(), row, true, true );
                     }
                 });
                 dialog.setContent( ui );

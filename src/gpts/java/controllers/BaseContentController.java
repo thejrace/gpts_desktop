@@ -33,9 +33,12 @@ public class BaseContentController {
                       SEARCH = 3;
 
 
-    public void addRow(Parent row, boolean sort ){
+    public void addRow(Parent row, boolean sort, boolean searchFlag ){
         uiBoxContainer.getChildren().add(row);
         if( sort ) sortItems();
+        // we update last state after every row addition
+        // todo we'll perform this after delete
+        if( !searchFlag ) saveLastState();
     }
 
     private void sortItems(){
@@ -73,10 +76,12 @@ public class BaseContentController {
             clearItems();
             return SEARCHCANCEL;
         } else {
-            // get last state
-            if( dataRowsTemp == null ) dataRowsTemp = FXCollections.observableArrayList( uiBoxContainer.getChildren() );
             return SEARCH;
         }
+    }
+
+    public void saveLastState(){
+        dataRowsTemp = FXCollections.observableArrayList( uiBoxContainer.getChildren() );
     }
 
     public void saveMoreBtnState(){

@@ -32,25 +32,13 @@ public class Employee {
             mNick = data.getString("nick");
             mEmail = data.getString("email");
             mID = data.getString("id");
-            mGroup = data.getString("group");
+            mGroup = data.getString("employee_group");
             mTaskCount = data.getInt("task_count");
             mTaskStatus = data.getInt("task_status");
         } catch( JSONException e ){
             e.printStackTrace();
         }
     }
-
-    /*public Employee(  ){
-        mName = name;
-        mNick = nick;
-        mEmail = email;
-        mGroup = group;
-        mPhone1 = phone1;
-        mPhone2 = phone2;
-        mTaskCount = 1;
-        mTaskStatus = 0;
-    }*/
-
     public void add( String name, String nick, String email, String group, String phone1, String phone2, ActionCallback cb ){
         FormValidation validation = new FormValidation();
         boolean inputCheck = validation.checkInputs( new ValidationInput[]{

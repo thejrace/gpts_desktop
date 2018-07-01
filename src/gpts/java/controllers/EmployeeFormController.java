@@ -3,7 +3,6 @@ package gpts.java.controllers;
 
 import com.jfoenix.controls.*;
 import gpts.java.Common;
-import gpts.java.DailyPlanSchema;
 import gpts.java.Employee;
 import gpts.java.interfaces.ActionCallback;
 import gpts.java.interfaces.FormActionListener;
@@ -38,14 +37,16 @@ public class EmployeeFormController extends PopupFormBaseController implements I
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        for( int k = 0; k < output.length(); k++ ){
-                            uiGroupComboBox.getItems().add( output.getJSONObject(k).getString("name") );
-                        }
+                        for( int k = 0; k < output.length(); k++ ) uiGroupComboBox.getItems().add( output.getJSONObject(k).getString("name") );
                         // set first item otherwise we get Nullpointer
                         uiGroupComboBox.getSelectionModel().select(0);
                     }
                 });
             }
+        });
+
+        uiNameInput.setOnKeyReleased(ev->{
+            uiNickInput.setText(Common.regexTrim(uiNameInput.getText()).toLowerCase().replaceAll(" ", ""));
         });
 
         uiSaveBtn.setOnMouseClicked( ev -> {

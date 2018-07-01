@@ -18,8 +18,8 @@ public class EmployeesPage extends BasePage{
     protected Map<String, EmpBox> mSearchRows = new HashMap<>();
     private EmployeesController mController;
 
-    public EmployeesPage(  ){
-
+    public EmployeesPage(){
+        mItemDataKey = "nick";
     }
 
     @Override
@@ -62,13 +62,12 @@ public class EmployeesPage extends BasePage{
                                 // if last downloaded data is less than RRP means that
                                 // there aren't any data left to download
                                 // therefore we disable the button to avoid user making useless requests
-                                if( length <= mRRP ) mController.disableMoreBtn( true );
+                                if( length < mRRP ) mController.disableMoreBtn( true );
                                 JSONObject temp;
                                 for( int k = 0; k < length; k++ ){
                                     temp = mData.getJSONObject(k);
                                     EmpBox row = new EmpBox( new Employee( temp ));
-                                    //PlanDataRow row = new PlanDataRow( new DailyPlanSchema( temp.getString("id"), temp.getString("name"), temp.getString("start"), temp.getString("end"), temp.getString("plan_interval") ));
-                                    addItem( temp.getString("name"), row, false );
+                                    addItem( temp.getString(mItemDataKey), row, false, false );
                                 }
                             }
                         });
@@ -86,13 +85,15 @@ public class EmployeesPage extends BasePage{
      *   @row  : ui object
      *   @sort : if true, datarows sorted according to their node ID's ( names for this case )
      */
-    public void addItem( String key, EmpBox row, boolean sort ){
+    public void addItem( String key, EmpBox row, boolean sort, boolean formFlag ){
+        // if item is added during  search, cancel search action
+        if( formFlag && mSearchFlag ) cancelSearch();
         if( mSearchFlag ){
             mSearchRows.put( key, row );
         } else {
             mRows.put( key, row );
         }
-        Platform.runLater( () -> { mController.addRow( row.getUI(), sort); } );
+        Platform.runLater( () -> { mController.addRow( row.getUI(), sort, mSearchFlag); } );
     }
 
     @Override
@@ -116,6 +117,7 @@ public class EmployeesPage extends BasePage{
     // cancel search return first state
     public void cancelSearch(){
         super.cancelSearch();
+        mSearchRows = new HashMap<>();
         mController.restoreFirstState();
     }
 

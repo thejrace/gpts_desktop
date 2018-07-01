@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="300.0" styleClass="plan-data-row" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpts.java.controllers.EmployeeGroupDataRowController">
+    <children>
+        <Label fx:id="uiNameLbl" prefHeight="20.0" prefWidth="216.0" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="8.0" />
+        <FontAwesomeIconView glyphName="USERS" size="18" styleClass="ico-calendar" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="9.0" />
+        <JFXButton fx:id="uiEditBtn" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="20.0" ripplerFill="#dddddd" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <graphic>
+                <FontAwesomeIconView glyphName="EDIT" size="18" styleClass="ico-edit" />
+            </graphic>
+        </JFXButton>
+        <JFXButton fx:id="uiUsersBtn" contentDisplay="CENTER" layoutX="131.0" layoutY="8.0" prefHeight="20.0" prefWidth="20.0" ripplerFill="#ddddddf0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="5.0">
+            <graphic>
+                <FontAwesomeIconView glyphName="USERS" size="18" styleClass="ico-users" />
+            </graphic>
+        </JFXButton>
+    </children>
+</AnchorPane>

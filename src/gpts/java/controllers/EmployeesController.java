@@ -44,7 +44,7 @@ public class EmployeesController extends BaseContentController implements Initia
                     public void onFinish(Object object) {
                         Employee addedObject = (Employee) object;
                         EmpBox row = new EmpBox( addedObject );
-                        mPage.addItem( addedObject.getID(), row, true );
+                        mPage.addItem( addedObject.getID(), row, true, true );
                     }
                 });
                 dialog.setContent( ui );
