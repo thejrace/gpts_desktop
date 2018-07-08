@@ -271,7 +271,7 @@
 
 
 .emp-box-header {
-    -fx-background-color:#7b3275;
+
     -fx-background-radius: 0 5 0 5;
 }
 .emp-box-header-container{
@@ -279,8 +279,49 @@
 }
 
 .emp-box-middle-section {
-    -fx-background-color: #242424;
+    /*-fx-background-color: #242424;*/
+    /*-fx-background-color: transparent;*/
+
     -fx-background-radius: 5 0 5 5;
+}
+
+.emp-box-red .emp-box-middle-section{
+    -fx-background-color:   linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
+                            linear-gradient(#20262b, #191d22),
+                            radial-gradient(center 50% 0%, radius 100%, rgba(131,29,51,0.9), rgba(255,255,255,0));
+}
+.emp-box-red .emp-box-header {
+    -fx-background-color:rgba(131,29,51,0.9);
+}
+
+.emp-box-green .emp-box-middle-section{
+    -fx-background-color:   linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
+    linear-gradient(#20262b, #191d22),
+    radial-gradient(center 50% 0%, radius 100%, rgba(60,117,79,0.9), rgba(255,255,255,0));
+}
+.emp-box-green .emp-box-header {
+    -fx-background-color:rgba(60,117,79,0.9);
+}
+
+.emp-box-default .emp-box-middle-section{
+    -fx-background-color:   linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
+    linear-gradient(#20262b, #191d22),
+    radial-gradient(center 50% 0%, radius 100%, rgba(60,89,111,0.9), rgba(255,255,255,0));
+}
+.emp-box-default .emp-box-header {
+    -fx-background-color:rgba(31,89,111,0.9);
+}
+
+
+
+.emp-box-blue{
+
+}
+.emp-box-green {
+
+}
+.emp-box-default {
+
 }
 
 .emp-box-group-icon {
