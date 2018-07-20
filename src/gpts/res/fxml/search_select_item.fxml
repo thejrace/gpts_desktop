@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+
+
+<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="250.0" spacing="10.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="uiNameLbl" styleClass="ctext-white" text="Veli Konstantin" />
+      <JFXButton fx:id="uiSelectBtn" text="Seç">
+         <styleClass>
+            <String fx:value="content-btn" />
+            <String fx:value="content-btn-success" />
+         </styleClass>
+      </JFXButton>
+   </children>
+</HBox>

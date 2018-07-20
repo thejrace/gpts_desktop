@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="350.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox prefWidth="500.0">
+         <children>
+            <JFXTextField fx:id="uiNameLbl" disable="true" promptText="İş" styleClass="text-field-popup-style" />
+            <JFXButton prefHeight="29.0" prefWidth="20.0">
+               <styleClass>
+                  <String fx:value="content-btn" />
+                  <String fx:value="content-btn-warning" />
+                  <String fx:value="con" />
+               </styleClass>
+               <graphic>
+                  <FontAwesomeIconView fx:id="uiUpBtn" glyphName="ARROW_UP" />
+               </graphic>
+               <HBox.margin>
+                  <Insets left="100.0" />
+               </HBox.margin>
+            </JFXButton>
+            <JFXButton fx:id="uiDownBtn" layoutX="155.0" layoutY="10.0" prefHeight="29.0" prefWidth="20.0">
+               <styleClass>
+                  <String fx:value="content-btn" />
+                  <String fx:value="content-btn-warning" />
+               </styleClass>
+               <graphic>
+                  <FontAwesomeIconView glyphName="ARROW_DOWN" />
+               </graphic>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </JFXButton>
+         </children>
+         <VBox.margin>
+            <Insets bottom="15.0" top="15.0" />
+         </VBox.margin>
+      </HBox>
+      <JFXTextArea fx:id="uiDefInput" labelFloat="true" prefColumnCount="10" prefHeight="50.0" prefWidth="403.0" promptText="Açıklama" styleClass="text-field-popup-style" />
+      <HBox>
+         <children>
+            <JFXButton fx:id="uiSaveBtn" text="Kaydet">
+               <styleClass>
+                  <String fx:value="content-btn" />
+                  <String fx:value="content-btn-success" />
+               </styleClass>
+            </JFXButton>
+            <JFXButton fx:id="uiDeleteBtn" text="Sil">
+               <styleClass>
+                  <String fx:value="content-btn" />
+                  <String fx:value="content-btn-danger" />
+               </styleClass>
+               <HBox.margin>
+                  <Insets left="250.0" />
+               </HBox.margin>
+            </JFXButton>
+         </children>
+         <VBox.margin>
+            <Insets bottom="15.0" top="15.0" />
+         </VBox.margin>
+      </HBox>
+   </children>
+</VBox>

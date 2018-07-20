@@ -2,28 +2,48 @@
 package gpts.java.controllers;
 
 import com.jfoenix.controls.JFXButton;
+import gpts.java.ui.EmployeesPage;
+import gpts.java.ui.PopupLoader;
+import gpts.java.ui.TasksPage;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.FlowPane;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class TasksController extends BaseContentController implements Initializable {
 
     @FXML private JFXButton uiAddBtn;
-    @FXML private JFXButton uiSearchBtn;
-    @FXML private TextField uiSearchInput;
-    @FXML private FlowPane uiEmpBoxContainer;
+    private TasksPage mPage;
 
     @Override
     public void initialize(URL url, ResourceBundle rb ){
+        PopupLoader.show("Veri alınıyor..");
+
+        uiAddBtn.setOnMouseClicked( ev -> {
+
+        });
+
+        // search
+        uiSearchBtn.setOnMouseClicked( ev -> {
+            int searchActionType = super.searchAction();
+            if( searchActionType == BaseContentController.SEARCH ){
+                String searchKeyword = uiSearchInput.getText().trim();
+                mPage.search( searchKeyword );
+            } else if( searchActionType == BaseContentController.SEARCHCANCEL ){
+                mPage.cancelSearch();
+            }
+        });
+
+        // load more rows
+        uiMoreBtn.setOnMouseClicked( ev -> {
+            mPage.downloadData();
+        });
+
 
     }
 
-    public void testMethod(){
-        System.out.println("tasskkkssssss teeeesssttt");
+    public void setPageObject( TasksPage page ){
+        mPage = page;
     }
 
 }

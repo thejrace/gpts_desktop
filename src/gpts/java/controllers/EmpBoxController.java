@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import gpts.java.Employee;
 import gpts.java.interfaces.WebRequestCallback;
+import gpts.java.ui.PopupDataBase;
 import gpts.java.ui.PopupLoader;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -14,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import org.json.JSONObject;
@@ -33,11 +35,16 @@ public class EmpBoxController implements Initializable {
     @FXML private JFXButton uiEmpTasksBtn;
     @FXML private JFXButton uiEmpDetailsBtn;
     @FXML private JFXButton uiEmpMessageBtn;
-
+    @FXML private AnchorPane uiContainer;
     private String[] mTaskStatusClasses = {
         "emp-box-circle-default",
         "emp-box-circle-green",
         "emp-box-circle-red"
+    };
+    private String[] mBoxClasses = {
+        "emp-box-default",
+        "emp-box-green",
+        "emp-box-red"
     };
 
     private EmpPlanPopup mEmpPlanPopup;
@@ -80,57 +87,27 @@ public class EmpBoxController implements Initializable {
         uiEmpTaskCount.setText( "5" );
         uiLed.getStyleClass().remove(1);
         uiLed.getStyleClass().add(mTaskStatusClasses[employee.getTaskStatus()]);
-    }
+        try {uiContainer.getStyleClass().remove(1);
 
-
-}
-
-/* EmpBox popup layout classes  */
-class EmpPopupBase {
-    protected ScrollPane mUI;
-    protected Employee mEmployee;
-    protected JFXDialog mDialog;
-
-    /* loades the fxml loader for child classes
-    *  returns the loader object for child class to get it's own controller */
-    public FXMLLoader initFXMLLoader( String fxml ){
-        try{
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/gpts/res/fxml/"+fxml+".fxml"));
-            mUI  = loader.load();
-            return loader;
-        } catch( IOException e ){
-            e.printStackTrace();
-        }
-        return null;
-    }
-    /* show the dialog */
-    public void show( MouseEvent ev){
-        mDialog = new JFXDialog();
-        mDialog.setContent( mUI );
-        mDialog.setOverlayClose(false);
-        mDialog.show( (StackPane) ((Node) ev.getSource()).getScene().getRoot() );
-    }
-
-    public ScrollPane getUI(){
-        return mUI;
+        } catch( IndexOutOfBoundsException e ){}
+        uiContainer.getStyleClass().add(mBoxClasses[employee.getTaskStatus()]);
     }
 }
 
-class EmpMessagePopup extends EmpPopupBase {
-
+class EmpMessagePopup extends PopupDataBase {
+    private Employee mEmployee;
 }
 
-class EmpDetailsPopup extends EmpPopupBase{
-
+class EmpDetailsPopup extends PopupDataBase{
+    private Employee mEmployee;
 }
 
-class EmpTasksPopup extends EmpPopupBase {
-
+class EmpTasksPopup extends PopupDataBase {
+    private Employee mEmployee;
 }
 
-class EmpPlanPopup extends EmpPopupBase {
-
+class EmpPlanPopup extends PopupDataBase {
+    private Employee mEmployee;
     private EmpPlanPopupController mController;
     public EmpPlanPopup( Employee employee ){
         mEmployee = employee;

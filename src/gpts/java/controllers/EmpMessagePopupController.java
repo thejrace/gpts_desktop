@@ -6,7 +6,7 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class EmpMessagePopupController extends EmpPopupBaseController implements Initializable {
+public class EmpMessagePopupController extends PopupDataBaseController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb ){

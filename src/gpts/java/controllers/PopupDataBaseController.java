@@ -13,7 +13,7 @@ import javafx.fxml.FXML;
   *     - EmpPlanPopupController
   *
   *     */
-public class EmpPopupBaseController {
+public class PopupDataBaseController {
 
     @FXML protected JFXButton uiCloseBtn;
     protected JFXDialog mDialog;

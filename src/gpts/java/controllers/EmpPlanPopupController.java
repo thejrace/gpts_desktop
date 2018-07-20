@@ -16,7 +16,7 @@ import org.json.JSONArray;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class EmpPlanPopupController extends EmpPopupBaseController implements Initializable {
+public class EmpPlanPopupController extends PopupDataBaseController implements Initializable {
 
     @FXML private JFXComboBox uiPlansComboBox;
     @FXML private JFXButton uiChangePlan;

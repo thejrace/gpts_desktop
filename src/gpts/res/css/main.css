@@ -304,12 +304,12 @@
 }
 
 .emp-box-default .emp-box-middle-section{
-    -fx-background-color:   linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
+    -fx-background-color:   linear-gradient(#343333 0%, #1f2429 20%, #191d22 100%),
     linear-gradient(#20262b, #191d22),
-    radial-gradient(center 50% 0%, radius 100%, rgba(60,89,111,0.9), rgba(255,255,255,0));
+    radial-gradient(center 50% 0%, radius 100%, rgba(52, 51, 51, 0.9), rgba(255,255,255,0));
 }
 .emp-box-default .emp-box-header {
-    -fx-background-color:rgba(31,89,111,0.9);
+    -fx-background-color: rgba(29, 28, 28, 0.9);
 }
 
 
@@ -472,7 +472,14 @@
     -fx-background-color: #343333;
 }
 .plan-data-row {
-    -fx-background-color:#3e3e3e;
+    /*-fx-background-color:#3e3e3e;*/
+    -fx-background-color:   linear-gradient(#38424b 0%, #1f2429 20%, #2b3237 100%),
+    linear-gradient(#20262b, #191d22),
+    radial-gradient(center 50% 0%, radius 100%, rgba(70, 70, 70, 0.9), rgba(23,23,23,0));
+}
+
+.task-btn {
+    -fx-padding:10;
 }
 
 .plan-data-row .ico-calendar {
@@ -488,4 +495,40 @@
     -fx-text-fill:#fff;
     -fx-font-weight:bold;
     -fx-font-size:13;
+}
+
+
+.tab-pane *.tab-header-area *.tab-header-background {
+    -fx-background-color:#242424;
+}
+.tab-pane {
+    -fx-tab-min-height:35px;
+    -fx-tab-max-height:35px;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-text-fill:#272727;
+}
+
+.tab {
+    -fx-font-size: 12;
+    -fx-background-color:#7b3275;
+    -fx-cursor:hand;
+}
+
+.tab-pane .tab-header-area {
+    -fx-padding:0;
+}
+
+.tab .tab-label{
+    -fx-padding:10 15;
+    -fx-text-fill:#fff;
+    -fx-font-weight:bold;
+}
+.tab:selected {
+    -fx-background-color:#302e2e;
+    -fx-cursor:default;
+
+}
+.tab:selected .tab-label{
+
 }

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="100.0" prefWidth="214.0" styleClass="emp-box" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpts.java.controllers.EmpBoxController">
+<AnchorPane fx:id="uiContainer" prefHeight="100.0" prefWidth="214.0" styleClass="emp-box" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpts.java.controllers.EmpBoxController">
    <children>
       <VBox layoutX="21.0" layoutY="38.0" styleClass="emp-box-middle-section" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="27.0">
          <children>
