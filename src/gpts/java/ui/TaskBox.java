@@ -4,7 +4,6 @@ import com.jfoenix.controls.JFXButton;
 import gpts.java.GTask;
 import gpts.java.controllers.TaskBoxController;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
@@ -26,6 +25,7 @@ public class TaskBox {
             mUI  = loader.load();
             mUI.setId( mTask.getName() );
             mController = loader.getController();
+            mController.setData( mTask );
             updateUI();
         } catch( IOException e ){
             e.printStackTrace();

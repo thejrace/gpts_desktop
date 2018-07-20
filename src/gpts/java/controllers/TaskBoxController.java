@@ -2,11 +2,15 @@ package gpts.java.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import gpts.java.GTask;
+import gpts.java.interfaces.WebRequestCallback;
 import gpts.java.ui.PopupDataBase;
+import gpts.java.ui.PopupLoader;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
+import org.json.JSONObject;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,23 +19,36 @@ public class TaskBoxController implements Initializable {
     @FXML private JFXButton uiMain;
 
     private TaskPopup mTaskPopup;
+    private GTask mTask;
 
     @Override
     public void initialize(URL url, ResourceBundle rb ){
 
         uiMain.setOnMouseClicked( ev -> {
-
+            //if( mTask == null ) return;
+            PopupLoader.show("Veri alınıyor...");
             if( mTaskPopup == null ){
-                mTaskPopup = new TaskPopup( new GTask());
+                mTaskPopup = new TaskPopup( mTask );
                 mTaskPopup.initUI();
             }
-            mTaskPopup.show( ev );
+            mTask.downloadData(new WebRequestCallback() {
+                @Override
+                public void onFinish(JSONObject output) {
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            PopupLoader.hide();
+                            mTaskPopup.show( ev );
+                        }
+                    });
 
+                }
+            });
         });
-
     }
 
     public void setData( GTask data ){
+        mTask = data;
         uiMain.setText( data.getName() );
     }
 
