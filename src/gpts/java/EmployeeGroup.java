@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class EmployeeGroup {
 
-    private String mName, mID, mReturnText;
+    private String mName, mID, mReturnText, mPermissions;
 
     public EmployeeGroup(){
 
@@ -23,12 +23,13 @@ public class EmployeeGroup {
         try {
             mName = data.getString("name");
             mID = data.getString("id");
+            mPermissions = data.getString("permissions");
         } catch( JSONException e ){
             e.printStackTrace();
         }
     }
 
-    public void add(String name, ActionCallback cb ){
+    public void add(String name, String permissions, ActionCallback cb ){
         PopupLoader.show(PopupLoader.PLEASE_WAIT);
         FormValidation validation = new FormValidation();
         boolean inputCheck = validation.checkInputs( new ValidationInput[]{
@@ -45,6 +46,7 @@ public class EmployeeGroup {
                 // send request
                 Map<String, String> params = new HashMap<>();
                 params.put("name", name );
+                params.put("permissions", permissions );
                 params.put("req", "add_employee_group" );
                 WebRequest req = new WebRequest( WebRequest.SERVICE_URL, params );
                 req.action(new WebRequestCallback() {

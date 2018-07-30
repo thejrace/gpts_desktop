@@ -76,6 +76,7 @@ public class ServerSync {
             @Override
             public void onFinish(JSONObject output) {
                 if( Common.writeStaticData("user_groups", output.getJSONObject("data").getString("user_groups")) &&
+                    Common.writeStaticData("permissions_template", output.getJSONObject("data").getString("permissions_template")) &&
                     Common.writeStaticData("plan_schemas", output.getJSONObject("data").getString("plan_schemas")) ){
                     MainController.CONTENT_CONTROLLER.updateSyncStatus("CDownload tamamlandı.");
                 } else {

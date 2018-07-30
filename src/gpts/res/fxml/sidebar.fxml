@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="200.0" styleClass="sidebar" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpts.java.controllers.SideBarController">
+<VBox fx:id="uiContainer" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="200.0" styleClass="sidebar" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpts.java.controllers.SideBarController">
 
    <children>
       <ImageView fitHeight="56.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
@@ -28,6 +28,19 @@
             <Insets bottom="10.0" top="10.0" />
          </VBox.margin>
       </Label>
+      <HBox fx:id="uiSideBarBtn0" alignment="CENTER_LEFT" layoutX="10.0" layoutY="128.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" styleClass="sidebar-btn">
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+         <children>
+            <FontAwesomeIconView glyphName="HOME" size="1.2em" styleClass="sidebar-btn-icon" />
+            <Label text="ANA EKRAN" textFill="#b8b1b1">
+               <HBox.margin>
+                  <Insets left="15.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
       <HBox fx:id="uiSideBarBtn1" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" styleClass="sidebar-btn">
          <VBox.margin>
             <Insets />
