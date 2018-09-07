@@ -86,9 +86,7 @@ public class ServerSync {
             }
         });
     }
-
     public static void setSyncStatus( boolean flag ){
         ACTIVE = flag;
     }
-
 }

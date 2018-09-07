@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="popup-form-container" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpts.java.controllers.WorkFormController">
+   <content>
+      <VBox spacing="15.0">
+         <children>
+            <AnchorPane prefWidth="850.0">
+               <children>
+                  <HBox alignment="CENTER" AnchorPane.leftAnchor="0.0">
+                     <children>
+                        <FontAwesomeIconView glyphName="TASK" size="2em" styleClass="popup-form-title-icon" />
+                        <Label fx:id="uiTaskNameLbl" styleClass="popup-form-title" text="Test İş" />
+                        <Label layoutX="29.0" layoutY="10.0" styleClass="popup-form-title" text="Form" />
+                     </children>
+                  </HBox>
+                  <JFXButton fx:id="uiCancelBtn" prefWidth="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="CLOSE" size="18" styleClass="popup-form-title-icon" />
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+            <TabPane prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab closable="false" text="Detaylar">
+                     <content>
+                        <ScrollPane>
+                           <content>
+                              <VBox spacing="15.0">
+                                 <children>
+                                    <JFXTextField fx:id="uiTaskNameInput" labelFloat="true" prefWidth="300.0" promptText="İsim" styleClass="text-field-popup-style" />
+                                    <JFXTextArea fx:id="uiTaskDefInput" prefColumnCount="15" prefHeight="88.0" prefWidth="300.0" promptText="Açıklama" styleClass="text-field-popup-style" />
+                                    <JFXButton fx:id="uiTaskDetailsFormSubmitBtn" text="Kaydet">
+                                       <styleClass>
+                                          <String fx:value="content-btn" />
+                                          <String fx:value="content-btn-success" />
+                                       </styleClass>
+                                    </JFXButton>
+                                 </children>
+                                 <padding>
+                                    <Insets left="10.0" top="25.0" />
+                                 </padding>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
+                     </content>
+                </Tab>
+                <Tab closable="false" text="Paket">
+                     <content>
+                        <ScrollPane>
+                           <content>
+                              <VBox fx:id="uiSubTasksContainer" spacing="15.0">
+                                 <padding>
+                                    <Insets left="10.0" top="25.0" />
+                                 </padding>
+                                 <children>
+                                    <JFXButton fx:id="btnNewSubItem" text="Yeni Adım Ekle">
+                                       <styleClass>
+                                          <String fx:value="content-btn" />
+                                          <String fx:value="content-btn-default" />
+                                       </styleClass>
+                                    </JFXButton>
+                                    <VBox prefWidth="350.0">
+                                       <children>
+                                          <HBox prefWidth="500.0">
+                                             <children>
+                                                <JFXTextField disable="true" promptText="İş" styleClass="text-field-popup-style" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets bottom="15.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <JFXTextArea labelFloat="true" prefColumnCount="10" prefHeight="50.0" prefWidth="403.0" promptText="Açıklama" styleClass="text-field-popup-style">
+                                             <VBox.margin>
+                                                <Insets bottom="15.0" />
+                                             </VBox.margin></JFXTextArea>
+                                          <JFXComboBox prefHeight="25.0" prefWidth="180.0" promptText="Durum" styleClass="text-field-popup-style" />
+                                          <HBox>
+                                             <children>
+                                                <JFXButton text="Kaydet">
+                                                   <styleClass>
+                                                      <String fx:value="content-btn" />
+                                                      <String fx:value="content-btn-success" />
+                                                   </styleClass>
+                                                </JFXButton>
+                                                <JFXButton text="Sil">
+                                                   <styleClass>
+                                                      <String fx:value="content-btn" />
+                                                      <String fx:value="content-btn-danger" />
+                                                   </styleClass>
+                                                   <HBox.margin>
+                                                      <Insets left="250.0" />
+                                                   </HBox.margin>
+                                                </JFXButton>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets top="15.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="15.0" />
+                                       </VBox.margin>
+                                    </VBox>
+                                 </children>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
+                     </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+   </content>
+</ScrollPane>

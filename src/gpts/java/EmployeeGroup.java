@@ -83,6 +83,8 @@ public class EmployeeGroup {
     public String getReturnText(){
         return mReturnText;
     }
-
+    public String getPermissions(){
+        return mPermissions;
+    }
 
 }

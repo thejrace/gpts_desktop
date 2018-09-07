@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" styleClass="main-bg-color" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpts.java.controllers.DashboardController">
+   <stylesheets>
+      <URL value="@../css/main.css" />
+   </stylesheets>
+   <children>
+      <AnchorPane VBox.vgrow="ALWAYS">
+         <children>
+            <HBox alignment="CENTER_RIGHT" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <JFXButton fx:id="btnNewWork" text="+ Yeni İş">
+                     <styleClass>
+                        <String fx:value="content-btn" />
+                        <String fx:value="content-btn-success" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </HBox.margin>
+                  </JFXButton>
+               </children>
+            </HBox>
+            <HBox AnchorPane.leftAnchor="0.0">
+               <children>
+                  <Label styleClass="content-header" text="Başlangıç">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <VBox spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+               <children>
+                  <VBox>
+                     <children>
+                        <Label styleClass="ctext-white" text="Bildirimler" />
+                        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" minHeight="100.0">
+                           <content>
+                              <FlowPane fx:id="uiContainerNotfs" minHeight="100.0" />
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </VBox>
+                  <VBox layoutX="10.0" layoutY="10.0">
+                     <children>
+                        <Label styleClass="ctext-white" text="Aktif Görevler" />
+                        <ScrollPane fitToWidth="true" minHeight="100.0" vbarPolicy="NEVER">
+                           <content>
+                              <FlowPane fx:id="uiContainerTasks" />
+                           </content>
+                        </ScrollPane>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <VBox layoutX="10.0" layoutY="137.0">
+                     <children>
+                        <Label styleClass="ctext-white" text="Aktif İşler" />
+                        <ScrollPane fitToWidth="true" minHeight="100.0" vbarPolicy="NEVER">
+                           <content>
+                              <FlowPane fx:id="uiContainerWorks" />
+                           </content>
+                        </ScrollPane>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets left="10.0" right="10.0" />
+         </padding>
+      </AnchorPane>
+   </children>
+</VBox>

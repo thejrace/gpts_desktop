@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefWidth="350.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox prefWidth="500.0">
+         <children>
+            <JFXTextField disable="true" promptText="İş" styleClass="text-field-popup-style" />
+            <JFXButton disable="true" prefHeight="29.0" prefWidth="85.0" text="Onay İste">
+               <styleClass>
+                  <String fx:value="content-btn" />
+                  <String fx:value="content-btn-warning" />
+                  <String fx:value="con" />
+               </styleClass>
+               <HBox.margin>
+                  <Insets left="100.0" />
+               </HBox.margin>
+            </JFXButton>
+         </children>
+         <VBox.margin>
+            <Insets bottom="15.0" />
+         </VBox.margin>
+      </HBox>
+      <JFXTextArea labelFloat="true" prefColumnCount="10" prefHeight="50.0" prefWidth="403.0" promptText="Açıklama" styleClass="text-field-popup-style">
+         <VBox.margin>
+            <Insets bottom="15.0" />
+         </VBox.margin>
+      </JFXTextArea>
+      <JFXComboBox prefHeight="25.0" prefWidth="180.0" promptText="Durum" styleClass="text-field-popup-style" />
+      <HBox>
+         <children>
+            <JFXButton text="Kaydet">
+               <styleClass>
+                  <String fx:value="content-btn" />
+                  <String fx:value="content-btn-success" />
+               </styleClass>
+            </JFXButton>
+            <JFXButton text="Sil">
+               <styleClass>
+                  <String fx:value="content-btn" />
+                  <String fx:value="content-btn-danger" />
+               </styleClass>
+               <HBox.margin>
+                  <Insets left="250.0" />
+               </HBox.margin>
+            </JFXButton>
+         </children>
+         <VBox.margin>
+            <Insets top="15.0" />
+         </VBox.margin>
+      </HBox>
+   </children>
+</VBox>

@@ -80,6 +80,15 @@
                                     <Insets left="10.0" top="25.0" />
                                  </padding>
                                  <children>
+                                    <JFXButton fx:id="btnNewSubItem" text="Yeni Adım Ekle">
+                                       <styleClass>
+                                          <String fx:value="content-btn" />
+                                          <String fx:value="content-btn-default" />
+                                       </styleClass>
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" />
+                                       </VBox.margin>
+                                    </JFXButton>
                                     <VBox prefWidth="350.0">
                                        <children>
                                           <HBox prefWidth="500.0">

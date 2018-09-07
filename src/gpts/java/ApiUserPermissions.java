@@ -1,7 +1,7 @@
+/* Gitaş - Obarey Inc 2018 */
 package gpts.java;
 
 public class ApiUserPermissions {
-
     public static int   AC_EMPLOYEES = 0,
                         AC_PLANS = 1,
                         AC_TASKS = 2,
@@ -24,7 +24,4 @@ public class ApiUserPermissions {
                         DELETE_EMPLOYEE_GROUP = 19,
                         DEFINE_TASK_TO_EMPLOYEE = 20,
                         DEFINE_PLAN_TO_EMPLOYEE = 21;
-
-
-
 }

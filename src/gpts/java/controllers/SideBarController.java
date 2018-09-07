@@ -24,13 +24,26 @@ public class SideBarController implements Initializable {
     @FXML private HBox uiSideBarBtn5; // employee groups
     @FXML private VBox uiContainer;
 
-    private int mPageIndex = 0;
+    private int mPageIndex = -1;
     private Map<Integer, BasePage> mPages = new HashMap<>();
+    private DashboardPage mDashboardPage; // dashboard doesn't extend BasePage
 
     @Override
     public void initialize(URL url, ResourceBundle rb ){
 
-
+        uiSideBarBtn0.setOnMouseClicked( ev -> {
+            // check if we already in this page
+            if( mPageIndex == 0 ) return;
+            // initialize the page if it didnt
+            try {
+                MainController.UICONTENTMAIN.setContent( mDashboardPage.getUI());
+            } catch( NullPointerException e ){
+                mDashboardPage = new DashboardPage();
+                mDashboardPage.initUI();
+                MainController.UICONTENTMAIN.setContent( mDashboardPage.getUI() );
+            }
+            mPageIndex = 0;
+        });
 
         // TODO - bunu fonksiyon haline getir, bak -> reflection in java
         if( ApiUser.checkPermission(ApiUserPermissions.AC_EMPLOYEES) ){
@@ -111,7 +124,14 @@ public class SideBarController implements Initializable {
             mPageIndex = 3;
         });
 
-
-
     }
+
+    // triggered when sideBar and content UI's are ready
+    public void initDashboard(){
+        mDashboardPage = new DashboardPage();
+        mDashboardPage.initUI();
+        MainController.UICONTENTMAIN.setContent( mDashboardPage.getUI() );
+        mPageIndex = 0;
+    }
+
 }
