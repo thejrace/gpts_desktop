@@ -1,7 +1,10 @@
 package gpts.java.controllers;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import gpts.java.GWorkSubItem;
+import gpts.java.ui.GWorkSubItemBox;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Tab;
@@ -14,9 +17,9 @@ public class WorkFormController extends PopupFormBaseController implements Initi
 
 
     @FXML private JFXTextField uiTaskNameInput;
-    @FXML private JFXTextField uiTaskDefInput;
+    @FXML private JFXTextArea uiTaskDefInput;
     @FXML private VBox uiSubTasksContainer;
-    @FXML private JFXButton btnNewSubItem;
+    @FXML private JFXButton uiNewSubItemBtn;
     @FXML private Tab tabBundle;
     @FXML private Tab tabDetails;
 
@@ -25,11 +28,9 @@ public class WorkFormController extends PopupFormBaseController implements Initi
     public void initialize(URL url, ResourceBundle rb ){
         super.initCommonEvents();
 
-
-        btnNewSubItem.setOnMouseClicked( ev -> {
-
-
-
+        uiNewSubItemBtn.setOnMouseClicked( ev -> {
+            GWorkSubItemBox newBox = new GWorkSubItemBox( new GWorkSubItem() );
+            uiSubTasksContainer.getChildren().add( 0, newBox.getUI() );
         });
 
     }

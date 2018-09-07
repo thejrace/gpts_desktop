@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
@@ -35,9 +34,10 @@
                   </JFXButton>
                </children>
             </AnchorPane>
-            <TabPane prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+            <Label fx:id="uiFormOutputLbl" />
+            <TabPane prefHeight="600.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab closable="false" text="Detaylar">
+                <Tab fx:id="tabDetails" closable="false" text="Detaylar">
                      <content>
                         <ScrollPane>
                            <content>
@@ -45,7 +45,7 @@
                                  <children>
                                     <JFXTextField fx:id="uiTaskNameInput" labelFloat="true" prefWidth="300.0" promptText="İsim" styleClass="text-field-popup-style" />
                                     <JFXTextArea fx:id="uiTaskDefInput" prefColumnCount="15" prefHeight="88.0" prefWidth="300.0" promptText="Açıklama" styleClass="text-field-popup-style" />
-                                    <JFXButton fx:id="uiTaskDetailsFormSubmitBtn" text="Kaydet">
+                                    <JFXButton fx:id="uiSaveBtn" text="Kaydet">
                                        <styleClass>
                                           <String fx:value="content-btn" />
                                           <String fx:value="content-btn-success" />
@@ -60,62 +60,25 @@
                         </ScrollPane>
                      </content>
                 </Tab>
-                <Tab closable="false" text="Paket">
+                <Tab fx:id="tabBundle" closable="false" text="Paket">
                      <content>
-                        <ScrollPane>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="600.0">
                            <content>
-                              <VBox fx:id="uiSubTasksContainer" spacing="15.0">
-                                 <padding>
-                                    <Insets left="10.0" top="25.0" />
-                                 </padding>
+                              <VBox>
                                  <children>
-                                    <JFXButton fx:id="btnNewSubItem" text="Yeni Adım Ekle">
+                                    <JFXButton fx:id="uiNewSubItemBtn" text="Yeni Adım Ekle">
                                        <styleClass>
                                           <String fx:value="content-btn" />
                                           <String fx:value="content-btn-default" />
                                        </styleClass>
-                                    </JFXButton>
-                                    <VBox prefWidth="350.0">
-                                       <children>
-                                          <HBox prefWidth="500.0">
-                                             <children>
-                                                <JFXTextField disable="true" promptText="İş" styleClass="text-field-popup-style" />
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets bottom="15.0" />
-                                             </VBox.margin>
-                                          </HBox>
-                                          <JFXTextArea labelFloat="true" prefColumnCount="10" prefHeight="50.0" prefWidth="403.0" promptText="Açıklama" styleClass="text-field-popup-style">
-                                             <VBox.margin>
-                                                <Insets bottom="15.0" />
-                                             </VBox.margin></JFXTextArea>
-                                          <JFXComboBox prefHeight="25.0" prefWidth="180.0" promptText="Durum" styleClass="text-field-popup-style" />
-                                          <HBox>
-                                             <children>
-                                                <JFXButton text="Kaydet">
-                                                   <styleClass>
-                                                      <String fx:value="content-btn" />
-                                                      <String fx:value="content-btn-success" />
-                                                   </styleClass>
-                                                </JFXButton>
-                                                <JFXButton text="Sil">
-                                                   <styleClass>
-                                                      <String fx:value="content-btn" />
-                                                      <String fx:value="content-btn-danger" />
-                                                   </styleClass>
-                                                   <HBox.margin>
-                                                      <Insets left="250.0" />
-                                                   </HBox.margin>
-                                                </JFXButton>
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets top="15.0" />
-                                             </VBox.margin>
-                                          </HBox>
-                                       </children>
                                        <VBox.margin>
-                                          <Insets bottom="15.0" />
+                                          <Insets bottom="10.0" top="10.0" />
                                        </VBox.margin>
+                                    </JFXButton>
+                                    <VBox fx:id="uiSubTasksContainer" spacing="15.0">
+                                       <padding>
+                                          <Insets left="10.0" top="25.0" />
+                                       </padding>
                                     </VBox>
                                  </children>
                               </VBox>
