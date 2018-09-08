@@ -532,3 +532,10 @@
 .tab:selected .tab-label{
 
 }
+
+.task-sub-item-odd{
+    -fx-background-color: #2d2c2c;
+}
+.task-sub-item-even{
+    -fx-background-color: #272626;
+}

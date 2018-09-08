@@ -23,12 +23,23 @@ public class GWorkSubItemBox {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/gpts/res/fxml/work_sub_item.fxml"));
             mUI  = loader.load();
-            mUI.setId( String.valueOf(mGWorkSubItem.getStepOrder()) );
             mController = loader.getController();
             updateUI();
         } catch( IOException e ){
             e.printStackTrace();
         }
+    }
+
+    public GWorkSubItemBoxController getController(){
+        return mController;
+    }
+
+    public void setUIID( int id ){
+        mUI.setId( String.valueOf(id) );
+    }
+
+    public void setStyleClassName( String className ){
+        mController.setStyleClassName( className );
     }
 
     public void updateUI(){

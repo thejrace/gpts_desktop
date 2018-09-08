@@ -44,13 +44,7 @@
                               <VBox spacing="15.0">
                                  <children>
                                     <JFXTextField fx:id="uiTaskNameInput" labelFloat="true" prefWidth="300.0" promptText="İsim" styleClass="text-field-popup-style" />
-                                    <JFXTextArea fx:id="uiTaskDefInput" prefColumnCount="15" prefHeight="88.0" prefWidth="300.0" promptText="Açıklama" styleClass="text-field-popup-style" />
-                                    <JFXButton fx:id="uiSaveBtn" text="Kaydet">
-                                       <styleClass>
-                                          <String fx:value="content-btn" />
-                                          <String fx:value="content-btn-success" />
-                                       </styleClass>
-                                    </JFXButton>
+                                    <JFXTextArea fx:id="uiTaskDefInput" labelFloat="true" prefColumnCount="15" prefHeight="88.0" prefWidth="300.0" promptText="Açıklama" styleClass="text-field-popup-style" />
                                  </children>
                                  <padding>
                                     <Insets left="10.0" top="25.0" />
@@ -88,6 +82,12 @@
                 </Tab>
               </tabs>
             </TabPane>
+            <JFXButton fx:id="uiSaveBtn" prefHeight="42.0" prefWidth="91.0" text="Kaydet">
+               <styleClass>
+                  <String fx:value="content-btn" />
+                  <String fx:value="content-btn-success" />
+               </styleClass>
+            </JFXButton>
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
