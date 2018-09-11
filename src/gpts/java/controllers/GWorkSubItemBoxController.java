@@ -23,8 +23,11 @@ public class GWorkSubItemBoxController implements Initializable {
     @FXML private JFXButton uiSaveBtn;
     @FXML private JFXButton uiDeleteBtn;
 
-    private String[] mStatusList = { "Beklemede", "Aktif", "Onay Bekliyor", "İptal Edildi" };
+    private String[] mStatusList = { "Beklemede", "Aktif", "Onay Bekliyor", "İptal Edildi", "Tamamlandı" };
     private NoParamCallback mDeleteListener;
+    private GWorkSubItem mData;
+
+    private boolean mEditFlag = false;
 
     @Override
     public void initialize(URL url, ResourceBundle rb ){
@@ -38,8 +41,13 @@ public class GWorkSubItemBoxController implements Initializable {
 
     }
 
-    public void setData( GWorkSubItem data ){
+    public void getFormData(){
+        mData.setName( uiNameInput.getText() );
+        mData.setDetails(uiDetailsInput.getText());
+    }
 
+    public void setData( GWorkSubItem data ){
+        mData = data;
     }
 
     public void addDeleteListener( NoParamCallback cb ){

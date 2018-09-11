@@ -68,7 +68,11 @@ public class PopupLoader {
         DIALOG.show(ROOT);
     }
     public static void hide(){
-        DIALOG.close();
+        try {
+            DIALOG.close();
+        } catch( NullPointerException e ){
+
+        }
     }
     public static void setText( String text ){
         CONTROLLER.setStatusText( text );

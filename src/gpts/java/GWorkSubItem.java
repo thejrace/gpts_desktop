@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 public class GWorkSubItem {
 
-    private String mName, mDetails;
+    private String mName, mDetails, mReturnText;
     private int mID, mStatus, mStepOrder, mNeedsValidation;
 
     public GWorkSubItem(){
@@ -18,6 +18,15 @@ public class GWorkSubItem {
         } catch( JSONException e ){
             e.printStackTrace();
         }
+    }
+
+    public boolean validate(){
+        FormValidation validation = new FormValidation();
+        boolean inputCheck = validation.checkInputs( new ValidationInput[]{
+                new ValidationInput("İsim [ Adım No: "+mStepOrder+"]", mName, FormValidation.CHECK_REQ )
+        });
+        if( !inputCheck ) mReturnText = validation.getMessage();
+        return inputCheck;
     }
 
     /*
@@ -33,11 +42,26 @@ public class GWorkSubItem {
         } else {
             // using parentGWorkID send form to server
 
-
         }
 
     }
 
+    public String serialize(){
+        return "id="+mID+"#name="+mName+"#details="+mDetails+"#step_order="+mStepOrder+"#status="+mStatus;
+    }
+
+    public void setName( String d ){
+        mName = d;
+    }
+    public void setDetails( String d ){
+        mDetails = d;
+    }
+    public void setStepOrder( int d ){
+        mStepOrder = d;
+    }
+    public String getReturnText(){
+        return mReturnText;
+    }
     public int getID(){
         return mID;
     }

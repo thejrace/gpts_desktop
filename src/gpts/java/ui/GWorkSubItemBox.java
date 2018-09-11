@@ -38,6 +38,14 @@ public class GWorkSubItemBox {
         mUI.setId( String.valueOf(id) );
     }
 
+    public void fetchDataFromForm(){
+        mController.getFormData();
+    }
+
+    public GWorkSubItem getData(){
+        return mGWorkSubItem;
+    }
+
     public void setStyleClassName( String className ){
         mController.setStyleClassName( className );
     }

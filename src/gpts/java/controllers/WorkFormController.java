@@ -3,14 +3,17 @@ package gpts.java.controllers;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import gpts.java.FormValidation;
 import gpts.java.GWork;
 import gpts.java.GWorkSubItem;
+import gpts.java.ValidationInput;
 import gpts.java.interfaces.ActionCallback;
 import gpts.java.interfaces.NoParamCallback;
 import gpts.java.ui.GWorkSubItemBox;
 import gpts.java.ui.PopupLoader;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.VBox;
 
@@ -28,6 +31,15 @@ public class WorkFormController extends PopupFormBaseController implements Initi
     @FXML private JFXButton uiNewSubItemBtn;
     @FXML private Tab tabBundle;
     @FXML private Tab tabDetails;
+    @FXML private Tab tabDownloadProfile;   // todo will be hidden when editFlag is set
+    @FXML private JFXTextField uiSearchInput;
+    @FXML private JFXButton uiSearchBtn;
+    @FXML private JFXButton uiSelectBtn;
+    @FXML private JFXButton uiFinishWorkBtn;
+    @FXML private VBox uiSearchContainer;
+    @FXML private Label uiSummaryNameLbl;
+    @FXML private Label uiSummaryDetailsLbl;
+    @FXML private VBox uiSummarySubItemsContainer;
 
     private boolean mEditFlag = false;
 
@@ -71,13 +83,19 @@ public class WorkFormController extends PopupFormBaseController implements Initi
             if( mEditFlag ){
 
             } else {
+                // set order of subitems before upload action
+                int stepCounter = 1;
+                for (Map.Entry<Integer, GWorkSubItemBox> entry : mSubItems.entrySet()) {
+                    entry.getValue().getData().setStepOrder( stepCounter );
+                    stepCounter++;
+                }
                 GWork newWork = new GWork();
                 // pass mSubItems directly and get GWorkSubItem from GWorkSubItemBox
                 newWork.add(uiTaskNameInput.getText(), uiTaskDefInput.getText(), mSubItems, new ActionCallback() {
                     @Override
                     public void onSuccess(String... params) {
                         mParentDialog.close();
-                        //PopupLoader.showMessage(employee.getReturnText(), PopupLoader.MESSAGE_SUCCESS );
+                        // todo PopupLoader.showMessage(employee.getReturnText(), PopupLoader.MESSAGE_SUCCESS );
                         //mAddListener.onFinish( employee );
                     }
                     @Override
@@ -89,6 +107,22 @@ public class WorkFormController extends PopupFormBaseController implements Initi
                 });
             }
         });
+
+        uiSearchBtn.setOnMouseClicked( ev -> {
+            FormValidation validation = new FormValidation();
+            if( validation.checkInputs( new ValidationInput[]{
+                    new ValidationInput("Arama", uiSearchInput.getText(), FormValidation.CHECK_REQ )
+            }) ) return;
+            //GWork.search( uiSearchInput.getText() )
+
+
+
+        });
+
+        uiSelectBtn.setOnMouseClicked( ev -> {
+
+        });
+
 
     }
 

@@ -56,6 +56,15 @@
 .ctext-gitas {
     -fx-text-fill:#a754bb;
 }
+.ctext-h2 {
+     -fx-font-size:25;
+ }
+.ctext-h3 {
+    -fx-font-size:20;
+}
+.ctext-h4 {
+    -fx-font-size:15;
+}
 
 
 .content-btn {
