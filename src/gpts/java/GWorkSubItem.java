@@ -14,7 +14,9 @@ public class GWorkSubItem {
 
     public GWorkSubItem( JSONObject data ){
         try {
-
+            mName = data.getString("name");
+            mDetails = data.getString("details");
+            mStepOrder = Integer.valueOf(data.getString("step_order"));
         } catch( JSONException e ){
             e.printStackTrace();
         }
@@ -32,13 +34,14 @@ public class GWorkSubItem {
     /*
     *  newWorkFlag = true, when adding sub item to not-existing work
     * */
-    public void add( boolean newWorkFlag, String parentGWorkID, String name, String details, int stepOrder ){
+    public void add( boolean newWorkFlag, String parentGWorkID, String name, String details, int status, int stepOrder ){
         if( newWorkFlag ){
             // this case we only save data to properties, later we'll serialize it to send
             // them together with parent GWork data
             mName = name;
             mDetails = details;
             mStepOrder = stepOrder;
+            mStatus = status;
         } else {
             // using parentGWorkID send form to server
 
@@ -53,6 +56,7 @@ public class GWorkSubItem {
     public void setName( String d ){
         mName = d;
     }
+    public void setStatus( int d ){ mStatus = d; }
     public void setDetails( String d ){
         mDetails = d;
     }

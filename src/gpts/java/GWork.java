@@ -6,6 +6,7 @@ import gpts.java.interfaces.WebRequestCallback;
 import gpts.java.ui.GWorkSubItemBox;
 import gpts.java.ui.PopupLoader;
 import javafx.application.Platform;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class GWork {
 
     private int mID, mStatus;
     private String mName, mDetails, mReturnText;
+    private ArrayList<GWorkSubItem> mSubItems = new ArrayList<>();
 
     public GWork(){
 
@@ -69,24 +71,47 @@ public class GWork {
 
     }
 
-    public static void search(String keyword, ReadJACallback cb ){
+    public static void searchTemplate(String keyword, ReadJACallback cb ){
         Thread th = new Thread(new Runnable() {
             @Override
             public void run() {
                 Map<String, String> params = new HashMap<>();
                 params.put("search_keyword", keyword );
-                params.put("req", "search_work");
+                params.put("req", "search_work_template");
                 WebRequest request = new WebRequest( WebRequest.SERVICE_URL, params );
                 request.action(new WebRequestCallback() {
                     @Override
                     public void onFinish(JSONObject output) {
-
+                        try {
+                            cb.onFinish(output.getJSONArray("data"));
+                        } catch( JSONException e ){
+                            e.printStackTrace();
+                        }
                     }
                 });
             }
         });
         th.setDaemon(true);
         th.start();
+    }
+
+    public void setName( String d ){
+        mName = d;
+    }
+    public void setDetails( String d ){
+        mDetails = d;
+    }
+    public void addSubItem( GWorkSubItem d ){
+        mSubItems.add( d );
+    }
+    public String getName(){
+        return mName;
+    }
+    public String getDetails(){
+        return mDetails;
+    }
+    public ArrayList<GWorkSubItem> getSubItems(){
+        return mSubItems;
     }
 
     public String getReturnText(){

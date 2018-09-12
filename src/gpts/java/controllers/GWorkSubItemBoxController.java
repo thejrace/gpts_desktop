@@ -15,6 +15,8 @@ import java.util.ResourceBundle;
 
 public class GWorkSubItemBoxController implements Initializable {
 
+    // edit mod, new mod, viewer mod
+
     @FXML private VBox uiMainContainer;
     @FXML private JFXTextField uiNameInput;
     @FXML private JFXButton uiValidationBtn;
@@ -44,10 +46,14 @@ public class GWorkSubItemBoxController implements Initializable {
     public void getFormData(){
         mData.setName( uiNameInput.getText() );
         mData.setDetails(uiDetailsInput.getText());
+        mData.setStatus( uiStatusInput.getSelectionModel().getSelectedIndex() );
     }
 
     public void setData( GWorkSubItem data ){
         mData = data;
+        uiNameInput.setText(data.getName());
+        uiDetailsInput.setText( data.getDetails());
+        uiStatusInput.getSelectionModel().select( data.getStatus() );
     }
 
     public void addDeleteListener( NoParamCallback cb ){

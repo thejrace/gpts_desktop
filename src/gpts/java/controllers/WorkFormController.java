@@ -9,13 +9,19 @@ import gpts.java.GWorkSubItem;
 import gpts.java.ValidationInput;
 import gpts.java.interfaces.ActionCallback;
 import gpts.java.interfaces.NoParamCallback;
+import gpts.java.interfaces.ReadJACallback;
 import gpts.java.ui.GWorkSubItemBox;
 import gpts.java.ui.PopupLoader;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.net.URL;
 import java.util.HashMap;
@@ -46,6 +52,7 @@ public class WorkFormController extends PopupFormBaseController implements Initi
     private int mSubItemStepCounter = 0;
     private Map<Integer, GWorkSubItemBox> mSubItems = new HashMap<>();
     private String mBoxClassName = "task-sub-item-even";
+    private GWork mSelectedTemplate;
 
 
     @Override
@@ -56,25 +63,8 @@ public class WorkFormController extends PopupFormBaseController implements Initi
             if( mEditFlag ){
 
             } else {
-                GWorkSubItemBox newBox = new GWorkSubItemBox( new GWorkSubItem() );
-                newBox.setStyleClassName( mBoxClassName );
-                switchBoxClassName();
-                uiSubTasksContainer.getChildren().add( 0, newBox.getUI() );
-                newBox.setUIID(mSubItemStepCounter);
-                mSubItems.put( mSubItemStepCounter, newBox );
-                mSubItemStepCounter++;
-                newBox.getController().addDeleteListener(new NoParamCallback() {
-                    @Override
-                    public void action() {
-                        for( int k = 0; k < uiSubTasksContainer.getChildren().size(); k++ ){
-                            if( uiSubTasksContainer.getChildren().get(k).getId().equals( newBox.getUI().getId() ) ){
-                                mSubItems.remove( Integer.valueOf(newBox.getUI().getId()) );
-                                uiSubTasksContainer.getChildren().remove(k);
-                                break;
-                            }
-                        }
-                    }
-                });
+                // empty
+                addSubItem( new GWorkSubItemBox( new GWorkSubItem() ) );
             }
         });
 
@@ -110,20 +100,83 @@ public class WorkFormController extends PopupFormBaseController implements Initi
 
         uiSearchBtn.setOnMouseClicked( ev -> {
             FormValidation validation = new FormValidation();
-            if( validation.checkInputs( new ValidationInput[]{
+            if( !validation.checkInputs( new ValidationInput[]{
                     new ValidationInput("Arama", uiSearchInput.getText(), FormValidation.CHECK_REQ )
             }) ) return;
-            //GWork.search( uiSearchInput.getText() )
-
-
-
+            uiSearchContainer.getChildren().clear();
+            GWork.searchTemplate(uiSearchInput.getText(), new ReadJACallback() {
+                @Override
+                public void onFinish(JSONArray output) {
+                    int outputLength = output.length();
+                    if( outputLength > 0 ){
+                        Platform.runLater( () -> { uiSelectBtn.setDisable(false); });
+                    } else {
+                        Platform.runLater( () -> { uiSelectBtn.setDisable(true); });
+                    }
+                    for( int k = 0; k < output.length(); k++ ){
+                        JSONObject template = output.getJSONObject(k);
+                        Label lbl = new Label( template.getString("name"));
+                        lbl.getStyleClass().add("ctext-white");
+                        JFXButton btn = new JFXButton( "Özet" );
+                        btn.getStyleClass().addAll("content-btn", "content-btn-warning");
+                        HBox cont = new HBox( lbl, btn );
+                        cont.setSpacing(10);
+                        cont.setAlignment(Pos.CENTER);
+                        Platform.runLater(()->{
+                            uiSearchContainer.getChildren().add(cont);
+                            btn.setOnMouseClicked( ev -> {
+                                mSelectedTemplate = new GWork();
+                                mSelectedTemplate.setName( template.getString("name") );
+                                mSelectedTemplate.setDetails( template.getString("details"));
+                                uiSummarySubItemsContainer.getChildren().clear();
+                                uiSummaryNameLbl.setText(template.getString("name"));
+                                uiSummaryDetailsLbl.setText(template.getString("details"));
+                                JSONArray subItemsDecoded = new JSONArray(template.getString("sub_items"));
+                                for( int j = 0; j < subItemsDecoded.length(); j++ ){
+                                    JSONObject tempSubItemData = subItemsDecoded.getJSONObject(j);
+                                    mSelectedTemplate.addSubItem( new GWorkSubItem( tempSubItemData ) );
+                                    Label subItemLbl = new Label( ( j + 1 ) + " - " + tempSubItemData.getString("name") );
+                                    subItemLbl.getStyleClass().add("ctext-white");
+                                    uiSummarySubItemsContainer.getChildren().add( subItemLbl );
+                                }
+                            });
+                        });
+                    }
+                }
+            });
         });
 
         uiSelectBtn.setOnMouseClicked( ev -> {
-
+            uiTaskNameInput.setText(mSelectedTemplate.getName());
+            uiTaskDefInput.setText(mSelectedTemplate.getDetails());
+            uiSubTasksContainer.getChildren().clear();
+            mSubItemStepCounter = 0;
+            mSubItems = new HashMap<>();
+            for( int k = mSelectedTemplate.getSubItems().size() - 1; k >= 0; k-- ){
+                addSubItem( new GWorkSubItemBox( mSelectedTemplate.getSubItems().get(k) ) );
+            }
         });
+    }
 
-
+    private void addSubItem( GWorkSubItemBox newBox ){
+        newBox.setStyleClassName( mBoxClassName );
+        switchBoxClassName();
+        uiSubTasksContainer.getChildren().add( 0, newBox.getUI() );
+        newBox.setUIID(mSubItemStepCounter);
+        mSubItems.put( mSubItemStepCounter, newBox );
+        mSubItemStepCounter++;
+        newBox.getController().addDeleteListener(new NoParamCallback() {
+            @Override
+            public void action() {
+                for( int k = 0; k < uiSubTasksContainer.getChildren().size(); k++ ){
+                    if( uiSubTasksContainer.getChildren().get(k).getId().equals( newBox.getUI().getId() ) ){
+                        mSubItems.remove( Integer.valueOf(newBox.getUI().getId()) );
+                        uiSubTasksContainer.getChildren().remove(k);
+                        break;
+                    }
+                }
+            }
+        });
     }
 
     /*
