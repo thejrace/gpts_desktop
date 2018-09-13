@@ -122,9 +122,13 @@ public class Common {
     }
 
     public static String revDatetime( String dt ){
-        String date = dt.substring(0, 10);
-        String[] exp = date.split("-");
-        return exp[2]+"-"+exp[1]+"-"+exp[0]+ " " + dt.substring(11);
+        try {
+            String date = dt.substring(0, 10);
+            String[] exp = date.split("-");
+            return exp[2]+"-"+exp[1]+"-"+exp[0]+ " " + dt.substring(11);
+        } catch( StringIndexOutOfBoundsException e ){
+            return dt;
+        }
     }
 
     public static String revDate( String dt ){

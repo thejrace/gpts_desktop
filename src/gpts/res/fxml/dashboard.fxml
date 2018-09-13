@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXSpinner?>
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
@@ -9,6 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox alignment="CENTER" styleClass="main-bg-color" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpts.java.controllers.DashboardController">
@@ -50,32 +52,18 @@
                            </VBox.margin></Label>
                         <ScrollPane fitToWidth="true" hbarPolicy="NEVER" minHeight="100.0">
                            <content>
-                              <FlowPane fx:id="uiContainerNotfs" minHeight="100.0" />
+                              <StackPane>
+                                 <children>
+                                    <JFXSpinner fx:id="uiNotfSpinner" prefHeight="62.0" prefWidth="316.0" radius="20.0" />
+                                    <FlowPane fx:id="uiContainerNotfs" minHeight="100.0" />
+                                 </children>
+                              </StackPane>
                            </content>
                            <padding>
                               <Insets left="10.0" right="10.0" />
                            </padding>
                         </ScrollPane>
                      </children>
-                  </VBox>
-                  <VBox layoutX="10.0" layoutY="10.0">
-                     <children>
-                        <Label styleClass="ctext-white" text="Aktif Görevler">
-                           <VBox.margin>
-                              <Insets bottom="15.0" />
-                           </VBox.margin></Label>
-                        <ScrollPane fitToWidth="true" minHeight="100.0" vbarPolicy="NEVER">
-                           <content>
-                              <FlowPane fx:id="uiContainerTasks" />
-                           </content>
-                           <padding>
-                              <Insets left="10.0" right="10.0" />
-                           </padding>
-                        </ScrollPane>
-                     </children>
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
                   </VBox>
                   <VBox layoutX="10.0" layoutY="137.0">
                      <children>
@@ -85,7 +73,12 @@
                            </VBox.margin></Label>
                         <ScrollPane fitToWidth="true" minHeight="100.0" vbarPolicy="NEVER">
                            <content>
-                              <FlowPane fx:id="uiContainerWorks" />
+                              <StackPane>
+                                 <children>
+                                    <JFXSpinner fx:id="uiWorksSpinner" radius="20.0" />
+                                    <FlowPane fx:id="uiContainerWorks" hgap="10.0" minHeight="100.0" vgap="10.0" />
+                                 </children>
+                              </StackPane>
                            </content>
                            <padding>
                               <Insets left="10.0" right="10.0" />

@@ -6,7 +6,12 @@ import org.json.JSONObject;
 
 public class GWorkSubItem {
 
-    private String mName, mDetails, mReturnText;
+    public static int STATUS_WAITING = 0,
+                      STATUS_ACTIVE = 1,
+                      STATUS_WAITS_VALIDATION = 2,
+                      STATUS_CANCELED = 3,
+                      STATUS_COMPLETED = 4;
+    private String mName, mDetails, mReturnText, mDateAdded, mDateLastModified;
     private int mID, mStatus, mStepOrder, mNeedsValidation;
 
     public GWorkSubItem(){
@@ -18,9 +23,14 @@ public class GWorkSubItem {
             mName = data.getString("name");
             mDetails = data.getString("details");
             mStepOrder = Integer.valueOf(data.getString("step_order"));
+            mNeedsValidation = Integer.valueOf(data.getString("needs_validation"));
+            mStatus = Integer.valueOf(data.getString("status"));
+            mDateAdded = data.getString("date_added");
+            mDateLastModified = data.getString("date_last_modified");
         } catch( JSONException e ){
-            e.printStackTrace();
+            //e.printStackTrace();
         }
+
     }
 
     public boolean validate(){

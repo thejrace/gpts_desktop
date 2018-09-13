@@ -7,6 +7,7 @@ import gpts.java.interfaces.WebRequestCallback;
 import gpts.java.ui.GWorkSubItemBox;
 import gpts.java.ui.PopupLoader;
 import javafx.application.Platform;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -17,10 +18,34 @@ import java.util.Map;
 public class GWork {
 
     private int mID, mStatus;
-    private String mName, mDetails, mReturnText;
+    private String mName, mDetails, mReturnText, mDateAdded, mDueDate = "", mDateLastModified;
     private ArrayList<GWorkSubItem> mSubItems = new ArrayList<>();
 
     public GWork(){
+
+    }
+
+    public GWork( JSONObject data ){
+        try{
+            mID = Integer.valueOf(data.getString("id"));
+            mName = data.getString("name");
+            mDetails = data.getString("details");
+            mStatus = Integer.valueOf(data.getString("status"));
+            mDateAdded = data.getString("date_added");
+            JSONArray subItemsDecoded = data.getJSONArray("sub_items");
+            for( int k = 0; k < subItemsDecoded.length(); k++ ) mSubItems.add( new GWorkSubItem( subItemsDecoded.getJSONObject(k)));
+            mDateLastModified = data.getString("date_last_modified");
+        } catch( JSONException e ){
+            e.printStackTrace();
+        }
+
+
+        try{
+            mDueDate = data.getString("due_date");
+        } catch( JSONException e ){
+            mDueDate = "Yok";
+            e.printStackTrace();
+        }
 
     }
 
@@ -71,9 +96,11 @@ public class GWork {
                             Platform.runLater(() -> {
                                 mName = name;
                                 mDetails = details;
-                                mID = Integer.valueOf(output.getString("data"));
+                                JSONObject successData = output.getJSONObject("data");
+                                mID = Integer.valueOf(successData.getString("id"));
+                                mDateAdded = successData.getString("date_added");
                                 mStatus = 0;
-                                cb.onSuccess( output.getString("data") );
+                                cb.onSuccess( successData.getString("id") );
                             });
                         } else {
                             Platform.runLater(() -> {
@@ -92,6 +119,14 @@ public class GWork {
 
     public void removeSubItem( int subItemID ){
 
+    }
+
+    public String getStepSummary(){
+        int completed = 0;
+        for( GWorkSubItem subItem : mSubItems ){
+            if( subItem.getStatus() == GWorkSubItem.STATUS_COMPLETED ) completed++;
+        }
+        return completed + " / " + mSubItems.size();
     }
 
     public static void searchTemplate(String keyword, ReadJACallback cb ){
@@ -135,6 +170,12 @@ public class GWork {
     }
     public ArrayList<GWorkSubItem> getSubItems(){
         return mSubItems;
+    }
+    public String getDateAdded(){
+        return mDateAdded;
+    }
+    public String getDueDate(){
+        return mDueDate;
     }
 
     public String getReturnText(){

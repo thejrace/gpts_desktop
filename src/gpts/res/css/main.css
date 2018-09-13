@@ -551,7 +551,7 @@
 
 /* custom data box */
 .custom-box {
-
+    -fx-background-radius:0 0 4 4;
 }
 .custom-box-dark {
     -fx-background-color: #201e1e;
@@ -562,6 +562,7 @@
 }
 .custom-box-dark .custom-box-header {
     -fx-background-color: #414040;
+    -fx-background-radius:4 4 0 0;
 }
 .custom-box-dark .custom-box-header .label {
     -fx-font-size:13;

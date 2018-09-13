@@ -1,6 +1,7 @@
 /* Gitaş - Obarey Inc 2018 */
 package gpts.java.controllers;
 
+import gpts.java.Common;
 import gpts.java.GWork;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -32,8 +33,9 @@ public class GWorkBoxController implements Initializable {
     public void setData( GWork data ){
         mData = data;
         uiNameLbl.setText( data.getName());
-
-
+        uiStepsLbl.setText( data.getStepSummary() );
+        uiStartLbl.setText(Common.revDatetime(data.getDateAdded()) );
+        uiFinishLbl.setText(Common.revDatetime(data.getDueDate()));
     }
 
 }

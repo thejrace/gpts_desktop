@@ -3,6 +3,7 @@ package gpts.java.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXSpinner;
 import gpts.java.GWork;
 import gpts.java.interfaces.FormActionListener;
 import gpts.java.ui.GWorkBox;
@@ -13,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
+import org.json.JSONArray;
 
 import java.io.IOException;
 import java.net.URL;
@@ -23,8 +25,9 @@ public class DashboardController implements Initializable {
 
     @FXML private JFXButton btnNewWork;
     @FXML private FlowPane uiContainerNotfs;
-    @FXML private FlowPane uiContainerTasks;
     @FXML private FlowPane uiContainerWorks;
+    @FXML private JFXSpinner uiNotfSpinner;
+    @FXML private JFXSpinner uiWorksSpinner;
 
     @Override
     public void initialize(URL url, ResourceBundle rb ){
@@ -57,5 +60,17 @@ public class DashboardController implements Initializable {
 
     }
 
+    public void updateWorks( JSONArray data ){
+        uiWorksSpinner.setVisible(false);
+        for( int k = 0; k < data.length(); k++ ){
+            GWork work = new GWork( data.getJSONObject(k) );
+            GWorkBox box = new GWorkBox( work );
+            uiContainerWorks.getChildren().add( 0, box.getUI() );
+        }
+    }
+
+    public void updateNotfs( JSONArray data ){
+
+    }
 
 }
