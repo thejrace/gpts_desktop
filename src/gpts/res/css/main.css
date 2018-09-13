@@ -554,7 +554,7 @@
 
 }
 .custom-box-dark {
-    -fx-background-color:#302e2e;
+    -fx-background-color: #201e1e;
 }
 .custom-box-dark:hover {
     -fx-background-color: #292727;

@@ -1,5 +1,6 @@
 package gpts.java.controllers;
 
+import gpts.java.GWork;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -16,9 +17,20 @@ public class GWorkBoxController implements Initializable {
     @FXML private Label uiStartLbl;
     @FXML private Label uiFinishLbl;
 
+    private GWork mData;
+
     @Override
     public void initialize(URL url, ResourceBundle rb ){
 
+        uiContainer.setOnMouseClicked( ev -> {
+
+        });
+
+    }
+
+    public void setData( GWork data ){
+        mData = data;
+        uiNameLbl.setText( data.getName());
 
 
     }

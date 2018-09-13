@@ -8,6 +8,7 @@ import gpts.java.GWork;
 import gpts.java.GWorkSubItem;
 import gpts.java.ValidationInput;
 import gpts.java.interfaces.ActionCallback;
+import gpts.java.interfaces.FormActionListener;
 import gpts.java.interfaces.NoParamCallback;
 import gpts.java.interfaces.ReadJACallback;
 import gpts.java.ui.GWorkSubItemBox;
@@ -55,7 +56,7 @@ public class GWorkFormController extends PopupFormBaseController implements Init
     private Map<Integer, GWorkSubItemBox> mSubItems = new HashMap<>();
     private String mBoxClassName = "task-sub-item-even";
     private GWork mSelectedTemplate;
-
+    private FormActionListener mAddFormListener;
 
     @Override
     public void initialize(URL url, ResourceBundle rb ){
@@ -88,7 +89,7 @@ public class GWorkFormController extends PopupFormBaseController implements Init
                     public void onSuccess(String... params) {
                         mParentDialog.close();
                         PopupLoader.showMessage(newWork.getReturnText(), PopupLoader.MESSAGE_SUCCESS );
-                        //mAddListener.onFinish( employee );
+                        mAddFormListener.onFinish( newWork );
                     }
                     @Override
                     public void onError(int type) {
@@ -196,6 +197,10 @@ public class GWorkFormController extends PopupFormBaseController implements Init
     * */
     public void deleteSubItem(){
 
+    }
+
+    public void setAddFormListener( FormActionListener listener ){
+        mAddFormListener = listener;
     }
 
     public void setEditData( GWork data ){

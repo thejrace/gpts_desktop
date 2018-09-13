@@ -2,6 +2,9 @@ package gpts.java.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
+import gpts.java.GWork;
+import gpts.java.interfaces.FormActionListener;
+import gpts.java.ui.GWorkBox;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -27,17 +30,20 @@ public class DashboardController implements Initializable {
 
         // todo download action
 
-
-
         btnNewWork.setOnMouseClicked( ev -> {
-
             try {
                 JFXDialog dialog = new JFXDialog();
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("/gpts/res/fxml/forms/work_form.fxml"));
                 ScrollPane ui  = loader.load();
                 GWorkFormController controller = loader.getController();
-
+                controller.setAddFormListener(new FormActionListener() {
+                    @Override
+                    public void onFinish(Object object) {
+                        GWork workData = (GWork)object;
+                        uiContainerWorks.getChildren().add( new GWorkBox( workData ).getUI() );
+                    }
+                });
                 dialog.setContent( ui );
                 dialog.setOverlayClose(false);
                 dialog.show( (StackPane) ((Node) ev.getSource()).getScene().getRoot() );
