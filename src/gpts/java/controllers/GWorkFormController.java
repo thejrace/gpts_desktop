@@ -28,7 +28,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class WorkFormController extends PopupFormBaseController implements Initializable {
+public class GWorkFormController extends PopupFormBaseController implements Initializable {
 
 
     @FXML private JFXTextField uiTaskNameInput;
@@ -85,7 +85,7 @@ public class WorkFormController extends PopupFormBaseController implements Initi
                     @Override
                     public void onSuccess(String... params) {
                         mParentDialog.close();
-                        // todo PopupLoader.showMessage(employee.getReturnText(), PopupLoader.MESSAGE_SUCCESS );
+                        PopupLoader.showMessage(newWork.getReturnText(), PopupLoader.MESSAGE_SUCCESS );
                         //mAddListener.onFinish( employee );
                     }
                     @Override
@@ -113,8 +113,10 @@ public class WorkFormController extends PopupFormBaseController implements Initi
                     } else {
                         Platform.runLater( () -> { uiSelectBtn.setDisable(true); });
                     }
-                    for( int k = 0; k < output.length(); k++ ){
+                    // list found results
+                    for( int k = 0; k < outputLength; k++ ){
                         JSONObject template = output.getJSONObject(k);
+                        // result UI action
                         Label lbl = new Label( template.getString("name"));
                         lbl.getStyleClass().add("ctext-white");
                         JFXButton btn = new JFXButton( "Özet" );
@@ -124,13 +126,18 @@ public class WorkFormController extends PopupFormBaseController implements Initi
                         cont.setAlignment(Pos.CENTER);
                         Platform.runLater(()->{
                             uiSearchContainer.getChildren().add(cont);
+                            // display summary of work template action
                             btn.setOnMouseClicked( ev -> {
+                                // we save selected template to use it to fill form when
+                                // user is decided to use it
                                 mSelectedTemplate = new GWork();
+                                // set props
                                 mSelectedTemplate.setName( template.getString("name") );
                                 mSelectedTemplate.setDetails( template.getString("details"));
                                 uiSummarySubItemsContainer.getChildren().clear();
                                 uiSummaryNameLbl.setText(template.getString("name"));
                                 uiSummaryDetailsLbl.setText(template.getString("details"));
+                                // sub items come as jsonarray so decode them and print them on screen
                                 JSONArray subItemsDecoded = new JSONArray(template.getString("sub_items"));
                                 for( int j = 0; j < subItemsDecoded.length(); j++ ){
                                     JSONObject tempSubItemData = subItemsDecoded.getJSONObject(j);
@@ -147,11 +154,13 @@ public class WorkFormController extends PopupFormBaseController implements Initi
         });
 
         uiSelectBtn.setOnMouseClicked( ev -> {
+            // clear everything and fill form with selected template
             uiTaskNameInput.setText(mSelectedTemplate.getName());
             uiTaskDefInput.setText(mSelectedTemplate.getDetails());
             uiSubTasksContainer.getChildren().clear();
             mSubItemStepCounter = 0;
             mSubItems = new HashMap<>();
+            // add sub items in reverse order
             for( int k = mSelectedTemplate.getSubItems().size() - 1; k >= 0; k-- ){
                 addSubItem( new GWorkSubItemBox( mSelectedTemplate.getSubItems().get(k) ) );
             }

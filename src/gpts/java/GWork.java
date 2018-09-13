@@ -46,6 +46,7 @@ public class GWork {
                     // get form data and validate
                     entry.getValue().fetchDataFromForm();
                     tempSubItem = entry.getValue().getData();
+                    mSubItems.add( tempSubItem );
                     if( !tempSubItem.validate() ){
                         mReturnText = tempSubItem.getReturnText();
                         Platform.runLater( () -> cb.onError(ActionStatusCode.VALIDATION_ERROR) );
@@ -61,6 +62,27 @@ public class GWork {
                 params.put("sub_items_encoded", Common.stringArrayListJoin(subItemsSerialized, "|"));
                 params.put("req", "add_work" );
                 WebRequest req = new WebRequest( WebRequest.SERVICE_URL, params );
+                req.action(new WebRequestCallback() {
+                    @Override
+                    public void onFinish(JSONObject output) {
+                        mReturnText = output.getString(WebRequest.RETURN_TEXT);
+                        if( output.getInt(WebRequest.STATUS_FLAG) == 1 ){
+                            Platform.runLater(() -> {
+                                mName = name;
+                                mDetails = details;
+                                mID = Integer.valueOf(output.getString("data"));
+                                mStatus = 0;
+                                cb.onSuccess( output.getString("data") );
+                            });
+                        } else {
+                            Platform.runLater(() -> {
+                                // clear sub items data if there is an error
+                                mSubItems = new ArrayList<>();
+                                cb.onError( ActionStatusCode.ERROR );
+                            });
+                        }
+                    }
+                });
             }
         });
         thread.setDaemon(true);

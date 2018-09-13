@@ -2,9 +2,6 @@ package gpts.java.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
-import gpts.java.Employee;
-import gpts.java.interfaces.FormActionListener;
-import gpts.java.ui.EmpBox;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -39,7 +36,7 @@ public class DashboardController implements Initializable {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("/gpts/res/fxml/forms/work_form.fxml"));
                 ScrollPane ui  = loader.load();
-                WorkFormController controller = loader.getController();
+                GWorkFormController controller = loader.getController();
 
                 dialog.setContent( ui );
                 dialog.setOverlayClose(false);
