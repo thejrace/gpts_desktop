@@ -548,3 +548,34 @@
 .task-sub-item-even{
     -fx-background-color: #272626;
 }
+
+/* custom data box */
+.custom-box {
+
+}
+.custom-box-dark {
+    -fx-background-color:#302e2e;
+}
+.custom-box-dark:hover {
+    -fx-background-color: #292727;
+    -fx-cursor:hand;
+}
+.custom-box-dark .custom-box-header {
+    -fx-background-color: #414040;
+}
+.custom-box-dark .custom-box-header .label {
+    -fx-font-size:13;
+}
+.custom-box-dark .label {
+    -fx-text-fill:#fff;
+    -fx-font-size:11;
+}
+.custom-box-dark .ico-yellow {
+    -fx-fill: #ffd835;
+}
+.custom-box-dark .ico-green {
+    -fx-fill: #2dd327;
+}
+.custom-box-dark .ico-orange {
+    -fx-fill: #ff8750;
+}

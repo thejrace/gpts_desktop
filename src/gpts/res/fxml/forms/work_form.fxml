@@ -35,7 +35,7 @@
                </children>
             </AnchorPane>
             <Label fx:id="uiFormOutputLbl" />
-            <TabPane prefHeight="600.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane fx:id="uiTabPane" prefHeight="600.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                   <Tab fx:id="tabDownloadProfile" closable="false" text="İş Şablonu Ara">
                      <content>

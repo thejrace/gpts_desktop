@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.json.JSONArray;
@@ -38,6 +39,7 @@ public class GWorkFormController extends PopupFormBaseController implements Init
     @FXML private Tab tabBundle;
     @FXML private Tab tabDetails;
     @FXML private Tab tabDownloadProfile;   // todo will be hidden when editFlag is set
+    @FXML private TabPane uiTabPane;
     @FXML private JFXTextField uiSearchInput;
     @FXML private JFXButton uiSearchBtn;
     @FXML private JFXButton uiSelectBtn;
@@ -164,6 +166,7 @@ public class GWorkFormController extends PopupFormBaseController implements Init
             for( int k = mSelectedTemplate.getSubItems().size() - 1; k >= 0; k-- ){
                 addSubItem( new GWorkSubItemBox( mSelectedTemplate.getSubItems().get(k) ) );
             }
+            uiTabPane.getSelectionModel().select(tabDetails);
         });
     }
 
