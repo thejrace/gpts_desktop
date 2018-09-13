@@ -1,3 +1,4 @@
+/* Gitaş - Obarey Inc 2018 */
 package gpts.java.controllers;
 
 import com.jfoenix.controls.JFXButton;
@@ -41,7 +42,7 @@ public class DashboardController implements Initializable {
                     @Override
                     public void onFinish(Object object) {
                         GWork workData = (GWork)object;
-                        uiContainerWorks.getChildren().add( new GWorkBox( workData ).getUI() );
+                        uiContainerWorks.getChildren().add( 0, new GWorkBox( workData ).getUI() );
                     }
                 });
                 dialog.setContent( ui );
@@ -52,7 +53,6 @@ public class DashboardController implements Initializable {
             } catch( IOException e ){
                 e.printStackTrace();
             }
-
         });
 
     }

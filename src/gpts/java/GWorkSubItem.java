@@ -1,3 +1,4 @@
+/* Gitaş - Obarey Inc 2018 */
 package gpts.java;
 
 import org.json.JSONException;

@@ -44,21 +44,33 @@
                <children>
                   <VBox>
                      <children>
-                        <Label styleClass="ctext-white" text="Bildirimler" />
+                        <Label styleClass="ctext-white" text="Bildirimler">
+                           <VBox.margin>
+                              <Insets bottom="15.0" />
+                           </VBox.margin></Label>
                         <ScrollPane fitToWidth="true" hbarPolicy="NEVER" minHeight="100.0">
                            <content>
                               <FlowPane fx:id="uiContainerNotfs" minHeight="100.0" />
                            </content>
+                           <padding>
+                              <Insets left="10.0" right="10.0" />
+                           </padding>
                         </ScrollPane>
                      </children>
                   </VBox>
                   <VBox layoutX="10.0" layoutY="10.0">
                      <children>
-                        <Label styleClass="ctext-white" text="Aktif Görevler" />
+                        <Label styleClass="ctext-white" text="Aktif Görevler">
+                           <VBox.margin>
+                              <Insets bottom="15.0" />
+                           </VBox.margin></Label>
                         <ScrollPane fitToWidth="true" minHeight="100.0" vbarPolicy="NEVER">
                            <content>
                               <FlowPane fx:id="uiContainerTasks" />
                            </content>
+                           <padding>
+                              <Insets left="10.0" right="10.0" />
+                           </padding>
                         </ScrollPane>
                      </children>
                      <VBox.margin>
@@ -67,11 +79,17 @@
                   </VBox>
                   <VBox layoutX="10.0" layoutY="137.0">
                      <children>
-                        <Label styleClass="ctext-white" text="Aktif İşler" />
+                        <Label styleClass="ctext-white" text="Aktif İşler">
+                           <VBox.margin>
+                              <Insets bottom="15.0" />
+                           </VBox.margin></Label>
                         <ScrollPane fitToWidth="true" minHeight="100.0" vbarPolicy="NEVER">
                            <content>
                               <FlowPane fx:id="uiContainerWorks" />
                            </content>
+                           <padding>
+                              <Insets left="10.0" right="10.0" />
+                           </padding>
                         </ScrollPane>
                      </children>
                      <VBox.margin>
