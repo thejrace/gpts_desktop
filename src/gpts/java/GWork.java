@@ -18,6 +18,7 @@ import java.util.Map;
 public class GWork {
 
     private int mID, mStatus;
+    private double mPercentageCompleted;
     private String mName, mDetails, mReturnText, mDateAdded, mDueDate = "", mDateLastModified;
     private ArrayList<GWorkSubItem> mSubItems = new ArrayList<>();
 
@@ -36,7 +37,7 @@ public class GWork {
             for( int k = 0; k < subItemsDecoded.length(); k++ ) mSubItems.add( new GWorkSubItem( subItemsDecoded.getJSONObject(k)));
             mDateLastModified = data.getString("date_last_modified");
         } catch( JSONException e ){
-            e.printStackTrace();
+            //e.printStackTrace();
         }
 
 
@@ -44,7 +45,7 @@ public class GWork {
             mDueDate = data.getString("due_date");
         } catch( JSONException e ){
             mDueDate = "Yok";
-            e.printStackTrace();
+            //e.printStackTrace();
         }
 
     }
@@ -121,12 +122,16 @@ public class GWork {
 
     }
 
+    /*
+    *  also calculates percentage
+    * */
     public String getStepSummary(){
-        int completed = 0;
+        int completed = 0, total = mSubItems.size();
         for( GWorkSubItem subItem : mSubItems ){
             if( subItem.getStatus() == GWorkSubItem.STATUS_COMPLETED ) completed++;
         }
-        return completed + " / " + mSubItems.size();
+        mPercentageCompleted = (double)completed / total;
+        return completed + " / " + total;
     }
 
     public static void searchTemplate(String keyword, ReadJACallback cb ){
@@ -177,7 +182,9 @@ public class GWork {
     public String getDueDate(){
         return mDueDate;
     }
-
+    public double getPercentageCompleted(){
+        return mPercentageCompleted;
+    }
     public String getReturnText(){
         return mReturnText;
     }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXSpinner?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
@@ -7,42 +8,58 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="uiContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="107.0" prefWidth="214.0" spacing="8.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpts.java.controllers.GWorkBoxController">
+<VBox fx:id="uiContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="107.0" prefWidth="214.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpts.java.controllers.GWorkBoxController">
    <children>
-      <HBox prefWidth="200.0" styleClass="custom-box-header">
+      <HBox alignment="CENTER" prefWidth="200.0" styleClass="custom-box-header">
          <children>
-            <Label fx:id="uiNameLbl" text="Test İş Obarey beybe" />
+            <Label fx:id="uiNameLbl" text="Test İş Obarey beybe">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin></Label>
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" top="5.0" />
          </padding>
       </HBox>
-      <HBox alignment="CENTER_LEFT" prefWidth="200.0" spacing="10.0">
+      <HBox alignment="CENTER_LEFT">
          <children>
-            <FontAwesomeIconView glyphName="LIST_OL" styleClass="ico-orange" />
-            <Label fx:id="uiStepsLbl" text="1 / 5" />
+            <JFXSpinner fx:id="uiProgressSpinner" prefHeight="100.0" prefWidth="100.0" progress="0.0" styleClass="red-spinner">
+               <HBox.margin>
+                  <Insets left="5.0" right="10.0" />
+               </HBox.margin>
+            </JFXSpinner>
+            <VBox alignment="CENTER_LEFT" spacing="5.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <FontAwesomeIconView glyphName="LIST_OL" styleClass="ico-gray" />
+                        <Label fx:id="uiStepsLbl" text="1 / 5" />
+                     </children>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <FontAwesomeIconView glyphName="CALENDAR" styleClass="ico-gray" />
+                        <Label fx:id="uiStartLbl" text="12-09-2018 00:00" />
+                     </children>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <FontAwesomeIconView glyphName="CALENDAR_CHECK_ALT" styleClass="ico-gray" />
+                        <Label fx:id="uiFinishLbl" text="15-09-2018 23:59" />
+                     </children>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </VBox>
          </children>
-         <padding>
-            <Insets left="5.0" />
-         </padding>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="47.0" prefWidth="200.0" spacing="10.0">
-         <children>
-            <FontAwesomeIconView glyphName="CALENDAR" styleClass="ico-yellow" />
-            <Label fx:id="uiStartLbl" text="12-09-2018 00:00" />
-         </children>
-         <padding>
-            <Insets left="5.0" />
-         </padding>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="74.0" prefWidth="200.0" spacing="10.0">
-         <children>
-            <FontAwesomeIconView glyphName="CALENDAR_CHECK_ALT" styleClass="ico-green" />
-            <Label fx:id="uiFinishLbl" text="15-09-2018 23:59" />
-         </children>
-         <padding>
-            <Insets left="5.0" />
-         </padding>
       </HBox>
    </children>
    <styleClass>

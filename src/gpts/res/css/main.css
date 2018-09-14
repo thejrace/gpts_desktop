@@ -557,15 +557,16 @@
     -fx-background-color: #201e1e;
 }
 .custom-box-dark:hover {
-    -fx-background-color: #292727;
+    -fx-background-color: #000000;
     -fx-cursor:hand;
 }
 .custom-box-dark .custom-box-header {
-    -fx-background-color: #414040;
-    -fx-background-radius:4 4 0 0;
+    -fx-background-color:   linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
+    linear-gradient(#20262b, #191d22),
+    radial-gradient(center 50% 0%, radius 100%, rgba(32, 30, 30, 0.9), rgba(255,255,255,0));
 }
 .custom-box-dark .custom-box-header .label {
-    -fx-font-size:13;
+    -fx-font-size:12;
 }
 .custom-box-dark .label {
     -fx-text-fill:#fff;
@@ -579,4 +580,29 @@
 }
 .custom-box-dark .ico-orange {
     -fx-fill: #ff8750;
+}
+.custom-box-dark .ico-gray {
+    -fx-fill: #757373;
+}
+
+
+.jfx-spinner:determinate.yellow-spinner .arc{
+    -fx-stroke: #d7d000;
+}
+.jfx-spinner:determinate.yellow-spinner .percentage{
+    -fx-stroke: #d7d000;
+}
+
+.jfx-spinner:determinate.red-spinner .arc{
+    -fx-stroke: #dd2b00;
+}
+.jfx-spinner:determinate.red-spinner .percentage{
+    -fx-stroke: #dd2b00;
+}
+
+.jfx-spinner:determinate.green-spinner .percentage{
+    -fx-stroke: #0F9D58;
+}
+.jfx-spinner:determinate.green-spinner .percentage{
+    -fx-stroke: #0F9D58;
 }
