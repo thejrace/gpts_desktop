@@ -17,6 +17,10 @@ import java.util.Map;
 
 public class GWork {
 
+    public static int STATUS_ACTIVE = 0,
+                      STATUS_COMPLETED = 1,
+                      STATUS_CANCELED = 2;
+
     private int mID, mStatus;
     private double mPercentageCompleted;
     private String mName, mDetails, mReturnText, mDateAdded, mDueDate = "", mDateLastModified;
@@ -50,10 +54,7 @@ public class GWork {
 
     }
 
-    /*
-    *  add
-    * */
-    public void add(String name, String details, Map<Integer, GWorkSubItemBox> subItems, ActionCallback cb ){
+    private void sendDataToServer( String req, String name, String details, int status, Map<Integer, GWorkSubItemBox> subItems, WebRequestCallback wcb ,ActionCallback cb ){
         FormValidation validation = new FormValidation();
         boolean inputCheck = validation.checkInputs( new ValidationInput[]{
                 new ValidationInput("İsim", name, FormValidation.CHECK_REQ )
@@ -63,6 +64,99 @@ public class GWork {
             cb.onError(ActionStatusCode.VALIDATION_ERROR);
             return;
         }
+        mSubItems.clear();
+        PopupLoader.show(PopupLoader.PLEASE_WAIT);
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                GWorkSubItem tempSubItem;
+                ArrayList<String> subItemsSerialized = new ArrayList<>();
+                for (Map.Entry<Integer, GWorkSubItemBox> entry : subItems.entrySet()) {
+                    // get form data and validate
+                    entry.getValue().fetchDataFromForm();
+                    tempSubItem = entry.getValue().getData();
+                    mSubItems.add( tempSubItem );
+                    if( !tempSubItem.validate() ){
+                        mReturnText = tempSubItem.getReturnText();
+                        Platform.runLater( () -> cb.onError(ActionStatusCode.VALIDATION_ERROR) );
+                        return;
+                    }
+                    subItemsSerialized.add( tempSubItem.serialize() );
+                }
+                System.out.println( Common.stringArrayListJoin(subItemsSerialized, "|"));
+                // send request
+                Map<String, String> params = new HashMap<>();
+                params.put("name", name );
+                params.put("details", details );
+                params.put("status", String.valueOf(status) );
+                params.put("sub_items_encoded", Common.stringArrayListJoin(subItemsSerialized, "|"));
+                params.put("req", req );
+                WebRequest req = new WebRequest( WebRequest.SERVICE_URL, params );
+                req.action(wcb);
+            }
+        });
+        thread.setDaemon(true);
+        thread.start();
+    }
+
+    public void edit( String name, String details, int status, Map<Integer, GWorkSubItemBox> subItems, ActionCallback cb ){
+        sendDataToServer( "edit_work", name, details, status, subItems, new WebRequestCallback() {
+            @Override
+            public void onFinish(JSONObject output) {
+                mReturnText = output.getString(WebRequest.RETURN_TEXT);
+                if( output.getInt(WebRequest.STATUS_FLAG) == 1 ){
+                    Platform.runLater(() -> {
+                        mName = name;
+                        mDetails = details;
+                        mStatus = status;
+                        cb.onSuccess( String.valueOf( mID ) );
+                    });
+                } else {
+                    Platform.runLater(() -> {
+                        cb.onError( ActionStatusCode.ERROR );
+                    });
+                }
+            }
+        }, cb );
+    }
+
+    /*
+    *  add
+    * */
+    public void add(String name, String details, int status, Map<Integer, GWorkSubItemBox> subItems, ActionCallback cb ){
+        sendDataToServer( "add_work", name, details, status, subItems, new WebRequestCallback() {
+            @Override
+            public void onFinish(JSONObject output) {
+                mReturnText = output.getString(WebRequest.RETURN_TEXT);
+                if( output.getInt(WebRequest.STATUS_FLAG) == 1 ){
+                    Platform.runLater(() -> {
+                        mName = name;
+                        mDetails = details;
+                        JSONObject successData = output.getJSONObject("data");
+                        mID = Integer.valueOf(successData.getString("id"));
+                        mDateAdded = successData.getString("date_added");
+                        mStatus = STATUS_ACTIVE;
+                        cb.onSuccess( successData.getString("id") );
+                    });
+                } else {
+                    Platform.runLater(() -> {
+                        // clear sub items data if there is an error
+                        mSubItems = new ArrayList<>();
+                        cb.onError( ActionStatusCode.ERROR );
+                    });
+                }
+            }
+        } ,cb );
+        /*FormValidation validation = new FormValidation();
+        boolean inputCheck = validation.checkInputs( new ValidationInput[]{
+                new ValidationInput("İsim", name, FormValidation.CHECK_REQ )
+        });
+        if( !inputCheck ){
+            mReturnText = validation.getMessage();
+            cb.onError(ActionStatusCode.VALIDATION_ERROR);
+            return;
+        }
+        mSubItems.clear();
         PopupLoader.show(PopupLoader.PLEASE_WAIT);
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -115,7 +209,7 @@ public class GWork {
             }
         });
         thread.setDaemon(true);
-        thread.start();
+        thread.start();*/
     }
 
     public void removeSubItem( int subItemID ){
@@ -169,6 +263,9 @@ public class GWork {
     }
     public String getName(){
         return mName;
+    }
+    public int getStatus(){
+        return mStatus;
     }
     public String getDetails(){
         return mDetails;

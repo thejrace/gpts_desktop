@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
@@ -167,12 +168,17 @@
                 </Tab>
               </tabs>
             </TabPane>
-            <JFXButton fx:id="uiSaveBtn" prefHeight="42.0" prefWidth="91.0" text="Kaydet">
-               <styleClass>
-                  <String fx:value="content-btn" />
-                  <String fx:value="content-btn-success" />
-               </styleClass>
-            </JFXButton>
+            <AnchorPane>
+               <children>
+                  <JFXButton fx:id="uiSaveBtn" layoutX="745.0" layoutY="1.0" prefHeight="42.0" prefWidth="91.0" text="Kaydet">
+                     <styleClass>
+                        <String fx:value="content-btn" />
+                        <String fx:value="content-btn-success" />
+                     </styleClass>
+                  </JFXButton>
+                  <JFXComboBox fx:id="uiWorkStatusInput" labelFloat="true" layoutX="14.0" layoutY="9.0" prefHeight="25.0" prefWidth="161.0" promptText="İşin Durumu" styleClass="text-field-popup-style" />
+               </children>
+            </AnchorPane>
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

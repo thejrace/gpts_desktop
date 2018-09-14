@@ -46,7 +46,7 @@ public class DashboardPage {
             public void run() {
 
                 Map<String, String> params = new HashMap<>();
-                params.put("req", "download_employee_active_works");
+                params.put("req", "download_employee_last_works");
                 WebRequest request = new WebRequest(WebRequest.SERVICE_URL, params);
                 request.action(new WebRequestCallback() {
                     @Override

@@ -32,7 +32,6 @@ public class DashboardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb ){
 
-        // todo download action
 
         btnNewWork.setOnMouseClicked( ev -> {
             try {
@@ -45,7 +44,7 @@ public class DashboardController implements Initializable {
                     @Override
                     public void onFinish(Object object) {
                         GWork workData = (GWork)object;
-                        uiContainerWorks.getChildren().add( 0, new GWorkBox( workData ).getUI() );
+                        if( workData.getStatus() == GWork.STATUS_COMPLETED ) uiContainerWorks.getChildren().add( 0, new GWorkBox( workData ).getUI() );
                     }
                 });
                 dialog.setContent( ui );

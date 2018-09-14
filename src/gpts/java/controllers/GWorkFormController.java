@@ -2,6 +2,7 @@
 package gpts.java.controllers;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import gpts.java.FormValidation;
@@ -46,55 +47,55 @@ public class GWorkFormController extends PopupFormBaseController implements Init
     @FXML private JFXButton uiSearchBtn;
     @FXML private JFXButton uiSelectBtn;
     @FXML private JFXButton uiFinishWorkBtn;
+    @FXML private JFXComboBox uiWorkStatusInput;
     @FXML private VBox uiSearchContainer;
     @FXML private Label uiSummaryNameLbl;
     @FXML private Label uiSummaryDetailsLbl;
     @FXML private VBox uiSummarySubItemsContainer;
 
+
+    private String[] mStatusList = { "Aktif", "Tamamlandı", "Gecikti", "İptal" };
     private boolean mEditFlag = false;
 
     private int mSubItemStepCounter = 0;
     private Map<Integer, GWorkSubItemBox> mSubItems = new HashMap<>();
-    private String mBoxClassName = "task-sub-item-even";
-    private GWork mSelectedTemplate;
+    private GWork mSelectedTemplate; // also used for editData not just for template
     private FormActionListener mAddFormListener;
 
     @Override
     public void initialize(URL url, ResourceBundle rb ){
         super.initCommonEvents();
 
-        uiNewSubItemBtn.setOnMouseClicked( ev -> {
-            if( mEditFlag ){
+        for( int k = 0; k < mStatusList.length; k++ ) uiWorkStatusInput.getItems().add( mStatusList[k] );
+        uiWorkStatusInput.getSelectionModel().select(0);
 
-            } else {
-                // empty
-                addSubItem( new GWorkSubItemBox( new GWorkSubItem() ) );
-            }
+        uiNewSubItemBtn.setOnMouseClicked( ev -> {
+            addSubItem( new GWorkSubItemBox( new GWorkSubItem() ) );
         });
 
         uiSaveBtn.setOnMouseClicked( ev -> {
             uiSaveBtn.setDisable(true);
+            // set order of subitems before upload action
+            int stepCounter = 1;
+            for (Map.Entry<Integer, GWorkSubItemBox> entry : mSubItems.entrySet()) {
+                entry.getValue().getData().setStepOrder( stepCounter );
+                stepCounter++;
+            }
             if( mEditFlag ){
-
+               // mSelectedTemplate.edit();
             } else {
-                // set order of subitems before upload action
-                int stepCounter = 1;
-                for (Map.Entry<Integer, GWorkSubItemBox> entry : mSubItems.entrySet()) {
-                    entry.getValue().getData().setStepOrder( stepCounter );
-                    stepCounter++;
-                }
-                GWork newWork = new GWork();
+                mSelectedTemplate = new GWork();
                 // pass mSubItems directly and get GWorkSubItem from GWorkSubItemBox
-                newWork.add(uiTaskNameInput.getText(), uiTaskDefInput.getText(), mSubItems, new ActionCallback() {
+                mSelectedTemplate.add(uiTaskNameInput.getText(), uiTaskDefInput.getText(), uiWorkStatusInput.getSelectionModel().getSelectedIndex(), mSubItems, new ActionCallback() {
                     @Override
                     public void onSuccess(String... params) {
                         mParentDialog.close();
-                        PopupLoader.showMessage(newWork.getReturnText(), PopupLoader.MESSAGE_SUCCESS );
-                        mAddFormListener.onFinish( newWork );
+                        PopupLoader.showMessage(mSelectedTemplate.getReturnText(), PopupLoader.MESSAGE_SUCCESS );
+                        mAddFormListener.onFinish( mSelectedTemplate );
                     }
                     @Override
                     public void onError(int type) {
-                        outputError(newWork.getReturnText());
+                        outputError(mSelectedTemplate.getReturnText());
                         uiSaveBtn.setDisable(false);
                         PopupLoader.hide();
                     }
@@ -158,23 +159,12 @@ public class GWorkFormController extends PopupFormBaseController implements Init
         });
 
         uiSelectBtn.setOnMouseClicked( ev -> {
-            // clear everything and fill form with selected template
-            uiTaskNameInput.setText(mSelectedTemplate.getName());
-            uiTaskDefInput.setText(mSelectedTemplate.getDetails());
-            uiSubTasksContainer.getChildren().clear();
-            mSubItemStepCounter = 0;
-            mSubItems = new HashMap<>();
-            // add sub items in reverse order
-            for( int k = mSelectedTemplate.getSubItems().size() - 1; k >= 0; k-- ){
-                addSubItem( new GWorkSubItemBox( mSelectedTemplate.getSubItems().get(k) ) );
-            }
+            fillForm();
             uiTabPane.getSelectionModel().select(tabDetails);
         });
     }
 
     private void addSubItem( GWorkSubItemBox newBox ){
-        newBox.setStyleClassName( mBoxClassName );
-        switchBoxClassName();
         uiSubTasksContainer.getChildren().add( 0, newBox.getUI() );
         newBox.setUIID(mSubItemStepCounter);
         mSubItems.put( mSubItemStepCounter, newBox );
@@ -193,28 +183,47 @@ public class GWorkFormController extends PopupFormBaseController implements Init
         });
     }
 
-    /*
-    *  triggered from GWorkSubItemBoxController
-    * */
-    public void deleteSubItem(){
-
-    }
-
     public void setAddFormListener( FormActionListener listener ){
         mAddFormListener = listener;
     }
 
-    public void setEditData( GWork data ){
-        mEditFlag = true;
-
-        // update ui from here
+    public void setEditFlag( boolean val ){
+        mEditFlag = val;
     }
 
-    private void switchBoxClassName(){
-        if( mBoxClassName.equals("task-sub-item-even") ){
-            mBoxClassName = "task-sub-item-odd";
-        } else {
-            mBoxClassName = "task-sub-item-even";
+    public void setData( GWork data ){
+        mSelectedTemplate = data;
+        mEditFlag = true;
+        // hide download tab
+        uiTabPane.getTabs().remove( tabDownloadProfile );
+        // fill form
+        fillForm();
+        if( mSelectedTemplate.getStatus() != GWork.STATUS_ACTIVE ) switchToPreviewMod();
+    }
+
+
+    private void fillForm(){
+        // clear everything and fill form with selected template
+        uiTaskNameInput.setText(mSelectedTemplate.getName());
+        uiTaskDefInput.setText(mSelectedTemplate.getDetails());
+        uiSubTasksContainer.getChildren().clear();
+        mSubItemStepCounter = 0;
+        mSubItems = new HashMap<>();
+        uiWorkStatusInput.getSelectionModel().select( mSelectedTemplate.getStatus());
+        // add sub items in reverse order
+        for( int k = mSelectedTemplate.getSubItems().size() - 1; k >= 0; k-- ){
+            addSubItem( new GWorkSubItemBox( mSelectedTemplate.getSubItems().get(k) ) );
+        }
+    }
+
+    private void switchToPreviewMod(){
+        uiTaskNameInput.setDisable(true);
+        uiTaskDefInput.setDisable(true);
+        uiWorkStatusInput.setDisable(true);
+        uiSaveBtn.setDisable(true);
+        uiNewSubItemBtn.setDisable(true);
+        for (Map.Entry<Integer, GWorkSubItemBox> entry : mSubItems.entrySet()) {
+            entry.getValue().getController().switchToPreviewMode();
         }
     }
 

@@ -40,11 +40,6 @@
     -fx-font-weight:bold;
 }
 
-.jfx-combo-box{
-    -jfx-focus-color:#a754bb;
-    -jfx-unfocus-color: #6a497b;
-    -fx-prompt-text-fill: #adadad;
-}
 
 
 .ctext-white {
@@ -134,11 +129,16 @@
     -fx-text-fill: #2dd327;
 }
 
+.jfx-combo-box .text{
+    -fx-fill: #b8b1b1;
+}
+
+
 .text-field-popup-style {
     -fx-text-fill:#b8b1b1;
     -jfx-focus-color:#a754bb;
     -jfx-unfocus-color: #6a497b;
-    -fx-prompt-text-fill: #7c7c7c;
+    -fx-prompt-text-fill: #b8b1b1;
     -fx-font-weight: bold;
 }
 
@@ -542,11 +542,20 @@
 
 }
 
-.task-sub-item-odd{
-    -fx-background-color: #2d2c2c;
+.task-sub-item-completed{
+    -fx-background-color:   linear-gradient(#2a2828 0%, #1f2429 20%, #191d22 100%),
+    linear-gradient(#20262b, #191d22),
+    radial-gradient(center 80% 0%, radius 100%, rgba(23, 47, 27, 0.9), rgba(255,255,255,0));
 }
-.task-sub-item-even{
-    -fx-background-color: #272626;
+.task-sub-item-canceled{
+    -fx-background-color:   linear-gradient(#2a2828 0%, #1f2429 20%, #191d22 100%),
+    linear-gradient(#20262b, #191d22),
+    radial-gradient(center 80% 0%, radius 100%, rgba(51, 15, 0, 0.9), rgba(255,255,255,0));
+}
+.task-sub-item-active{
+    -fx-background-color:   linear-gradient(#2a2828 0%, #1f2429 20%, #191d22 100%),
+    linear-gradient(#20262b, #191d22),
+    radial-gradient(center 80% 0%, radius 100%, rgba(46, 48, 9, 0.9), rgba(255,255,255,0));
 }
 
 /* custom data box */

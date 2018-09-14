@@ -1,8 +1,14 @@
 /* Gitaş - Obarey Inc 2018 */
 package gpts.java;
 
+import gpts.java.interfaces.ActionCallback;
+import gpts.java.interfaces.WebRequestCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GWorkSubItem {
 
@@ -21,6 +27,7 @@ public class GWorkSubItem {
     public GWorkSubItem( JSONObject data ){
         try {
             mName = data.getString("name");
+            mID = Integer.valueOf(data.getString("id"));
             mDetails = data.getString("details");
             mStepOrder = Integer.valueOf(data.getString("step_order"));
             mNeedsValidation = Integer.valueOf(data.getString("needs_validation"));

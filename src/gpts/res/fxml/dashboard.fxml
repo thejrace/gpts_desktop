@@ -67,7 +67,7 @@
                   </VBox>
                   <VBox layoutX="10.0" layoutY="137.0">
                      <children>
-                        <Label styleClass="ctext-white" text="Aktif İşler">
+                        <Label styleClass="ctext-white" text="Son İşler">
                            <VBox.margin>
                               <Insets bottom="15.0" />
                            </VBox.margin></Label>

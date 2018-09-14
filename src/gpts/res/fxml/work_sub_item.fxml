@@ -9,11 +9,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="uiMainContainer" prefWidth="370.0" styleClass="task-sub-item-odd" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpts.java.controllers.GWorkSubItemBoxController">
+<VBox fx:id="uiMainContainer" prefWidth="370.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpts.java.controllers.GWorkSubItemBoxController">
    <children>
       <HBox prefWidth="500.0">
          <children>
-            <JFXTextField fx:id="uiNameInput" promptText="İş" styleClass="text-field-popup-style" />
+            <JFXTextField fx:id="uiNameInput" labelFloat="true" promptText="İş" styleClass="text-field-popup-style">
+               <HBox.margin>
+                  <Insets top="15.0" />
+               </HBox.margin></JFXTextField>
             <JFXButton fx:id="uiValidationBtn" prefHeight="29.0" prefWidth="85.0" text="Onay İste">
                <styleClass>
                   <String fx:value="content-btn" />
@@ -21,12 +24,12 @@
                   <String fx:value="con" />
                </styleClass>
                <HBox.margin>
-                  <Insets left="100.0" />
+                  <Insets left="100.0" top="5.0" />
                </HBox.margin>
             </JFXButton>
          </children>
          <VBox.margin>
-            <Insets bottom="15.0" />
+            <Insets bottom="20.0" />
          </VBox.margin>
          <padding>
             <Insets left="10.0" right="10.0" />
@@ -34,7 +37,7 @@
       </HBox>
       <JFXTextArea fx:id="uiDetailsInput" labelFloat="true" prefColumnCount="10" prefHeight="50.0" prefWidth="403.0" promptText="Açıklama" styleClass="text-field-popup-style">
          <VBox.margin>
-            <Insets bottom="15.0" left="10.0" right="10.0" />
+            <Insets bottom="20.0" left="10.0" right="10.0" />
          </VBox.margin>
       </JFXTextArea>
       <JFXComboBox fx:id="uiStatusInput" prefHeight="25.0" prefWidth="180.0" promptText="Durum" styleClass="text-field-popup-style">
@@ -43,19 +46,13 @@
          </VBox.margin></JFXComboBox>
       <HBox>
          <children>
-            <JFXButton fx:id="uiSaveBtn" text="Kaydet">
-               <styleClass>
-                  <String fx:value="content-btn" />
-                  <String fx:value="content-btn-success" />
-               </styleClass>
-            </JFXButton>
             <JFXButton fx:id="uiDeleteBtn" text="Sil">
                <styleClass>
                   <String fx:value="content-btn" />
                   <String fx:value="content-btn-danger" />
                </styleClass>
                <HBox.margin>
-                  <Insets left="250.0" />
+                  <Insets left="300.0" />
                </HBox.margin>
             </JFXButton>
          </children>

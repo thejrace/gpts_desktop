@@ -23,7 +23,6 @@ public class GWorkSubItemBoxController implements Initializable {
     @FXML private JFXButton uiValidationBtn;
     @FXML private JFXTextArea uiDetailsInput;
     @FXML private JFXComboBox uiStatusInput;
-    @FXML private JFXButton uiSaveBtn;
     @FXML private JFXButton uiDeleteBtn;
 
     private String[] mStatusList = { "Beklemede", "Aktif", "Onay Bekliyor", "İptal Edildi", "Tamamlandı" };
@@ -55,6 +54,14 @@ public class GWorkSubItemBoxController implements Initializable {
         uiNameInput.setText(data.getName());
         uiDetailsInput.setText( data.getDetails());
         uiStatusInput.getSelectionModel().select( data.getStatus() );
+        uiMainContainer.getStyleClass().clear();
+        if( data.getStatus() == GWorkSubItem.STATUS_COMPLETED ){
+            uiMainContainer.getStyleClass().add("task-sub-item-completed");
+        } else if( data.getStatus() == GWorkSubItem.STATUS_CANCELED ){
+            uiMainContainer.getStyleClass().add("task-sub-item-canceled");
+        } else {
+            uiMainContainer.getStyleClass().add("task-sub-item-active");
+        }
     }
 
     public void addDeleteListener( NoParamCallback cb ){
@@ -63,6 +70,14 @@ public class GWorkSubItemBoxController implements Initializable {
 
     public void setStyleClassName( String className ){
         uiMainContainer.getStyleClass().add(className);
+    }
+
+    public void switchToPreviewMode(){
+        uiNameInput.setDisable(true);
+        uiDetailsInput.setDisable(true);
+        uiValidationBtn.setDisable(true);
+        uiStatusInput.setDisable(true);
+        uiDeleteBtn.setDisable(true);
     }
 
 }
