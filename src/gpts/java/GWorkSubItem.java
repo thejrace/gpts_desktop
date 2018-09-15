@@ -65,6 +65,9 @@ public class GWorkSubItem {
         return "id="+mID+"#name="+mName+"#details="+mDetails+"#step_order="+mStepOrder+"#status="+mStatus;
     }
 
+    public void setID( int d ){
+        mID = d;
+    }
     public void setName( String d ){
         mName = d;
     }

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXSpinner?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
@@ -21,13 +21,13 @@
             <Insets bottom="5.0" left="5.0" top="5.0" />
          </padding>
       </HBox>
-      <HBox alignment="CENTER_LEFT">
+      <HBox alignment="CENTER">
          <children>
-            <JFXSpinner fx:id="uiProgressSpinner" prefHeight="100.0" prefWidth="100.0" progress="0.0" styleClass="red-spinner">
+            <ProgressIndicator fx:id="uiProgressSpinner" prefHeight="110.0" prefWidth="75.0" progress="0.0" styleClass="red-spinner">
                <HBox.margin>
-                  <Insets left="5.0" right="10.0" />
+                  <Insets left="2.0" right="5.0" top="20.0" />
                </HBox.margin>
-            </JFXSpinner>
+            </ProgressIndicator>
             <VBox alignment="CENTER_LEFT" spacing="5.0" HBox.hgrow="ALWAYS">
                <children>
                   <HBox alignment="CENTER_LEFT" prefWidth="200.0" spacing="10.0">

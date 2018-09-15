@@ -144,13 +144,25 @@ public class GWork {
                         mID = Integer.valueOf(successData.getString("id"));
                         mDateAdded = successData.getString("date_added");
                         mStatus = status;
-                        if( mStatus == GWork.STATUS_COMPLETED ){
+                        // set added subItems IDs
+                        JSONArray subItemIDs = successData.getJSONArray("added_sub_items_data");
+                        for( int k = 0; k < subItemIDs.length(); k++ ){
+                            JSONObject idObject = subItemIDs.getJSONObject(k);
+                            for( GWorkSubItem subItem : mSubItems ){
+                                if(String.valueOf(subItem.getStepOrder()).equals( idObject.getString("step_order") ) ){
+                                    subItem.setID( Integer.valueOf(idObject.getString("id")) );
+                                    subItem.setStatus( Integer.valueOf(idObject.getString("status")));
+                                    break;
+                                }
+                            }
+                        }
+                        /*if( mStatus == GWork.STATUS_COMPLETED ){
                             // if work is completed, edit all STATUS_WAITING and STATUS_ACTIVE
                             // subItems' status to STATUS_COMPLETED
                             for( GWorkSubItem subItem : mSubItems ){
                                 if( subItem.getStatus() == GWorkSubItem.STATUS_ACTIVE || subItem.getStatus() == GWorkSubItem.STATUS_WAITING ) subItem.setStatus(GWorkSubItem.STATUS_COMPLETED);
                             }
-                        }
+                        }*/
                         cb.onSuccess( successData.getString("id") );
                     });
                 } else {

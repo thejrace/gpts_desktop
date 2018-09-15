@@ -594,7 +594,35 @@
     -fx-fill: #757373;
 }
 
+.red-spinner {
+    -fx-progress-color:#dd2b00;
+    -fx-padding: 0 0 -16 0;
+}
+.red-spinner .percentage {
+    -fx-fill:null;
+    -fx-font-weight:bold;
+}
 
+.green-spinner {
+    -fx-progress-color:#0F9D58;
+    -fx-padding: 0 0 -16 0;
+}
+.green-spinner .percentage {
+    -fx-fill:null;
+    -fx-font-weight:bold;
+
+}
+
+.yellow-spinner {
+    -fx-progress-color:#d7d000;
+    -fx-padding: 0 0 -16 0;
+}
+.yellow-spinner .percentage {
+    -fx-fill:null;
+    -fx-font-weight:bold;
+}
+
+/*
 .jfx-spinner:determinate.yellow-spinner .arc{
     -fx-stroke: #d7d000;
 }
@@ -615,3 +643,4 @@
 .jfx-spinner:determinate.green-spinner .percentage{
     -fx-stroke: #0F9D58;
 }
+*/

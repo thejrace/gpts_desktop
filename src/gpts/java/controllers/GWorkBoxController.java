@@ -2,7 +2,6 @@
 package gpts.java.controllers;
 
 import com.jfoenix.controls.JFXDialog;
-import com.jfoenix.controls.JFXSpinner;
 import gpts.java.Common;
 import gpts.java.GWork;
 import gpts.java.interfaces.FormActionListener;
@@ -11,9 +10,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,7 +27,7 @@ public class GWorkBoxController implements Initializable {
     @FXML private Label uiStepsLbl;
     @FXML private Label uiStartLbl;
     @FXML private Label uiFinishLbl;
-    @FXML private JFXSpinner uiProgressSpinner;
+    @FXML private ProgressIndicator uiProgressSpinner;
 
     private GWork mData;
 
@@ -73,7 +74,8 @@ public class GWorkBoxController implements Initializable {
         } else if( progress > 0.75 ){
             newClass = "green-spinner";
         }
-        uiProgressSpinner.getStyleClass().remove(2 );
+
+        uiProgressSpinner.getStyleClass().remove(1 );
         uiProgressSpinner.getStyleClass().add(newClass );
     }
 
