@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXSpinner?>
 <?import java.lang.String?>
 <?import java.net.URL?>
@@ -42,55 +43,76 @@
                   </Label>
                </children>
             </HBox>
-            <VBox spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+            <HBox layoutX="10.0" layoutY="70.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
                <children>
-                  <VBox>
+                  <VBox prefWidth="250.0">
                      <children>
-                        <Label styleClass="ctext-white" text="Bildirimler">
-                           <VBox.margin>
-                              <Insets bottom="15.0" />
-                           </VBox.margin></Label>
-                        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" minHeight="100.0">
-                           <content>
-                              <StackPane>
-                                 <children>
-                                    <JFXSpinner fx:id="uiNotfSpinner" prefHeight="62.0" prefWidth="316.0" radius="20.0" />
-                                    <FlowPane fx:id="uiContainerNotfs" minHeight="100.0" />
-                                 </children>
-                              </StackPane>
-                           </content>
-                           <padding>
-                              <Insets left="10.0" right="10.0" />
-                           </padding>
-                        </ScrollPane>
+                        <Label text="Bildirimler">
+                           <styleClass>
+                              <String fx:value="ctext-white" />
+                              <String fx:value="ctext-h3" />
+                           </styleClass>
+                        </Label>
+                        <StackPane VBox.vgrow="ALWAYS">
+                           <children>
+                              <JFXSpinner fx:id="uiNotfSpinner" prefHeight="62.0" prefWidth="316.0" radius="20.0" />
+                              <VBox fx:id="uiContainerNotfs" prefHeight="200.0" />
+                           </children>
+                        </StackPane>
                      </children>
                   </VBox>
-                  <VBox layoutX="10.0" layoutY="137.0">
+                  <VBox spacing="10.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label styleClass="ctext-white" text="Son İşler">
-                           <VBox.margin>
-                              <Insets bottom="15.0" />
-                           </VBox.margin></Label>
-                        <ScrollPane fitToWidth="true" minHeight="100.0" vbarPolicy="NEVER">
-                           <content>
-                              <StackPane>
+                        <VBox layoutX="10.0" layoutY="137.0">
+                           <children>
+                              <Label text="İşler">
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" />
+                                 </VBox.margin>
+                                 <styleClass>
+                                    <String fx:value="ctext-white" />
+                                    <String fx:value="ctext-h3" />
+                                 </styleClass>
+                              </Label>
+                              <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="420.0" spacing="20.0">
                                  <children>
-                                    <JFXSpinner fx:id="uiWorksSpinner" radius="20.0" />
-                                    <FlowPane fx:id="uiContainerWorks" hgap="10.0" minHeight="100.0" vgap="10.0" />
+                                    <JFXComboBox fx:id="uiFilterInput" labelFloat="true" prefHeight="25.0" prefWidth="118.0" promptText="Filtre" styleClass="text-field-popup-style" />
+                                    <JFXButton fx:id="uiFilterActionBtn" text="Getir">
+                                       <styleClass>
+                                          <String fx:value="content-btn" />
+                                          <String fx:value="content-btn-warning" />
+                                       </styleClass>
+                                    </JFXButton>
                                  </children>
-                              </StackPane>
-                           </content>
-                           <padding>
-                              <Insets left="10.0" right="10.0" />
-                           </padding>
-                        </ScrollPane>
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </HBox>
+                              <ScrollPane fitToWidth="true" minHeight="100.0" vbarPolicy="NEVER">
+                                 <content>
+                                    <StackPane>
+                                       <children>
+                                          <JFXSpinner fx:id="uiWorksSpinner" radius="20.0" />
+                                          <FlowPane fx:id="uiContainerWorks" hgap="10.0" minHeight="100.0" vgap="10.0" />
+                                       </children>
+                                    </StackPane>
+                                 </content>
+                                 <padding>
+                                    <Insets left="10.0" right="10.0" />
+                                 </padding>
+                              </ScrollPane>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </VBox>
                      </children>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
                   </VBox>
                </children>
-            </VBox>
+            </HBox>
          </children>
          <padding>
             <Insets left="10.0" right="10.0" />

@@ -51,6 +51,10 @@ public class BasePage {
         Platform.runLater(()->{ PopupLoader.hide(); } );
     }
 
+    public void applyFilter(){
+        mLastItemIndex = 0;
+    }
+
     // search common actions
     public void search( String keyword ){
         mSearchFlag = true;

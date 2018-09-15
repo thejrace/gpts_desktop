@@ -22,6 +22,7 @@ public class SideBarController implements Initializable {
     @FXML private HBox uiSideBarBtn3; // settings
     @FXML private HBox uiSideBarBtn4; // plans
     @FXML private HBox uiSideBarBtn5; // employee groups
+    @FXML private HBox uiSideBarBtn6; // employee works
     @FXML private VBox uiContainer;
 
     private int mPageIndex = -1;
@@ -111,6 +112,18 @@ public class SideBarController implements Initializable {
         } else {
             uiContainer.getChildren().remove(4);
         }
+
+        uiSideBarBtn6.setOnMouseClicked(ev -> {
+            if( mPageIndex == 6 ) return;
+            if( !mPages.containsKey(6) ){
+                EmployeeWorksPage page = new EmployeeWorksPage();
+                page.initUI("employee_works");
+                mPages.put(6, page );
+            }
+            // set content
+            MainController.UICONTENTMAIN.setContent( mPages.get(6).getUI());
+            mPageIndex = 6;
+        });
 
         uiSideBarBtn3.setOnMouseClicked(ev -> {
             if( mPageIndex == 3 ) return;

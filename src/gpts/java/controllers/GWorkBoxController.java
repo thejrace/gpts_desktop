@@ -33,7 +33,6 @@ public class GWorkBoxController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb ){
-
         uiContainer.setOnMouseClicked( ev -> {
             try {
                 JFXDialog dialog = new JFXDialog();

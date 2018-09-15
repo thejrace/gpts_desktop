@@ -2,6 +2,7 @@
 package gpts.java.controllers;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXSpinner;
 import gpts.java.GWork;
@@ -14,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import org.json.JSONArray;
 
 import java.io.IOException;
@@ -24,13 +26,20 @@ public class DashboardController implements Initializable {
 
 
     @FXML private JFXButton btnNewWork;
-    @FXML private FlowPane uiContainerNotfs;
+    @FXML private VBox uiContainerNotfs;
     @FXML private FlowPane uiContainerWorks;
     @FXML private JFXSpinner uiNotfSpinner;
     @FXML private JFXSpinner uiWorksSpinner;
+    @FXML private JFXButton uiFilterActionBtn;
+    @FXML private JFXComboBox uiFilterInput;
+
+    private String[] mFilterStatusList = { "Aktif", "Tamamlandı", "Süre Aşımı", "İptal" };
 
     @Override
     public void initialize(URL url, ResourceBundle rb ){
+
+        for( int k = 0; k < mFilterStatusList.length; k++ ) uiFilterInput.getItems().add( mFilterStatusList[k] );
+        uiFilterInput.getSelectionModel().select(0);
 
         btnNewWork.setOnMouseClicked( ev -> {
             try {
