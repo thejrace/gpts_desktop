@@ -34,7 +34,7 @@ import java.util.ResourceBundle;
 
 public class GWorkFormController extends PopupFormBaseController implements Initializable {
 
-
+    @FXML private Label uiPopupHeaderLbl;
     @FXML private JFXTextField uiTaskNameInput;
     @FXML private JFXTextArea uiTaskDefInput;
     @FXML private VBox uiSubTasksContainer;
@@ -46,7 +46,6 @@ public class GWorkFormController extends PopupFormBaseController implements Init
     @FXML private JFXTextField uiSearchInput;
     @FXML private JFXButton uiSearchBtn;
     @FXML private JFXButton uiSelectBtn;
-    @FXML private JFXButton uiFinishWorkBtn;
     @FXML private JFXComboBox uiWorkStatusInput;
     @FXML private VBox uiSearchContainer;
     @FXML private Label uiSummaryNameLbl;
@@ -54,17 +53,20 @@ public class GWorkFormController extends PopupFormBaseController implements Init
     @FXML private VBox uiSummarySubItemsContainer;
 
 
-    private String[] mStatusList = { "Aktif", "Tamamlandı", "Gecikti", "İptal" };
+    private String[] mStatusList = { "Aktif", "Tamamlandı", "Süre Aşımı", "İptal" };
     private boolean mEditFlag = false;
 
     private int mSubItemStepCounter = 0;
     private Map<Integer, GWorkSubItemBox> mSubItems = new HashMap<>();
     private GWork mSelectedTemplate; // also used for editData not just for template
     private FormActionListener mAddFormListener;
+    private FormActionListener mEditFormListener;
 
     @Override
     public void initialize(URL url, ResourceBundle rb ){
         super.initCommonEvents();
+
+        uiPopupHeaderLbl.setText("Yeni İş");
 
         for( int k = 0; k < mStatusList.length; k++ ) uiWorkStatusInput.getItems().add( mStatusList[k] );
         uiWorkStatusInput.getSelectionModel().select(0);
@@ -82,7 +84,20 @@ public class GWorkFormController extends PopupFormBaseController implements Init
                 stepCounter++;
             }
             if( mEditFlag ){
-               // mSelectedTemplate.edit();
+                mSelectedTemplate.edit(uiTaskNameInput.getText(), uiTaskDefInput.getText(), uiWorkStatusInput.getSelectionModel().getSelectedIndex(), mSubItems, new ActionCallback() {
+                    @Override
+                    public void onSuccess(String... params) {
+                        mParentDialog.close();
+                        PopupLoader.showMessage(mSelectedTemplate.getReturnText(), PopupLoader.MESSAGE_SUCCESS );
+                        mEditFormListener.onFinish( mSelectedTemplate );
+                    }
+                    @Override
+                    public void onError(int type) {
+                        outputError(mSelectedTemplate.getReturnText());
+                        uiSaveBtn.setDisable(false);
+                        PopupLoader.hide();
+                    }
+                });
             } else {
                 mSelectedTemplate = new GWork();
                 // pass mSubItems directly and get GWorkSubItem from GWorkSubItemBox
@@ -186,6 +201,9 @@ public class GWorkFormController extends PopupFormBaseController implements Init
     public void setAddFormListener( FormActionListener listener ){
         mAddFormListener = listener;
     }
+    public void setEditFormListener( FormActionListener listener ){
+        mEditFormListener = listener;
+    }
 
     public void setEditFlag( boolean val ){
         mEditFlag = val;
@@ -194,6 +212,7 @@ public class GWorkFormController extends PopupFormBaseController implements Init
     public void setData( GWork data ){
         mSelectedTemplate = data;
         mEditFlag = true;
+        uiPopupHeaderLbl.setText("'" + data.getName() + "'");
         // hide download tab
         uiTabPane.getTabs().remove( tabDownloadProfile );
         // fill form
@@ -210,8 +229,7 @@ public class GWorkFormController extends PopupFormBaseController implements Init
         mSubItemStepCounter = 0;
         mSubItems = new HashMap<>();
         uiWorkStatusInput.getSelectionModel().select( mSelectedTemplate.getStatus());
-        // add sub items in reverse order
-        for( int k = mSelectedTemplate.getSubItems().size() - 1; k >= 0; k-- ){
+        for( int k = 0; k < mSelectedTemplate.getSubItems().size(); k++ ){
             addSubItem( new GWorkSubItemBox( mSelectedTemplate.getSubItems().get(k) ) );
         }
     }

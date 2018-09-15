@@ -86,6 +86,7 @@ public class GWork {
                 System.out.println( Common.stringArrayListJoin(subItemsSerialized, "|"));
                 // send request
                 Map<String, String> params = new HashMap<>();
+                params.put("item_id", String.valueOf(mID));
                 params.put("name", name );
                 params.put("details", details );
                 params.put("status", String.valueOf(status) );
@@ -109,6 +110,13 @@ public class GWork {
                         mName = name;
                         mDetails = details;
                         mStatus = status;
+                        if( mStatus == GWork.STATUS_COMPLETED ){
+                            // if work is completed, edit all STATUS_WAITING and STATUS_ACTIVE
+                            // subItems' status to STATUS_COMPLETED
+                            for( GWorkSubItem subItem : mSubItems ){
+                                if( subItem.getStatus() == GWorkSubItem.STATUS_ACTIVE || subItem.getStatus() == GWorkSubItem.STATUS_WAITING ) subItem.setStatus(GWorkSubItem.STATUS_COMPLETED);
+                            }
+                        }
                         cb.onSuccess( String.valueOf( mID ) );
                     });
                 } else {
@@ -135,7 +143,14 @@ public class GWork {
                         JSONObject successData = output.getJSONObject("data");
                         mID = Integer.valueOf(successData.getString("id"));
                         mDateAdded = successData.getString("date_added");
-                        mStatus = STATUS_ACTIVE;
+                        mStatus = status;
+                        if( mStatus == GWork.STATUS_COMPLETED ){
+                            // if work is completed, edit all STATUS_WAITING and STATUS_ACTIVE
+                            // subItems' status to STATUS_COMPLETED
+                            for( GWorkSubItem subItem : mSubItems ){
+                                if( subItem.getStatus() == GWorkSubItem.STATUS_ACTIVE || subItem.getStatus() == GWorkSubItem.STATUS_WAITING ) subItem.setStatus(GWorkSubItem.STATUS_COMPLETED);
+                            }
+                        }
                         cb.onSuccess( successData.getString("id") );
                     });
                 } else {
@@ -147,73 +162,6 @@ public class GWork {
                 }
             }
         } ,cb );
-        /*FormValidation validation = new FormValidation();
-        boolean inputCheck = validation.checkInputs( new ValidationInput[]{
-                new ValidationInput("İsim", name, FormValidation.CHECK_REQ )
-        });
-        if( !inputCheck ){
-            mReturnText = validation.getMessage();
-            cb.onError(ActionStatusCode.VALIDATION_ERROR);
-            return;
-        }
-        mSubItems.clear();
-        PopupLoader.show(PopupLoader.PLEASE_WAIT);
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                GWorkSubItem tempSubItem;
-                ArrayList<String> subItemsSerialized = new ArrayList<>();
-                for (Map.Entry<Integer, GWorkSubItemBox> entry : subItems.entrySet()) {
-                    // get form data and validate
-                    entry.getValue().fetchDataFromForm();
-                    tempSubItem = entry.getValue().getData();
-                    mSubItems.add( tempSubItem );
-                    if( !tempSubItem.validate() ){
-                        mReturnText = tempSubItem.getReturnText();
-                        Platform.runLater( () -> cb.onError(ActionStatusCode.VALIDATION_ERROR) );
-                        return;
-                    }
-                    subItemsSerialized.add( tempSubItem.serialize() );
-                }
-                System.out.println( Common.stringArrayListJoin(subItemsSerialized, "|"));
-                // send request
-                Map<String, String> params = new HashMap<>();
-                params.put("name", name );
-                params.put("details", details );
-                params.put("sub_items_encoded", Common.stringArrayListJoin(subItemsSerialized, "|"));
-                params.put("req", "add_work" );
-                WebRequest req = new WebRequest( WebRequest.SERVICE_URL, params );
-                req.action(new WebRequestCallback() {
-                    @Override
-                    public void onFinish(JSONObject output) {
-                        mReturnText = output.getString(WebRequest.RETURN_TEXT);
-                        if( output.getInt(WebRequest.STATUS_FLAG) == 1 ){
-                            Platform.runLater(() -> {
-                                mName = name;
-                                mDetails = details;
-                                JSONObject successData = output.getJSONObject("data");
-                                mID = Integer.valueOf(successData.getString("id"));
-                                mDateAdded = successData.getString("date_added");
-                                mStatus = 0;
-                                cb.onSuccess( successData.getString("id") );
-                            });
-                        } else {
-                            Platform.runLater(() -> {
-                                // clear sub items data if there is an error
-                                mSubItems = new ArrayList<>();
-                                cb.onError( ActionStatusCode.ERROR );
-                            });
-                        }
-                    }
-                });
-            }
-        });
-        thread.setDaemon(true);
-        thread.start();*/
-    }
-
-    public void removeSubItem( int subItemID ){
-
     }
 
     /*

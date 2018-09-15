@@ -1,14 +1,8 @@
 /* Gitaş - Obarey Inc 2018 */
 package gpts.java;
 
-import gpts.java.interfaces.ActionCallback;
-import gpts.java.interfaces.WebRequestCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.awt.event.ActionListener;
-import java.util.HashMap;
-import java.util.Map;
 
 public class GWorkSubItem {
 

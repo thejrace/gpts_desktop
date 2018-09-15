@@ -43,13 +43,13 @@ public class GWorkBoxController implements Initializable {
                 GWorkFormController controller = loader.getController();
                 controller.setEditFlag( true );
                 controller.setData( mData );
-                /*controller.setAddFormListener(new FormActionListener() {
+                controller.setEditFormListener(new FormActionListener() {
                     @Override
                     public void onFinish(Object object) {
                         GWork workData = (GWork)object;
-                        uiContainerWorks.getChildren().add( 0, new GWorkBox( workData ).getUI() );
+                        setData( workData );
                     }
-                });*/
+                });
                 dialog.setContent( ui );
                 dialog.setOverlayClose(false);
                 dialog.show( (StackPane) ((Node) ev.getSource()).getScene().getRoot() );
@@ -58,8 +58,6 @@ public class GWorkBoxController implements Initializable {
             } catch( IOException e ){
                 e.printStackTrace();
             }
-
-
 
         });
 
@@ -82,5 +80,6 @@ public class GWorkBoxController implements Initializable {
         uiProgressSpinner.getStyleClass().remove(2 );
         uiProgressSpinner.getStyleClass().add(newClass );
     }
+
 
 }

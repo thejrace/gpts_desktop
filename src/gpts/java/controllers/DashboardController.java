@@ -32,7 +32,6 @@ public class DashboardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb ){
 
-
         btnNewWork.setOnMouseClicked( ev -> {
             try {
                 JFXDialog dialog = new JFXDialog();
@@ -44,7 +43,7 @@ public class DashboardController implements Initializable {
                     @Override
                     public void onFinish(Object object) {
                         GWork workData = (GWork)object;
-                        if( workData.getStatus() == GWork.STATUS_COMPLETED ) uiContainerWorks.getChildren().add( 0, new GWorkBox( workData ).getUI() );
+                        if( workData.getStatus() == GWork.STATUS_ACTIVE ) uiContainerWorks.getChildren().add( 0, new GWorkBox( workData ).getUI() );
                     }
                 });
                 dialog.setContent( ui );

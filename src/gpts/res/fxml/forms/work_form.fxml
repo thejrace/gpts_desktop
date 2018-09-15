@@ -23,8 +23,8 @@
                <children>
                   <HBox alignment="CENTER" AnchorPane.leftAnchor="0.0">
                      <children>
-                        <FontAwesomeIconView glyphName="TASK" size="2em" styleClass="popup-form-title-icon" />
-                        <Label fx:id="uiTaskNameLbl" styleClass="popup-form-title" text="Test İş" />
+                        <FontAwesomeIconView glyphName="LIST_OL" size="2em" styleClass="popup-form-title-icon" />
+                        <Label fx:id="uiPopupHeaderLbl" styleClass="popup-form-title" />
                         <Label layoutX="29.0" layoutY="10.0" styleClass="popup-form-title" text="Form" />
                      </children>
                   </HBox>

@@ -30,7 +30,7 @@ public class DashboardPage {
             // get controller  and ui
             mUI  = loader.load();
             mBaseController = loader.getController();
-            downloadWorks();
+            downloadActiveWorks();
         } catch( IOException e ){
             e.printStackTrace();
         }
@@ -40,13 +40,12 @@ public class DashboardPage {
 
     }
 
-    public void downloadWorks(){
+    public void downloadActiveWorks(){
         Thread th = new Thread(new Runnable() {
             @Override
             public void run() {
-
                 Map<String, String> params = new HashMap<>();
-                params.put("req", "download_employee_last_works");
+                params.put("req", "download_employee_active_works");
                 WebRequest request = new WebRequest(WebRequest.SERVICE_URL, params);
                 request.action(new WebRequestCallback() {
                     @Override
@@ -58,7 +57,6 @@ public class DashboardPage {
                         }
                     }
                 });
-
             }
         });
         th.setDaemon(true);
