@@ -24,6 +24,7 @@ public class GWorkBox {
             loader.setLocation(getClass().getResource("/gpts/res/fxml/work_box.fxml"));
             mUI  = loader.load();
             mController = loader.getController();
+            mUI.setId(String.valueOf(mData.getID()));
             updateUI();
         } catch( IOException e ){
             e.printStackTrace();

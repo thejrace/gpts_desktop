@@ -26,41 +26,13 @@ public class DashboardPage {
     public void initUI(){
         try{
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/gpts/res/fxml/dashboard.fxml"));
+            loader.setLocation(getClass().getResource("/gpts/res/fxml/dashboard_v2.fxml"));
             // get controller  and ui
             mUI  = loader.load();
             mBaseController = loader.getController();
-            downloadActiveWorks();
         } catch( IOException e ){
             e.printStackTrace();
         }
-    }
-
-    public void downloadNotf(){
-
-    }
-
-    public void downloadActiveWorks(){
-        Thread th = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Map<String, String> params = new HashMap<>();
-                params.put("req", "download_employee_active_works");
-                WebRequest request = new WebRequest(WebRequest.SERVICE_URL, params);
-                request.action(new WebRequestCallback() {
-                    @Override
-                    public void onFinish(JSONObject output) {
-                        try {
-                            Platform.runLater( () -> { mBaseController.updateWorks( output.getJSONArray("data") ); });
-                        } catch( JSONException e ){
-                            e.printStackTrace();
-                        }
-                    }
-                });
-            }
-        });
-        th.setDaemon(true);
-        th.start();
     }
 
     public Parent getUI(){

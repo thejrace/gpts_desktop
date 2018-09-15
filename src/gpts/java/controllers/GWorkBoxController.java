@@ -6,7 +6,6 @@ import com.jfoenix.controls.JFXSpinner;
 import gpts.java.Common;
 import gpts.java.GWork;
 import gpts.java.interfaces.FormActionListener;
-import gpts.java.ui.GWorkBox;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -57,9 +56,7 @@ public class GWorkBoxController implements Initializable {
             } catch( IOException e ){
                 e.printStackTrace();
             }
-
         });
-
     }
 
     public void setData( GWork data ){

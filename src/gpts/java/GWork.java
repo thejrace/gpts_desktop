@@ -215,6 +215,9 @@ public class GWork {
     public int getStatus(){
         return mStatus;
     }
+    public int getID(){
+        return mID;
+    }
     public String getDetails(){
         return mDetails;
     }
