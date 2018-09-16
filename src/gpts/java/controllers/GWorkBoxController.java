@@ -14,7 +14,6 @@ import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.net.URL;
@@ -40,6 +39,8 @@ public class GWorkBoxController implements Initializable {
                 loader.setLocation(getClass().getResource("/gpts/res/fxml/forms/work_form.fxml"));
                 ScrollPane ui  = loader.load();
                 GWorkFormController controller = loader.getController();
+                System.out.println(mData.getTemplateFlag());
+                controller.setTemplateFlag(  mData.getTemplateFlag() );
                 controller.setEditFlag( true );
                 controller.setData( mData );
                 controller.setEditFormListener(new FormActionListener() {
@@ -63,20 +64,28 @@ public class GWorkBoxController implements Initializable {
     public void setData( GWork data ){
         mData = data;
         uiNameLbl.setText( data.getName());
-        uiStepsLbl.setText( data.getStepSummary() );
-        uiStartLbl.setText(Common.revDatetime(data.getDateAdded()) );
-        uiFinishLbl.setText(Common.revDatetime(data.getDueDate()));
-        double progress = data.getPercentageCompleted();
-        String newClass = "red-spinner";
-        uiProgressSpinner.setProgress(progress);
-         if( progress > 0 && progress <= 0.75 ){
-            newClass = "yellow-spinner";
-        } else if( progress > 0.75 ){
-            newClass = "green-spinner";
+        if( !mData.getTemplateFlag() ){
+            uiStartLbl.setText(Common.revDatetime(data.getDateAdded()) );
+            uiFinishLbl.setText(Common.revDatetime(data.getDueDate()));
+            uiStepsLbl.setText( data.getStepSummary() );
+            double progress = data.getPercentageCompleted();
+            String newClass = "red-spinner";
+            uiProgressSpinner.setProgress(progress);
+            if( progress > 0 && progress <= 0.75 ){
+                newClass = "yellow-spinner";
+            } else if( progress > 0.75 ){
+                newClass = "green-spinner";
+            }
+            uiProgressSpinner.getStyleClass().remove(1 );
+            uiProgressSpinner.getStyleClass().add(newClass );
+        } else {
+            uiStepsLbl.setText( data.getSubItems().size() + " adım" );
+            uiProgressSpinner.setVisible(false);
+            uiProgressSpinner.setPrefWidth(0);
+
         }
 
-        uiProgressSpinner.getStyleClass().remove(1 );
-        uiProgressSpinner.getStyleClass().add(newClass );
+
     }
 
 

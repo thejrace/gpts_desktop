@@ -1,33 +1,30 @@
-/* Gitaş - Obarey Inc 2018 */
 package gpts.java.ui;
 
-import gpts.java.GTask;
+import gpts.java.GWork;
 import gpts.java.WebRequest;
-import gpts.java.controllers.TasksController;
+import gpts.java.controllers.GWorksController;
 import gpts.java.interfaces.WebRequestCallback;
 import javafx.application.Platform;
 import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-@Deprecated
-public class TasksPage extends BasePage {
 
+public class GWorksPage extends BasePage{
 
     // Rows holder lists
-    protected Map<String, TaskBox> mRows = new HashMap<>();
-    protected Map<String, TaskBox> mSearchRows = new HashMap<>();
-    private TasksController mController;
+    protected Map<String, GWorkBox> mRows = new HashMap<>();
+    protected Map<String, GWorkBox> mSearchRows = new HashMap<>();
+    private GWorksController mController;
 
-
-    public TasksPage(  ){
+    public GWorksPage(  ){
         mItemDataKey = "name";
     }
 
     @Override
     public void initUI( String fxml ){
         super.initUI(fxml);
-        mController = (TasksController)mBaseController;
+        mController = (GWorksController)mBaseController;
         downloadData();
         mController.setPageObject( this );
     }
@@ -46,10 +43,10 @@ public class TasksPage extends BasePage {
             public void run() {
                 Map<String, String> downloadParams = new HashMap<>();
                 if( mSearchFlag ){
-                    downloadParams.put("req", "tasks_search");
+                    downloadParams.put("req", "search_work_template");
                     downloadParams.put("keyword", mSearchKeyword );
                 } else {
-                    downloadParams.put("req", "tasks_download");
+                    downloadParams.put("req", "download_work_templates");
                 }
                 downloadParams.put("start_index", String.valueOf(mLastItemIndex));
                 downloadParams.put("rrp", String.valueOf(mRRP));
@@ -68,7 +65,7 @@ public class TasksPage extends BasePage {
                                 JSONObject temp;
                                 for( int k = 0; k < length; k++ ){
                                     temp = mData.getJSONObject(k);
-                                    TaskBox row = new TaskBox( new GTask( temp ));
+                                    GWorkBox row = new GWorkBox( new GWork( temp ) );
                                     addItem( temp.getString(mItemDataKey), row, false, false );
                                 }
                             }
@@ -87,7 +84,7 @@ public class TasksPage extends BasePage {
      *   @row  : ui object
      *   @sort : if true, datarows sorted according to their node ID's ( names for this case )
      */
-    public void addItem( String key, TaskBox row, boolean sort, boolean formFlag ){
+    public void addItem( String key, GWorkBox row, boolean sort, boolean formFlag ){
         // if item is added during  search, cancel search action
         if( formFlag && mSearchFlag ) cancelSearch();
         if( mSearchFlag ){

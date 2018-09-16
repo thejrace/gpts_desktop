@@ -5,6 +5,7 @@ import gpts.java.interfaces.WebRequestCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+@Deprecated
 public class GTask {
 
     private String mID, mGroup, mName, mType, mDefinition;

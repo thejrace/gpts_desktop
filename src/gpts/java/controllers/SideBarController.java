@@ -66,11 +66,22 @@ public class SideBarController implements Initializable {
         }
 
         if( ApiUser.checkPermission(ApiUserPermissions.AC_TASKS) ) {
-            uiSideBarBtn2.setOnMouseClicked(ev -> {
+            /*uiSideBarBtn2.setOnMouseClicked(ev -> {
                 if( mPageIndex == 2 ) return;
                 if( !mPages.containsKey(2) ){
                     TasksPage page = new TasksPage();
                     page.initUI("tasks");
+                    mPages.put(2, page );
+                }
+                // set content
+                MainController.UICONTENTMAIN.setContent( mPages.get(2).getUI());
+                mPageIndex = 2;
+            });*/
+            uiSideBarBtn2.setOnMouseClicked(ev -> {
+                if( mPageIndex == 2 ) return;
+                if( !mPages.containsKey(2) ){
+                    GWorksPage page = new GWorksPage();
+                    page.initUI("works");
                     mPages.put(2, page );
                 }
                 // set content

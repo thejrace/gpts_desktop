@@ -22,9 +22,10 @@ public class GWork {
                       STATUS_EXPIRED = 2,
                       STATUS_CANCELED = 3;
 
+    private boolean mTemplateFlag = false;
     private int mID, mStatus;
     private double mPercentageCompleted;
-    private String mName, mDetails, mReturnText, mDateAdded, mDueDate = "", mDateLastModified;
+    private String mName, mDetails, mReturnText, mDateAdded = "", mDueDate = "Yok", mDateLastModified = "";
     private ArrayList<GWorkSubItem> mSubItems = new ArrayList<>();
 
     public GWork(){
@@ -32,29 +33,49 @@ public class GWork {
     }
 
     public GWork( JSONObject data ){
-        try{
-            mID = Integer.valueOf(data.getString("id"));
-            mName = data.getString("name");
-            mDetails = data.getString("details");
+        // test only for status to set templateFlag
+        try {
             mStatus = Integer.valueOf(data.getString("status"));
-            mDateAdded = data.getString("date_added");
-            JSONArray subItemsDecoded = data.getJSONArray("sub_items");
-            for( int k = 0; k < subItemsDecoded.length(); k++ ) mSubItems.add( new GWorkSubItem( subItemsDecoded.getJSONObject(k)));
-            mDateLastModified = data.getString("date_last_modified");
         } catch( JSONException e ){
+            mTemplateFlag = true;
             //e.printStackTrace();
         }
 
-
-        try{
-            mDueDate = data.getString("due_date");
-        } catch( JSONException e ){
-            mDueDate = "Yok";
-            //e.printStackTrace();
+        if( mTemplateFlag ){
+            try{
+                mID = Integer.valueOf(data.getString("id"));
+                mName = data.getString("name");
+                mDetails = data.getString("details");
+                JSONArray subItemsDecoded = data.getJSONArray("sub_items");
+                GWorkSubItem subItemTemp;
+                for( int k = 0; k < subItemsDecoded.length(); k++ ){
+                    subItemTemp = new GWorkSubItem( subItemsDecoded.getJSONObject(k));
+                    subItemTemp.setTemplateFlag(true);
+                    mSubItems.add( subItemTemp );
+                }
+            } catch( JSONException e ){
+                e.printStackTrace();
+            }
+        } else {
+            try{
+                mID = Integer.valueOf(data.getString("id"));
+                mName = data.getString("name");
+                mDetails = data.getString("details");
+                JSONArray subItemsDecoded = data.getJSONArray("sub_items");
+                for( int k = 0; k < subItemsDecoded.length(); k++ ) mSubItems.add( new GWorkSubItem( subItemsDecoded.getJSONObject(k)));
+                mDateAdded = data.getString("date_added");
+                mStatus = Integer.valueOf(data.getString("status"));
+                mDateAdded = data.getString("date_added");
+                mDateLastModified = data.getString("date_last_modified");
+            } catch( JSONException e ){
+                e.printStackTrace();
+            }
         }
-
     }
 
+    /*
+    *  used for Work not for templates
+    * */
     private void sendDataToServer( String req, String name, String details, int status, Map<Integer, GWorkSubItemBox> subItems, WebRequestCallback wcb ,ActionCallback cb ){
         FormValidation validation = new FormValidation();
         boolean inputCheck = validation.checkInputs( new ValidationInput[]{
@@ -99,6 +120,13 @@ public class GWork {
         });
         thread.setDaemon(true);
         thread.start();
+    }
+
+    public void addTemplate( String name, String details, Map<Integer, GWorkSubItemBox> subItems, ActionCallback cb ){
+
+    }
+    public void editTemplate( String name, String details, Map<Integer, GWorkSubItemBox> subItems, ActionCallback cb ){
+
     }
 
     public void edit( String name, String details, int status, Map<Integer, GWorkSubItemBox> subItems, ActionCallback cb ){
@@ -212,6 +240,9 @@ public class GWork {
         th.start();
     }
 
+    public void setTemplateFlag( boolean d ){
+        mTemplateFlag = d;
+    }
     public void setName( String d ){
         mName = d;
     }
@@ -248,5 +279,7 @@ public class GWork {
     public String getReturnText(){
         return mReturnText;
     }
-
+    public boolean getTemplateFlag(){
+        return mTemplateFlag;
+    }
 }

@@ -11,7 +11,7 @@ import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
+@Deprecated
 public class TaskPopupController extends PopupDataBaseController implements Initializable {
 
 

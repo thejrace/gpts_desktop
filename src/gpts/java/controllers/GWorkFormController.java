@@ -41,7 +41,8 @@ public class GWorkFormController extends PopupFormBaseController implements Init
     @FXML private JFXButton uiNewSubItemBtn;
     @FXML private Tab tabBundle;
     @FXML private Tab tabDetails;
-    @FXML private Tab tabDownloadProfile;   // todo will be hidden when editFlag is set
+    @FXML private Tab tabDownloadProfile;
+    @FXML private Tab tabDefinitions;
     @FXML private TabPane uiTabPane;
     @FXML private JFXTextField uiSearchInput;
     @FXML private JFXButton uiSearchBtn;
@@ -52,9 +53,13 @@ public class GWorkFormController extends PopupFormBaseController implements Init
     @FXML private Label uiSummaryDetailsLbl;
     @FXML private VBox uiSummarySubItemsContainer;
 
+    @FXML private JFXButton uiDeleteBtn;
+
+
 
     private String[] mStatusList = { "Aktif", "Tamamlandı", "Süre Aşımı", "İptal" };
     private boolean mEditFlag = false;
+    private boolean mTemplateFlag = false;
 
     private int mSubItemStepCounter = 0;
     private Map<Integer, GWorkSubItemBox> mSubItems = new HashMap<>();
@@ -66,13 +71,18 @@ public class GWorkFormController extends PopupFormBaseController implements Init
     public void initialize(URL url, ResourceBundle rb ){
         super.initCommonEvents();
 
+        // hide def tab on initialize, we only show it when mTemplateFlag is set
+        uiTabPane.getTabs().remove( tabDefinitions );
+
         uiPopupHeaderLbl.setText("Yeni İş");
 
         for( int k = 0; k < mStatusList.length; k++ ) uiWorkStatusInput.getItems().add( mStatusList[k] );
         uiWorkStatusInput.getSelectionModel().select(0);
 
         uiNewSubItemBtn.setOnMouseClicked( ev -> {
-            addSubItem( new GWorkSubItemBox( new GWorkSubItem() ) );
+            GWorkSubItemBox newBox = new GWorkSubItemBox( new GWorkSubItem() );
+            if( mTemplateFlag ) newBox.getController().switchToTemplateMode();
+            addSubItem( newBox );
         });
 
         uiSaveBtn.setOnMouseClicked( ev -> {
@@ -83,22 +93,10 @@ public class GWorkFormController extends PopupFormBaseController implements Init
                 entry.getValue().getData().setStepOrder( stepCounter );
                 stepCounter++;
             }
-            if( mEditFlag ){
-                mSelectedTemplate.edit(uiTaskNameInput.getText(), uiTaskDefInput.getText(), uiWorkStatusInput.getSelectionModel().getSelectedIndex(), mSubItems, new ActionCallback() {
-                    @Override
-                    public void onSuccess(String... params) {
-                        mParentDialog.close();
-                        PopupLoader.showMessage(mSelectedTemplate.getReturnText(), PopupLoader.MESSAGE_SUCCESS );
-                        mEditFormListener.onFinish( mSelectedTemplate );
-                    }
-                    @Override
-                    public void onError(int type) {
-                        outputError(mSelectedTemplate.getReturnText());
-                        uiSaveBtn.setDisable(false);
-                        PopupLoader.hide();
-                    }
-                });
-            } else {
+
+            if( !mEditFlag && !mTemplateFlag ){
+                // add new work
+                //System.out.println("add new work");
                 mSelectedTemplate = new GWork();
                 // pass mSubItems directly and get GWorkSubItem from GWorkSubItemBox
                 mSelectedTemplate.add(uiTaskNameInput.getText(), uiTaskDefInput.getText(), uiWorkStatusInput.getSelectionModel().getSelectedIndex(), mSubItems, new ActionCallback() {
@@ -115,6 +113,46 @@ public class GWorkFormController extends PopupFormBaseController implements Init
                         PopupLoader.hide();
                     }
                 });
+            } else if( !mEditFlag ){ // mTemplateFlag = true
+                // add template
+                //System.out.println("add new template");
+                mSelectedTemplate = new GWork();
+                mSelectedTemplate.addTemplate(uiTaskNameInput.getText(), uiTaskDefInput.getText(), mSubItems, new ActionCallback() {
+                    @Override
+                    public void onSuccess(String... params) {
+                        mParentDialog.close();
+                        PopupLoader.showMessage(mSelectedTemplate.getReturnText(), PopupLoader.MESSAGE_SUCCESS );
+                        //mAddFormListener.onFinish( mSelectedTemplate );
+                    }
+
+                    @Override
+                    public void onError(int type) {
+                        outputError(mSelectedTemplate.getReturnText());
+                        uiSaveBtn.setDisable(false);
+                        PopupLoader.hide();
+                    }
+                });
+            } else if( !mTemplateFlag ){ // mEditFlag = true
+                // edit work
+                //System.out.println("edit work");
+                mSelectedTemplate.edit(uiTaskNameInput.getText(), uiTaskDefInput.getText(), uiWorkStatusInput.getSelectionModel().getSelectedIndex(), mSubItems, new ActionCallback() {
+                    @Override
+                    public void onSuccess(String... params) {
+                        mParentDialog.close();
+                        PopupLoader.showMessage(mSelectedTemplate.getReturnText(), PopupLoader.MESSAGE_SUCCESS);
+                        mEditFormListener.onFinish(mSelectedTemplate);
+                    }
+
+                    @Override
+                    public void onError(int type) {
+                        outputError(mSelectedTemplate.getReturnText());
+                        uiSaveBtn.setDisable(false);
+                        PopupLoader.hide();
+                    }
+                });
+            } else {
+                // edit template
+                System.out.println("edit template");
             }
         });
 
@@ -209,15 +247,29 @@ public class GWorkFormController extends PopupFormBaseController implements Init
         mEditFlag = val;
     }
 
+    public void setTemplateFlag( boolean val ){
+        mTemplateFlag = val;
+    }
+
     public void setData( GWork data ){
         mSelectedTemplate = data;
-        mEditFlag = true;
-        uiPopupHeaderLbl.setText("'" + data.getName() + "'");
-        // hide download tab
-        uiTabPane.getTabs().remove( tabDownloadProfile );
-        // fill form
-        fillForm();
-        if( mSelectedTemplate.getStatus() != GWork.STATUS_ACTIVE ) switchToPreviewMod();
+        if( mTemplateFlag && mEditFlag ){
+            // work template edit
+            uiTabPane.getTabs().remove( tabDownloadProfile );
+            uiTabPane.getTabs().add( tabDefinitions );
+            uiDeleteBtn.setVisible(true);
+            uiWorkStatusInput.setVisible(false);
+            fillForm();
+        } else if( mEditFlag ){
+            // work edit
+            uiPopupHeaderLbl.setText("'" + data.getName() + "'");
+            // fill form before to determine if we switch to preview mode
+            fillForm();
+            if( mSelectedTemplate.getStatus() != GWork.STATUS_ACTIVE ) switchToPreviewMod();
+            // hide download tab
+            uiTabPane.getTabs().remove( tabDownloadProfile );
+            uiTabPane.getTabs().remove( tabDefinitions );
+        }
     }
 
 

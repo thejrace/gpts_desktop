@@ -14,6 +14,7 @@ public class GWorkSubItem {
                       STATUS_EXPIRED = 5;
     private String mName, mDetails, mReturnText, mDateAdded, mDateLastModified;
     private int mID, mStatus, mStepOrder, mNeedsValidation;
+    private boolean mTemplateFlag = false;
 
     public GWorkSubItem(){
 
@@ -22,9 +23,10 @@ public class GWorkSubItem {
     public GWorkSubItem( JSONObject data ){
         try {
             mName = data.getString("name");
-            mID = Integer.valueOf(data.getString("id"));
             mDetails = data.getString("details");
             mStepOrder = Integer.valueOf(data.getString("step_order"));
+            // does not matter when parent work's template flag is set
+            mID = Integer.valueOf(data.getString("id"));
             mNeedsValidation = Integer.valueOf(data.getString("needs_validation"));
             mStatus = Integer.valueOf(data.getString("status"));
             mDateAdded = data.getString("date_added");
@@ -60,6 +62,10 @@ public class GWorkSubItem {
 
         }
 
+    }
+
+    public void setTemplateFlag( boolean d ){
+        mTemplateFlag = d;
     }
 
     public String serialize(){
@@ -99,6 +105,9 @@ public class GWorkSubItem {
     }
     public int getNeedsValidation(){
         return mNeedsValidation;
+    }
+    public boolean getTemplateFlag(){
+        return mTemplateFlag;
     }
 
 

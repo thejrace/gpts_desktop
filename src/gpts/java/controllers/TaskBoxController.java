@@ -15,7 +15,7 @@ import org.json.JSONObject;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
+@Deprecated
 public class TaskBoxController implements Initializable {
     @FXML private JFXButton uiMain;
 
@@ -54,7 +54,7 @@ public class TaskBoxController implements Initializable {
     }
 
 }
-
+@Deprecated
 class TaskPopup extends PopupDataBase {
 
     private GTask mTask;

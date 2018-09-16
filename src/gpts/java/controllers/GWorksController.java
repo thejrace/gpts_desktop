@@ -1,20 +1,18 @@
-/* Gitaş - Obarey Inc 2018 */
 package gpts.java.controllers;
 
 import com.jfoenix.controls.JFXButton;
-import gpts.java.ui.EmployeesPage;
+import gpts.java.ui.GWorksPage;
 import gpts.java.ui.PopupLoader;
-import gpts.java.ui.TasksPage;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
-@Deprecated
-public class TasksController extends BaseContentController implements Initializable {
+public class GWorksController extends BaseContentController implements Initializable {
 
     @FXML private JFXButton uiAddBtn;
-    private TasksPage mPage;
+    private GWorksPage mPage;
 
     @Override
     public void initialize(URL url, ResourceBundle rb ){
@@ -43,7 +41,7 @@ public class TasksController extends BaseContentController implements Initializa
 
     }
 
-    public void setPageObject( TasksPage page ){
+    public void setPageObject( GWorksPage page ){
         mPage = page;
     }
 

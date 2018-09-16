@@ -29,7 +29,7 @@ public class GWorkSubItemBoxController implements Initializable {
     private NoParamCallback mDeleteListener;
     private GWorkSubItem mData;
 
-    private boolean mEditFlag = false;
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb ){
@@ -43,6 +43,11 @@ public class GWorkSubItemBoxController implements Initializable {
 
     }
 
+    public void switchToTemplateMode(){
+        uiValidationBtn.setVisible(false);
+        uiStatusInput.setVisible(false);
+    }
+
     public void getFormData(){
         mData.setName( uiNameInput.getText() );
         mData.setDetails(uiDetailsInput.getText());
@@ -53,15 +58,24 @@ public class GWorkSubItemBoxController implements Initializable {
         mData = data;
         uiNameInput.setText(data.getName());
         uiDetailsInput.setText( data.getDetails());
-        uiStatusInput.getSelectionModel().select( data.getStatus() );
         uiMainContainer.getStyleClass().clear();
-        if( data.getStatus() == GWorkSubItem.STATUS_COMPLETED ){
-            uiMainContainer.getStyleClass().add("task-sub-item-completed");
-        } else if( data.getStatus() == GWorkSubItem.STATUS_CANCELED ){
-            uiMainContainer.getStyleClass().add("task-sub-item-canceled");
-        } else {
+        if( mData.getTemplateFlag() ){
+            uiStatusInput.setVisible(false);
+            uiValidationBtn.setVisible(false);
             uiMainContainer.getStyleClass().add("task-sub-item-active");
+        } else {
+            uiStatusInput.getSelectionModel().select( data.getStatus() );
+            if( data.getStatus() == GWorkSubItem.STATUS_COMPLETED ){
+                uiMainContainer.getStyleClass().add("task-sub-item-completed");
+            } else if( data.getStatus() == GWorkSubItem.STATUS_CANCELED ){
+                uiMainContainer.getStyleClass().add("task-sub-item-canceled");
+            } else {
+                uiMainContainer.getStyleClass().add("task-sub-item-active");
+            }
         }
+
+
+
     }
 
     public void addDeleteListener( NoParamCallback cb ){

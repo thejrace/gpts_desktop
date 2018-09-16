@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
 
+@Deprecated
 public class TaskBox {
 
     private GTask mTask;

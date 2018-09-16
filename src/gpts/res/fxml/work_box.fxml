@@ -42,7 +42,7 @@
                   <HBox alignment="CENTER_LEFT" prefWidth="200.0" spacing="10.0">
                      <children>
                         <FontAwesomeIconView glyphName="CALENDAR" styleClass="ico-gray" />
-                        <Label fx:id="uiStartLbl" text="12-09-2018 00:00" />
+                        <Label fx:id="uiStartLbl" text="-" />
                      </children>
                      <padding>
                         <Insets left="5.0" />
@@ -51,7 +51,7 @@
                   <HBox alignment="CENTER_LEFT" prefWidth="200.0" spacing="10.0">
                      <children>
                         <FontAwesomeIconView glyphName="CALENDAR_CHECK_ALT" styleClass="ico-gray" />
-                        <Label fx:id="uiFinishLbl" text="15-09-2018 23:59" />
+                        <Label fx:id="uiFinishLbl" text="-" />
                      </children>
                      <padding>
                         <Insets left="5.0" />
