@@ -39,7 +39,6 @@ public class GWorkBoxController implements Initializable {
                 loader.setLocation(getClass().getResource("/gpts/res/fxml/forms/work_form.fxml"));
                 ScrollPane ui  = loader.load();
                 GWorkFormController controller = loader.getController();
-                System.out.println(mData.getTemplateFlag());
                 controller.setTemplateFlag(  mData.getTemplateFlag() );
                 controller.setEditFlag( true );
                 controller.setData( mData );
