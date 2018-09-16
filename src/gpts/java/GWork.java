@@ -19,7 +19,8 @@ public class GWork {
 
     public static int STATUS_ACTIVE = 0,
                       STATUS_COMPLETED = 1,
-                      STATUS_CANCELED = 2;
+                      STATUS_EXPIRED = 2,
+                      STATUS_CANCELED = 3;
 
     private int mID, mStatus;
     private double mPercentageCompleted;
@@ -110,11 +111,17 @@ public class GWork {
                         mName = name;
                         mDetails = details;
                         mStatus = status;
-                        if( mStatus == GWork.STATUS_COMPLETED ){
-                            // if work is completed, edit all STATUS_WAITING and STATUS_ACTIVE
-                            // subItems' status to STATUS_COMPLETED
-                            for( GWorkSubItem subItem : mSubItems ){
-                                if( subItem.getStatus() == GWorkSubItem.STATUS_ACTIVE || subItem.getStatus() == GWorkSubItem.STATUS_WAITING ) subItem.setStatus(GWorkSubItem.STATUS_COMPLETED);
+                        // if work is completed or canceled, edit all STATUS_WAITING and STATUS_ACTIVE
+                        // subItems' status to GWork's status
+                        for( GWorkSubItem subItem : mSubItems ){
+                            if( subItem.getStatus() == GWorkSubItem.STATUS_ACTIVE || subItem.getStatus() == GWorkSubItem.STATUS_WAITING ){
+                                if( mStatus ==  GWork.STATUS_COMPLETED ){
+                                    subItem.setStatus(GWorkSubItem.STATUS_COMPLETED);
+                                } else if( mStatus == GWork.STATUS_CANCELED ){
+                                    subItem.setStatus(GWorkSubItem.STATUS_CANCELED);
+                                } else if( mStatus == GWork.STATUS_EXPIRED ){
+                                    subItem.setStatus(GWorkSubItem.STATUS_EXPIRED);
+                                }
                             }
                         }
                         cb.onSuccess( String.valueOf( mID ) );
@@ -156,13 +163,6 @@ public class GWork {
                                 }
                             }
                         }
-                        /*if( mStatus == GWork.STATUS_COMPLETED ){
-                            // if work is completed, edit all STATUS_WAITING and STATUS_ACTIVE
-                            // subItems' status to STATUS_COMPLETED
-                            for( GWorkSubItem subItem : mSubItems ){
-                                if( subItem.getStatus() == GWorkSubItem.STATUS_ACTIVE || subItem.getStatus() == GWorkSubItem.STATUS_WAITING ) subItem.setStatus(GWorkSubItem.STATUS_COMPLETED);
-                            }
-                        }*/
                         cb.onSuccess( successData.getString("id") );
                     });
                 } else {

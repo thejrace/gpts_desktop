@@ -10,7 +10,8 @@ public class GWorkSubItem {
                       STATUS_ACTIVE = 1,
                       STATUS_WAITS_VALIDATION = 2,
                       STATUS_CANCELED = 3,
-                      STATUS_COMPLETED = 4;
+                      STATUS_COMPLETED = 4,
+                      STATUS_EXPIRED = 5;
     private String mName, mDetails, mReturnText, mDateAdded, mDateLastModified;
     private int mID, mStatus, mStepOrder, mNeedsValidation;
 

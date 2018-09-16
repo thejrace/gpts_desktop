@@ -25,7 +25,7 @@ public class GWorkSubItemBoxController implements Initializable {
     @FXML private JFXComboBox uiStatusInput;
     @FXML private JFXButton uiDeleteBtn;
 
-    private String[] mStatusList = { "Beklemede", "Aktif", "Onay Bekliyor", "İptal Edildi", "Tamamlandı", "Yapılmadı" };
+    private String[] mStatusList = { "Beklemede", "Aktif", "Onay Bekliyor", "İptal Edildi", "Tamamlandı", "Süre Aşımı" };
     private NoParamCallback mDeleteListener;
     private GWorkSubItem mData;
 
