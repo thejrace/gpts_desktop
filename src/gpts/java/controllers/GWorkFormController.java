@@ -52,20 +52,24 @@ public class GWorkFormController extends PopupFormBaseController implements Init
     @FXML private Label uiSummaryNameLbl;
     @FXML private Label uiSummaryDetailsLbl;
     @FXML private VBox uiSummarySubItemsContainer;
-
     @FXML private JFXButton uiDeleteBtn;
 
-
-
+    // GWork status list, has to same with the server-side one
     private String[] mStatusList = { "Aktif", "Tamamlandı", "Süre Aşımı", "İptal" };
+    // flags
     private boolean mEditFlag = false;
     private boolean mTemplateFlag = false;
-
+    // counter for subItems.
+    // used to keep index of added subItem in mSubItems. Therefore when user deleted a
+    // subItem we can determine which one is it.
     private int mSubItemStepCounter = 0;
+    // subItems holder array
     private Map<Integer, GWorkSubItemBox> mSubItems = new HashMap<>();
-    private GWork mSelectedTemplate; // also used for editData not just for template
-    private FormActionListener mAddFormListener;
-    private FormActionListener mEditFormListener;
+    // active GWork data if is set.
+    // also used for editData not just for template
+    private GWork mSelectedTemplate;
+    // action listener
+    private FormActionListener mFormActionListener;
 
     @Override
     public void initialize(URL url, ResourceBundle rb ){
@@ -74,17 +78,22 @@ public class GWorkFormController extends PopupFormBaseController implements Init
         // hide def tab on initialize, we only show it when mTemplateFlag is set
         uiTabPane.getTabs().remove( tabDefinitions );
 
+        // default header label
         uiPopupHeaderLbl.setText("Yeni İş");
 
+        // fill status combobox
         for( int k = 0; k < mStatusList.length; k++ ) uiWorkStatusInput.getItems().add( mStatusList[k] );
         uiWorkStatusInput.getSelectionModel().select(0);
 
+        /* add new subItem actions  */
         uiNewSubItemBtn.setOnMouseClicked( ev -> {
             GWorkSubItemBox newBox = new GWorkSubItemBox( new GWorkSubItem() );
+            // handle extra UI actions for template mode
             if( mTemplateFlag ) newBox.getController().switchToTemplateMode();
             addSubItem( newBox );
         });
 
+        /* saving actions for every mode */
         uiSaveBtn.setOnMouseClicked( ev -> {
             uiSaveBtn.setDisable(true);
             // set order of subitems before upload action
@@ -93,69 +102,25 @@ public class GWorkFormController extends PopupFormBaseController implements Init
                 entry.getValue().getData().setStepOrder( stepCounter );
                 stepCounter++;
             }
-
             if( !mEditFlag && !mTemplateFlag ){
                 // add new work
-                //System.out.println("add new work");
                 mSelectedTemplate = new GWork();
                 // pass mSubItems directly and get GWorkSubItem from GWorkSubItemBox
-                mSelectedTemplate.add(uiTaskNameInput.getText(), uiTaskDefInput.getText(), uiWorkStatusInput.getSelectionModel().getSelectedIndex(), mSubItems, new ActionCallback() {
-                    @Override
-                    public void onSuccess(String... params) {
-                        mParentDialog.close();
-                        PopupLoader.showMessage(mSelectedTemplate.getReturnText(), PopupLoader.MESSAGE_SUCCESS );
-                        mAddFormListener.onFinish( mSelectedTemplate );
-                    }
-                    @Override
-                    public void onError(int type) {
-                        outputError(mSelectedTemplate.getReturnText());
-                        uiSaveBtn.setDisable(false);
-                        PopupLoader.hide();
-                    }
-                });
+                mSelectedTemplate.add(uiTaskNameInput.getText(), uiTaskDefInput.getText(), uiWorkStatusInput.getSelectionModel().getSelectedIndex(), mSubItems, mFormActionListenerCallback );
             } else if( !mEditFlag ){ // mTemplateFlag = true
                 // add template
-                //System.out.println("add new template");
                 mSelectedTemplate = new GWork();
-                mSelectedTemplate.addTemplate(uiTaskNameInput.getText(), uiTaskDefInput.getText(), mSubItems, new ActionCallback() {
-                    @Override
-                    public void onSuccess(String... params) {
-                        mParentDialog.close();
-                        PopupLoader.showMessage(mSelectedTemplate.getReturnText(), PopupLoader.MESSAGE_SUCCESS );
-                        //mAddFormListener.onFinish( mSelectedTemplate );
-                    }
-
-                    @Override
-                    public void onError(int type) {
-                        outputError(mSelectedTemplate.getReturnText());
-                        uiSaveBtn.setDisable(false);
-                        PopupLoader.hide();
-                    }
-                });
+                mSelectedTemplate.addTemplate(uiTaskNameInput.getText(), uiTaskDefInput.getText(), mSubItems, mFormActionListenerCallback );
             } else if( !mTemplateFlag ){ // mEditFlag = true
                 // edit work
-                //System.out.println("edit work");
-                mSelectedTemplate.edit(uiTaskNameInput.getText(), uiTaskDefInput.getText(), uiWorkStatusInput.getSelectionModel().getSelectedIndex(), mSubItems, new ActionCallback() {
-                    @Override
-                    public void onSuccess(String... params) {
-                        mParentDialog.close();
-                        PopupLoader.showMessage(mSelectedTemplate.getReturnText(), PopupLoader.MESSAGE_SUCCESS);
-                        mEditFormListener.onFinish(mSelectedTemplate);
-                    }
-
-                    @Override
-                    public void onError(int type) {
-                        outputError(mSelectedTemplate.getReturnText());
-                        uiSaveBtn.setDisable(false);
-                        PopupLoader.hide();
-                    }
-                });
+                mSelectedTemplate.edit(uiTaskNameInput.getText(), uiTaskDefInput.getText(), uiWorkStatusInput.getSelectionModel().getSelectedIndex(), mSubItems, mFormActionListenerCallback);
             } else {
                 // edit template
-                System.out.println("edit template");
+                mSelectedTemplate.editTemplate(uiTaskNameInput.getText(), uiTaskDefInput.getText(), mSubItems, mFormActionListenerCallback );
             }
         });
 
+        /* template search */
         uiSearchBtn.setOnMouseClicked( ev -> {
             FormValidation validation = new FormValidation();
             if( !validation.checkInputs( new ValidationInput[]{
@@ -211,12 +176,16 @@ public class GWorkFormController extends PopupFormBaseController implements Init
             });
         });
 
+        /* template selection */
         uiSelectBtn.setOnMouseClicked( ev -> {
             fillForm();
             uiTabPane.getSelectionModel().select(tabDetails);
         });
     }
 
+    /*
+    *  adds sub item to UI
+    * */
     private void addSubItem( GWorkSubItemBox newBox ){
         uiSubTasksContainer.getChildren().add( 0, newBox.getUI() );
         newBox.setUIID(mSubItemStepCounter);
@@ -236,22 +205,33 @@ public class GWorkFormController extends PopupFormBaseController implements Init
         });
     }
 
-    public void setAddFormListener( FormActionListener listener ){
-        mAddFormListener = listener;
-    }
-    public void setEditFormListener( FormActionListener listener ){
-        mEditFormListener = listener;
+    /*
+    *  FormActionListener setter for actions after server-request actions.
+    *  used for both work and template after adding and editing actions.
+    * */
+    public void setFormActionListener( FormActionListener listener ){
+        mFormActionListener = listener;
     }
 
+    /*
+    *  flag setter for editing actions
+    * */
     public void setEditFlag( boolean val ){
         mEditFlag = val;
     }
 
+    /*
+    *   flag setter for templates
+    **/
     public void setTemplateFlag( boolean val ){
         mTemplateFlag = val;
         if( mTemplateFlag ) switchToTemplateAddMode();
     }
 
+    /*
+    *  main UI fill method for both work and template.
+    *  called from other controllers.
+    * */
     public void setData( GWork data ){
         mSelectedTemplate = data;
         if( mTemplateFlag && mEditFlag ){
@@ -273,7 +253,10 @@ public class GWorkFormController extends PopupFormBaseController implements Init
         }
     }
 
-
+    /*
+    *  fill all inputs and append subItems to screen using active data.
+    *  used for both work and template.
+    * */
     private void fillForm(){
         // clear everything and fill form with selected template
         uiTaskNameInput.setText(mSelectedTemplate.getName());
@@ -287,12 +270,18 @@ public class GWorkFormController extends PopupFormBaseController implements Init
         }
     }
 
+    /*
+    *  switch UI to template add form.
+    * */
     private void switchToTemplateAddMode(){
         uiTabPane.getTabs().remove( tabDownloadProfile );
         uiTabPane.getTabs().remove( tabDefinitions );
         uiWorkStatusInput.setVisible(false);
     }
 
+    /*
+    *  switch UI to inspect GWork ( completed, expired etc.. )
+    * */
     private void switchToPreviewMod(){
         uiTaskNameInput.setDisable(true);
         uiTaskDefInput.setDisable(true);
@@ -303,5 +292,24 @@ public class GWorkFormController extends PopupFormBaseController implements Init
             entry.getValue().getController().switchToPreviewMode();
         }
     }
+
+    /*
+    *  common actioncallback for all form-submit actions
+    * */
+    private ActionCallback mFormActionListenerCallback = new ActionCallback() {
+        @Override
+        public void onSuccess(String... params) {
+            mParentDialog.close();
+            PopupLoader.showMessage(mSelectedTemplate.getReturnText(), PopupLoader.MESSAGE_SUCCESS );
+            mFormActionListener.onFinish( mSelectedTemplate );
+        }
+
+        @Override
+        public void onError(int type) {
+            outputError(mSelectedTemplate.getReturnText());
+            uiSaveBtn.setDisable(false);
+            PopupLoader.hide();
+        }
+    };
 
 }

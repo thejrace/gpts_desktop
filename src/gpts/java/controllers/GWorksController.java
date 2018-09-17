@@ -35,15 +35,13 @@ public class GWorksController extends BaseContentController implements Initializ
                 ScrollPane ui  = loader.load();
                 GWorkFormController controller = loader.getController();
                 controller.setTemplateFlag(true);
-                /*controller.setAddFormListener(new FormActionListener() {
+                controller.setFormActionListener(new FormActionListener() {
                     @Override
                     public void onFinish(Object object) {
                         GWork workData = (GWork)object;
-                        if( workData.getStatus() == uiFilterInput.getSelectionModel().getSelectedIndex() ){
-                            mPage.addItem( String.valueOf(workData.getID()), new GWorkBox( workData ), true, true );
-                        }
+                        mPage.addItem( String.valueOf(workData.getID()), new GWorkBox( workData ), true, true );
                     }
-                });*/
+                });
                 dialog.setContent( ui );
                 dialog.setOverlayClose(false);
                 dialog.show( (StackPane) ((Node) ev.getSource()).getScene().getRoot() );

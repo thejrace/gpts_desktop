@@ -49,7 +49,6 @@ public class GWork {
             mTemplateFlag = true;
             //e.printStackTrace();
         }
-
         if( mTemplateFlag ){
             try{
                 mID = Integer.valueOf(data.getString("id"));
@@ -83,7 +82,7 @@ public class GWork {
     }
 
     /*
-    *  used for Work not for templates
+    *
     * */
     private void sendDataToServer( String req, String name, String details, int status, Map<Integer, GWorkSubItemBox> subItems, WebRequestCallback wcb ,ActionCallback cb ){
         FormValidation validation = new FormValidation();
@@ -104,13 +103,14 @@ public class GWork {
                     Platform.runLater( () -> cb.onError(ActionStatusCode.VALIDATION_ERROR) );
                     return;
                 }
-                System.out.println( mSubItemsEncoded );
                 // send request
                 Map<String, String> params = new HashMap<>();
                 params.put("item_id", String.valueOf(mID));
                 params.put("name", name );
                 params.put("details", details );
-                params.put("status", String.valueOf(status) );
+                if( !mTemplateFlag ){ // status not needed for templates
+                    params.put("status", String.valueOf(status) );
+                }
                 params.put("sub_items_encoded", mSubItemsEncoded );
                 params.put("req", req );
                 WebRequest req = new WebRequest( WebRequest.SERVICE_URL, params );
@@ -122,16 +122,51 @@ public class GWork {
     }
 
     public void addTemplate( String name, String details, Map<Integer, GWorkSubItemBox> subItems, ActionCallback cb ){
-        if( !encodeSubItems( subItems ) ){
-            Platform.runLater( () -> cb.onError(ActionStatusCode.VALIDATION_ERROR) );
-            return;
-        }
-        System.out.println( mSubItemsEncoded );
+        sendDataToServer("add_work_template", name, details, 0, subItems, new WebRequestCallback() {
+            @Override
+            public void onFinish(JSONObject output) {
+                mReturnText = output.getString(WebRequest.RETURN_TEXT);
+                if( output.getInt(WebRequest.STATUS_FLAG) == 1 ){
+                    Platform.runLater(() -> {
+                        mName = name;
+                        mDetails = details;
+                        cb.onSuccess( output.getString("data") );
+                    });
+                } else {
+                    Platform.runLater(() -> {
+                        // clear sub items data if there is an error
+                        mSubItems = new ArrayList<>();
+                        cb.onError( ActionStatusCode.ERROR );
+                    });
+                }
+            }
+        }, cb );
     }
     public void editTemplate( String name, String details, Map<Integer, GWorkSubItemBox> subItems, ActionCallback cb ){
-
+        sendDataToServer("edit_work_template", name, details, 0, subItems, new WebRequestCallback() {
+            @Override
+            public void onFinish(JSONObject output) {
+                mReturnText = output.getString(WebRequest.RETURN_TEXT);
+                if( output.getInt(WebRequest.STATUS_FLAG) == 1 ){
+                    Platform.runLater(() -> {
+                        mName = name;
+                        mDetails = details;
+                        cb.onSuccess( "" );
+                    });
+                } else {
+                    Platform.runLater(() -> {
+                        // clear sub items data if there is an error
+                        mSubItems = new ArrayList<>();
+                        cb.onError( ActionStatusCode.ERROR );
+                    });
+                }
+            }
+        }, cb );
     }
 
+    /*
+    *  edit work
+    * */
     public void edit( String name, String details, int status, Map<Integer, GWorkSubItemBox> subItems, ActionCallback cb ){
         sendDataToServer( "edit_work", name, details, status, subItems, new WebRequestCallback() {
             @Override
@@ -167,7 +202,7 @@ public class GWork {
     }
 
     /*
-    *  add
+    *  add work
     * */
     public void add(String name, String details, int status, Map<Integer, GWorkSubItemBox> subItems, ActionCallback cb ){
         sendDataToServer( "add_work", name, details, status, subItems, new WebRequestCallback() {

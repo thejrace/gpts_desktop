@@ -42,7 +42,7 @@ public class GWorkBoxController implements Initializable {
                 controller.setTemplateFlag(  mData.getTemplateFlag() );
                 controller.setEditFlag( true );
                 controller.setData( mData );
-                controller.setEditFormListener(new FormActionListener() {
+                controller.setFormActionListener(new FormActionListener() {
                     @Override
                     public void onFinish(Object object) {
                         GWork workData = (GWork)object;

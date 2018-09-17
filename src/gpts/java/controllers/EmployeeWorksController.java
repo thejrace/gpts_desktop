@@ -44,7 +44,7 @@ public class EmployeeWorksController extends BaseContentController implements In
                 loader.setLocation(getClass().getResource("/gpts/res/fxml/forms/work_form.fxml"));
                 ScrollPane ui  = loader.load();
                 GWorkFormController controller = loader.getController();
-                controller.setAddFormListener(new FormActionListener() {
+                controller.setFormActionListener(new FormActionListener() {
                     @Override
                     public void onFinish(Object object) {
                         GWork workData = (GWork)object;
