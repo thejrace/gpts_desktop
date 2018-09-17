@@ -1,10 +1,7 @@
 /* Gitaş - Obarey Inc 2018 */
 package gpts.java.controllers;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXTextArea;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import gpts.java.FormValidation;
 import gpts.java.GWork;
 import gpts.java.GWorkSubItem;
@@ -19,6 +16,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -53,6 +51,22 @@ public class GWorkFormController extends PopupFormBaseController implements Init
     @FXML private Label uiSummaryDetailsLbl;
     @FXML private VBox uiSummarySubItemsContainer;
     @FXML private JFXButton uiDeleteBtn;
+
+    @FXML private JFXTextField uiEmpSearchInput;
+    @FXML private JFXButton uiEmpSearchBtn;
+    @FXML private VBox uiEmpSearchResultsContainer;
+    @FXML private JFXComboBox uiEmpGroupInput;
+    @FXML private JFXButton uiEmpGroupSelectBtn;
+    @FXML private Label uiRightFormHeaderLbl;
+    @FXML private JFXCheckBox uiPeriodicCheckbox;
+    @FXML private DatePicker uiDueDateInput;
+    @FXML private JFXTextField uiDueDateHoursInput;
+    @FXML private JFXTextField uiDueDateMinsInput;
+
+    @FXML private HBox uiRightFormPeriodicContainer;
+    @FXML private JFXTextField uiPeriodicValInput;
+    @FXML private JFXComboBox uiPeriodicValComboBox;
+    @FXML private JFXButton uiDefineTaskFinalBtn;
 
     // GWork status list, has to same with the server-side one
     private String[] mStatusList = { "Aktif", "Tamamlandı", "Süre Aşımı", "İptal" };
@@ -180,6 +194,11 @@ public class GWorkFormController extends PopupFormBaseController implements Init
         uiSelectBtn.setOnMouseClicked( ev -> {
             fillForm();
             uiTabPane.getSelectionModel().select(tabDetails);
+        });
+
+        /* definiton periodic def checkbox */
+        uiPeriodicCheckbox.setOnMouseClicked( ev -> {
+            uiRightFormPeriodicContainer.setVisible(uiPeriodicCheckbox.isSelected());
         });
     }
 

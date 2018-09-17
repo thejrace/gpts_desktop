@@ -122,6 +122,7 @@ public class GWork {
     }
 
     public void addTemplate( String name, String details, Map<Integer, GWorkSubItemBox> subItems, ActionCallback cb ){
+        mTemplateFlag = true;
         sendDataToServer("add_work_template", name, details, 0, subItems, new WebRequestCallback() {
             @Override
             public void onFinish(JSONObject output) {
@@ -130,6 +131,7 @@ public class GWork {
                     Platform.runLater(() -> {
                         mName = name;
                         mDetails = details;
+                        mID = Integer.valueOf(output.getString("data"));
                         cb.onSuccess( output.getString("data") );
                     });
                 } else {
@@ -142,7 +144,9 @@ public class GWork {
             }
         }, cb );
     }
+
     public void editTemplate( String name, String details, Map<Integer, GWorkSubItemBox> subItems, ActionCallback cb ){
+        mTemplateFlag = true;
         sendDataToServer("edit_work_template", name, details, 0, subItems, new WebRequestCallback() {
             @Override
             public void onFinish(JSONObject output) {

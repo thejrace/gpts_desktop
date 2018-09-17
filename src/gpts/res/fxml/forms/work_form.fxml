@@ -8,6 +8,7 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
@@ -226,14 +227,21 @@
                                     <VBox prefHeight="200.0" prefWidth="350.0" spacing="15.0">
                                        <children>
                                           <Label fx:id="uiRightFormHeaderLbl" styleClass="ctext-white" text="Veli Konstantin iş tanımlama." />
-                                          <JFXCheckBox fx:id="uiPeriodicCheckbox" checkedColor="#d314e1" styleClass="text-field-popup-style" text="Periyodik" />
+                                          <Label layoutX="10.0" layoutY="10.0" styleClass="ctext-white" text="Tamamlanma süresi ( Zorunlu değil. )" />
                                           <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="43.0" prefWidth="200.0" spacing="10.0">
                                              <children>
-                                                <JFXTextField fx:id="uiTimeLengthValInput" prefHeight="25.0" prefWidth="103.0" promptText="Süre" styleClass="text-field-popup-style" />
-                                                <JFXComboBox fx:id="uiTimeLengthValComboBox" promptText="Aralık" styleClass="text-field-popup-style" />
-                                                <Label layoutX="10.0" layoutY="14.0" styleClass="ctext-white" text="tamamlanma süresi." />
+                                                <DatePicker fx:id="uiDueDateInput" styleClass="text-field-popup-style" />
+                                                <JFXTextField fx:id="uiDueDateHoursInput" labelFloat="true" prefColumnCount="2" prefHeight="25.0" prefWidth="40.0" promptText="Saat" styleClass="text-field-popup-style" />
+                                                <JFXTextField fx:id="uiDueDateMinutesInput" labelFloat="true" layoutX="172.0" layoutY="12.0" prefColumnCount="2" prefWidth="40.0" promptText="Dakika" styleClass="text-field-popup-style" />
                                              </children>
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
                                           </HBox>
+                                          <JFXCheckBox fx:id="uiPeriodicCheckbox" checkedColor="#d314e1" styleClass="text-field-popup-style" text="Periyodik">
+                                             <VBox.margin>
+                                                <Insets top="15.0" />
+                                             </VBox.margin></JFXCheckBox>
                                           <HBox fx:id="uiRightFormPeriodicContainer" alignment="CENTER_LEFT" prefWidth="200.0" spacing="10.0" visible="false">
                                              <children>
                                                 <Label styleClass="ctext-white" text="Her" />
