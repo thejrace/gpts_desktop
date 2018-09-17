@@ -15,6 +15,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/*
+*  GWork class is used for both "actual works" and "work templates"
+*  Essentially both types are the same but on work templates onlt 'name', 'details' and 'subItems'
+*  props are used.
+*
+* */
+
 public class GWork {
 
     public static int STATUS_ACTIVE = 0,
@@ -26,6 +33,8 @@ public class GWork {
     private int mID, mStatus;
     private double mPercentageCompleted;
     private String mName, mDetails, mReturnText, mDateAdded = "", mDueDate = "Yok", mDateLastModified = "";
+
+    private String mSubItemsEncoded = ""; // used to send subItem data to server as an encodedSTring
     private ArrayList<GWorkSubItem> mSubItems = new ArrayList<>();
 
     public GWork(){
@@ -91,28 +100,18 @@ public class GWork {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                GWorkSubItem tempSubItem;
-                ArrayList<String> subItemsSerialized = new ArrayList<>();
-                for (Map.Entry<Integer, GWorkSubItemBox> entry : subItems.entrySet()) {
-                    // get form data and validate
-                    entry.getValue().fetchDataFromForm();
-                    tempSubItem = entry.getValue().getData();
-                    mSubItems.add( tempSubItem );
-                    if( !tempSubItem.validate() ){
-                        mReturnText = tempSubItem.getReturnText();
-                        Platform.runLater( () -> cb.onError(ActionStatusCode.VALIDATION_ERROR) );
-                        return;
-                    }
-                    subItemsSerialized.add( tempSubItem.serialize() );
+                if( !encodeSubItems( subItems ) ){
+                    Platform.runLater( () -> cb.onError(ActionStatusCode.VALIDATION_ERROR) );
+                    return;
                 }
-                System.out.println( Common.stringArrayListJoin(subItemsSerialized, "|"));
+                System.out.println( mSubItemsEncoded );
                 // send request
                 Map<String, String> params = new HashMap<>();
                 params.put("item_id", String.valueOf(mID));
                 params.put("name", name );
                 params.put("details", details );
                 params.put("status", String.valueOf(status) );
-                params.put("sub_items_encoded", Common.stringArrayListJoin(subItemsSerialized, "|"));
+                params.put("sub_items_encoded", mSubItemsEncoded );
                 params.put("req", req );
                 WebRequest req = new WebRequest( WebRequest.SERVICE_URL, params );
                 req.action(wcb);
@@ -123,7 +122,11 @@ public class GWork {
     }
 
     public void addTemplate( String name, String details, Map<Integer, GWorkSubItemBox> subItems, ActionCallback cb ){
-
+        if( !encodeSubItems( subItems ) ){
+            Platform.runLater( () -> cb.onError(ActionStatusCode.VALIDATION_ERROR) );
+            return;
+        }
+        System.out.println( mSubItemsEncoded );
     }
     public void editTemplate( String name, String details, Map<Integer, GWorkSubItemBox> subItems, ActionCallback cb ){
 
@@ -186,7 +189,7 @@ public class GWork {
                             for( GWorkSubItem subItem : mSubItems ){
                                 if(String.valueOf(subItem.getStepOrder()).equals( idObject.getString("step_order") ) ){
                                     subItem.setID( Integer.valueOf(idObject.getString("id")) );
-                                    subItem.setStatus( Integer.valueOf(idObject.getString("status")));
+                                    subItem.setStatus( idObject.getInt("status"));
                                     break;
                                 }
                             }
@@ -202,6 +205,24 @@ public class GWork {
                 }
             }
         } ,cb );
+    }
+
+    private boolean encodeSubItems( Map<Integer, GWorkSubItemBox> subItems ){
+        GWorkSubItem tempSubItem;
+        ArrayList<String> subItemsSerialized = new ArrayList<>();
+        for (Map.Entry<Integer, GWorkSubItemBox> entry : subItems.entrySet()) {
+            // get form data and validate
+            entry.getValue().fetchDataFromForm();
+            tempSubItem = entry.getValue().getData();
+            mSubItems.add( tempSubItem );
+            if( !tempSubItem.validate() ){
+                mReturnText = tempSubItem.getReturnText();
+                return false;
+            }
+            subItemsSerialized.add( tempSubItem.serialize() );
+        }
+        mSubItemsEncoded = Common.stringArrayListJoin(subItemsSerialized, "|");
+        return true;
     }
 
     /*

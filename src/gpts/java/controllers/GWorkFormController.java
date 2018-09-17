@@ -249,6 +249,7 @@ public class GWorkFormController extends PopupFormBaseController implements Init
 
     public void setTemplateFlag( boolean val ){
         mTemplateFlag = val;
+        if( mTemplateFlag ) switchToTemplateAddMode();
     }
 
     public void setData( GWork data ){
@@ -284,6 +285,12 @@ public class GWorkFormController extends PopupFormBaseController implements Init
         for( int k = 0; k < mSelectedTemplate.getSubItems().size(); k++ ){
             addSubItem( new GWorkSubItemBox( mSelectedTemplate.getSubItems().get(k) ) );
         }
+    }
+
+    private void switchToTemplateAddMode(){
+        uiTabPane.getTabs().remove( tabDownloadProfile );
+        uiTabPane.getTabs().remove( tabDefinitions );
+        uiWorkStatusInput.setVisible(false);
     }
 
     private void switchToPreviewMod(){
