@@ -2,10 +2,7 @@
 package gpts.java.controllers;
 
 import com.jfoenix.controls.*;
-import gpts.java.FormValidation;
-import gpts.java.GWork;
-import gpts.java.GWorkSubItem;
-import gpts.java.ValidationInput;
+import gpts.java.*;
 import gpts.java.interfaces.ActionCallback;
 import gpts.java.interfaces.FormActionListener;
 import gpts.java.interfaces.NoParamCallback;
@@ -63,10 +60,12 @@ public class GWorkFormController extends PopupFormBaseController implements Init
     @FXML private JFXTextField uiDueDateHoursInput;
     @FXML private JFXTextField uiDueDateMinsInput;
 
-    @FXML private HBox uiRightFormPeriodicContainer;
-    @FXML private JFXTextField uiPeriodicValInput;
-    @FXML private JFXComboBox uiPeriodicValComboBox;
-    @FXML private JFXButton uiDefineTaskFinalBtn;
+    @FXML private VBox uiRightFormPeriodicContainer;
+    @FXML private JFXTextField uiPeriodicDueDateInput;
+    @FXML private JFXComboBox uiPeriodicDueDateComboBox;
+    @FXML private JFXTextField uiPeriodicIntervalInput;
+    @FXML private JFXComboBox uiPeriodicIntervalComboBox;
+    @FXML private JFXButton uiDefineWorkBtn;
 
     // GWork status list, has to same with the server-side one
     private String[] mStatusList = { "Aktif", "Tamamlandı", "Süre Aşımı", "İptal" };
@@ -84,6 +83,9 @@ public class GWorkFormController extends PopupFormBaseController implements Init
     private GWork mSelectedTemplate;
     // action listener
     private FormActionListener mFormActionListener;
+    // selected Employee for definitions
+    private Employee mSelectedEmployee;
+    private EmployeeGroup mSelectedEmployeeGroup;
 
     @Override
     public void initialize(URL url, ResourceBundle rb ){
@@ -96,8 +98,7 @@ public class GWorkFormController extends PopupFormBaseController implements Init
         uiPopupHeaderLbl.setText("Yeni İş");
 
         // fill status combobox
-        for( int k = 0; k < mStatusList.length; k++ ) uiWorkStatusInput.getItems().add( mStatusList[k] );
-        uiWorkStatusInput.getSelectionModel().select(0);
+        Common.fillComboBox( mStatusList, uiWorkStatusInput, 0 );
 
         /* add new subItem actions  */
         uiNewSubItemBtn.setOnMouseClicked( ev -> {
@@ -154,17 +155,11 @@ public class GWorkFormController extends PopupFormBaseController implements Init
                     for( int k = 0; k < outputLength; k++ ){
                         JSONObject template = output.getJSONObject(k);
                         // result UI action
-                        Label lbl = new Label( template.getString("name"));
-                        lbl.getStyleClass().add("ctext-white");
-                        JFXButton btn = new JFXButton( "Özet" );
-                        btn.getStyleClass().addAll("content-btn", "content-btn-warning");
-                        HBox cont = new HBox( lbl, btn );
-                        cont.setSpacing(10);
-                        cont.setAlignment(Pos.CENTER);
+                        SearchResultBox cont = new SearchResultBox(template.getString("name"), "Özet");
                         Platform.runLater(()->{
                             uiSearchContainer.getChildren().add(cont);
                             // display summary of work template action
-                            btn.setOnMouseClicked( ev -> {
+                            cont.getBtn().setOnMouseClicked( ev -> {
                                 // we save selected template to use it to fill form when
                                 // user is decided to use it
                                 mSelectedTemplate = new GWork();
@@ -200,6 +195,80 @@ public class GWorkFormController extends PopupFormBaseController implements Init
         uiPeriodicCheckbox.setOnMouseClicked( ev -> {
             uiRightFormPeriodicContainer.setVisible(uiPeriodicCheckbox.isSelected());
         });
+
+        /* search employee */
+        uiEmpSearchBtn.setOnMouseClicked( ev -> {
+            FormValidation validation = new FormValidation();
+            if( !validation.checkInputs( new ValidationInput[]{
+                    new ValidationInput("Arama", uiEmpSearchInput.getText(), FormValidation.CHECK_REQ )
+            }) ) return;
+            uiEmpSearchResultsContainer.getChildren().clear();
+            Employee.search(uiEmpSearchInput.getText(), new ReadJACallback() {
+                @Override
+                public void onFinish(JSONArray output) {
+                    int outputLength = output.length();
+                    if( outputLength > 0 ){
+                        Platform.runLater( () -> { uiSelectBtn.setDisable(false); });
+                    } else {
+                        Platform.runLater( () -> { uiSelectBtn.setDisable(true); });
+                    }
+                    // list found results
+                    for( int k = 0; k < outputLength; k++ ){
+                        JSONObject employee = output.getJSONObject(k);
+                        // result UI action
+                        SearchResultBox cont = new SearchResultBox(employee.getString("name"), "Seç");
+                        Platform.runLater(()->{
+                            uiEmpSearchResultsContainer.getChildren().add(cont);
+                            // display summary of work template action
+                            cont.getBtn().setOnMouseClicked( ev -> {
+                                mSelectedEmployeeGroup = null;
+                                mSelectedEmployee = new Employee( employee.getString("id") );
+                                uiRightFormHeaderLbl.setText("Seçili Personel/Grup: " + employee.getString("name") );
+                            });
+                        });
+                    }
+                }
+            });
+        });
+
+        /* fill def groups combobox */
+        Common.readStaticDataJA("user_groups", new ReadJACallback() {
+            @Override
+            public void onFinish(JSONArray output) {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        Common.fillComboBox( output, uiEmpGroupInput, "name", 0 );
+                    }
+                });
+            }
+        });
+
+        /* select emp group  */
+        uiEmpGroupSelectBtn.setOnMouseClicked( ev -> {
+            mSelectedTemplate = null;
+            mSelectedEmployeeGroup = new EmployeeGroup( uiEmpGroupInput.getSelectionModel().getSelectedItem().toString() );
+            uiRightFormHeaderLbl.setText("Seçili Personel/Grup: " + mSelectedEmployeeGroup.getName());
+        });
+
+        /* fill interval inputs */
+        Common.fillComboBox( Common.TIMEINTERVAL_LIST, uiPeriodicIntervalComboBox, 0 );
+        Common.fillComboBox( Common.TIMEINTERVAL_LIST, uiPeriodicDueDateComboBox, 0 );
+
+        /* define work */
+        uiDefineWorkBtn.setOnMouseClicked( ev -> {
+            GWorkDefinitionData defData = new GWorkDefinitionData();
+            defData.setPeriodicFlag( uiPeriodicCheckbox.isSelected() );
+            if( defData.getPeriodicFlag() ){
+                defData.setPDueDate( Integer.valueOf(uiPeriodicDueDateInput.getText()), uiPeriodicDueDateComboBox.getSelectionModel().getSelectedIndex() );
+                defData.setPPeriod( Integer.valueOf(uiPeriodicIntervalInput.getText()), uiPeriodicIntervalComboBox.getSelectionModel().getSelectedIndex() );
+
+            } else {
+                defData.setDueDate( uiDueDateInput.getValue().toString(), uiDueDateHoursInput.getText(), uiDueDateMinsInput.getText() );
+            }
+            System.out.println(defData.toString());
+        });
+
     }
 
     /*
@@ -330,5 +399,22 @@ public class GWorkFormController extends PopupFormBaseController implements Init
             PopupLoader.hide();
         }
     };
+
+    class SearchResultBox extends HBox {
+        private JFXButton mBtn;
+        public SearchResultBox( String label, String btnlbl ){
+            super();
+            Label lbl = new Label( label );
+            lbl.getStyleClass().add("ctext-white");
+            mBtn = new JFXButton( btnlbl );
+            mBtn.getStyleClass().addAll("content-btn", "content-btn-warning");
+            getChildren().addAll( lbl, mBtn );
+            setSpacing(10);
+            setAlignment(Pos.CENTER);
+        }
+        public JFXButton getBtn(){
+            return mBtn;
+        }
+    }
 
 }

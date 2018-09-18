@@ -1,6 +1,7 @@
 /* Gitaş - Obarey Inc 2018 */
 package gpts.java;
 
+import com.jfoenix.controls.JFXComboBox;
 import gpts.java.interfaces.ReadJACallback;
 import gpts.java.interfaces.ReadJOCallback;
 import gpts.java.interfaces.WebRequestCallback;
@@ -20,6 +21,8 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Common {
+
+    public static String[] TIMEINTERVAL_LIST = { "Dakika", "Saat", "Gün", "Ay", "Yıl" };
 
     public static boolean writeStaticData( String file, String content ){
         try{
@@ -121,11 +124,22 @@ public class Common {
         return hostname;
     }
 
+    // YYYY-MM-DD HH:MM:SS to DD-MM-YYYY HH:MM:SS
     public static String revDatetime( String dt ){
         try {
             String date = dt.substring(0, 10);
             String[] exp = date.split("-");
             return exp[2]+"-"+exp[1]+"-"+exp[0]+ " " + dt.substring(11);
+        } catch( StringIndexOutOfBoundsException e ){
+            return dt;
+        }
+    }
+
+    // DD-MM-YYYY to YYYY-MM-DD
+    public static String revDateServer( String dt, String delim ){
+        try {
+            String[] exp = dt.split(delim);
+            return exp[2]+"-"+exp[1]+"-"+exp[0];
         } catch( StringIndexOutOfBoundsException e ){
             return dt;
         }
@@ -176,5 +190,13 @@ public class Common {
         return dateFormat.format(cal.getTime());
     }
 
+    public static void fillComboBox(String[] vals, JFXComboBox comboBox, int selectIndex ){
+        for( int k = 0; k < vals.length; k++ ) comboBox.getItems().add( vals[k] );
+        if( selectIndex >= 0 ) comboBox.getSelectionModel().select(selectIndex);
+    }
+    public static void fillComboBox( JSONArray vals, JFXComboBox comboBox, String valKey, int selectIndex ){
+        for( int k = 0; k < vals.length(); k++ ) comboBox.getItems().add( vals.getJSONObject(k).getString(valKey) );
+        if( selectIndex >= 0 ) comboBox.getSelectionModel().select(selectIndex);
+    }
 }
 

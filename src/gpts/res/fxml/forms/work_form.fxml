@@ -187,21 +187,7 @@
                                                 <String fx:value="content-btn-default" />
                                              </styleClass>
                                           </JFXButton>
-                                          <VBox fx:id="uiEmpSearchResultsContainer" prefWidth="250.0">
-                                             <children>
-                                                <HBox alignment="CENTER" prefWidth="250.0" spacing="10.0">
-                                                   <children>
-                                                      <Label styleClass="ctext-white" text="Veli Konstantin" />
-                                                      <JFXButton text="Seç">
-                                                         <styleClass>
-                                                            <String fx:value="content-btn" />
-                                                            <String fx:value="content-btn-warning" />
-                                                         </styleClass>
-                                                      </JFXButton>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                          </VBox>
+                                          <VBox fx:id="uiEmpSearchResultsContainer" prefWidth="250.0" />
                                           <Label layoutX="386.0" layoutY="35.0" styleClass="ctext-gitas" text="Personel Grubuna Tanımla">
                                              <VBox.margin>
                                                 <Insets bottom="10.0" top="25.0" />
@@ -226,13 +212,13 @@
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="350.0" spacing="15.0">
                                        <children>
-                                          <Label fx:id="uiRightFormHeaderLbl" styleClass="ctext-white" text="Veli Konstantin iş tanımlama." />
-                                          <Label layoutX="10.0" layoutY="10.0" styleClass="ctext-white" text="Tamamlanma süresi ( Zorunlu değil. )" />
+                                          <Label fx:id="uiRightFormHeaderLbl" styleClass="ctext-white" text="Seçili Personel/Grup: SEÇİLMEDİ" />
+                                          <Label prefHeight="34.0" prefWidth="306.0" styleClass="ctext-white" text="Tamamlanma tarihi. Periyodik olmayan tanımlamalar için. ( Boş bırakılabilir. )" wrapText="true" />
                                           <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="43.0" prefWidth="200.0" spacing="10.0">
                                              <children>
                                                 <DatePicker fx:id="uiDueDateInput" styleClass="text-field-popup-style" />
-                                                <JFXTextField fx:id="uiDueDateHoursInput" labelFloat="true" prefColumnCount="2" prefHeight="25.0" prefWidth="40.0" promptText="Saat" styleClass="text-field-popup-style" />
-                                                <JFXTextField fx:id="uiDueDateMinutesInput" labelFloat="true" layoutX="172.0" layoutY="12.0" prefColumnCount="2" prefWidth="40.0" promptText="Dakika" styleClass="text-field-popup-style" />
+                                                <JFXTextField fx:id="uiDueDateHoursInput" labelFloat="true" prefColumnCount="2" prefHeight="25.0" prefWidth="40.0" promptText="Saat" styleClass="text-field-popup-style" text="00" />
+                                                <JFXTextField fx:id="uiDueDateMinsInput" labelFloat="true" layoutX="172.0" layoutY="12.0" prefColumnCount="2" prefWidth="40.0" promptText="Dakika" styleClass="text-field-popup-style" text="00" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets />
@@ -242,15 +228,29 @@
                                              <VBox.margin>
                                                 <Insets top="15.0" />
                                              </VBox.margin></JFXCheckBox>
-                                          <HBox fx:id="uiRightFormPeriodicContainer" alignment="CENTER_LEFT" prefWidth="200.0" spacing="10.0" visible="false">
+                                          <VBox fx:id="uiRightFormPeriodicContainer" spacing="20.0" visible="false">
                                              <children>
-                                                <Label styleClass="ctext-white" text="Her" />
-                                                <JFXTextField fx:id="uiPeriodicValInput" prefHeight="25.0" prefWidth="103.0" promptText="Süre" styleClass="text-field-popup-style" />
-                                                <JFXComboBox fx:id="uiPeriodicValComboBox" promptText="Aralık" styleClass="text-field-popup-style" />
-                                                <Label layoutX="10.0" layoutY="14.0" styleClass="ctext-white" text="'da bir tanımla" />
+                                                <HBox alignment="CENTER_LEFT" prefWidth="200.0" spacing="10.0">
+                                                   <children>
+                                                      <JFXTextField fx:id="uiPeriodicDueDateInput" labelFloat="true" prefHeight="25.0" prefWidth="103.0" promptText="Süre" styleClass="text-field-popup-style" text="00" />
+                                                      <JFXComboBox fx:id="uiPeriodicDueDateComboBox" promptText="Aralık" styleClass="text-field-popup-style" />
+                                                      <Label layoutX="10.0" layoutY="14.0" styleClass="ctext-white" text="tamamlanma süresi. " />
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefWidth="200.0" spacing="10.0">
+                                                   <children>
+                                                      <Label styleClass="ctext-white" text="Her" />
+                                                      <JFXTextField fx:id="uiPeriodicIntervalInput" labelFloat="true" prefHeight="25.0" prefWidth="103.0" promptText="Süre" styleClass="text-field-popup-style" text="00" />
+                                                      <JFXComboBox fx:id="uiPeriodicIntervalComboBox" promptText="Aralık" styleClass="text-field-popup-style" />
+                                                      <Label layoutX="10.0" layoutY="14.0" styleClass="ctext-white" text="'da bir tanımla" />
+                                                   </children>
+                                                </HBox>
                                              </children>
-                                          </HBox>
-                                          <JFXButton fx:id="uiDefineTaskFinalBtn" text="Tanımla">
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                          </VBox>
+                                          <JFXButton fx:id="uiDefineWorkBtn" text="Tanımla">
                                              <styleClass>
                                                 <String fx:value="content-btn" />
                                                 <String fx:value="content-btn-success" />

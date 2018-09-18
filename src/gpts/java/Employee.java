@@ -2,6 +2,7 @@
 package gpts.java;
 
 import gpts.java.interfaces.ActionCallback;
+import gpts.java.interfaces.ReadJACallback;
 import gpts.java.interfaces.WebRequestCallback;
 import gpts.java.ui.PopupLoader;
 import javafx.application.Platform;
@@ -107,6 +108,34 @@ public class Employee {
                     e.printStackTrace();
                 }
                 cb.onFinish( new JSONObject() );
+            }
+        });
+        th.setDaemon(true);
+        th.start();
+    }
+
+    public void defineWork( String workTemplateID, GWorkDefinitionData input ){
+
+    }
+
+    public static void search( String keyword, ReadJACallback cb ){
+        Thread th = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Map<String, String> params = new HashMap<>();
+                params.put("keyword", keyword );
+                params.put("req", "employees_search");
+                WebRequest request = new WebRequest( WebRequest.SERVICE_URL, params );
+                request.action(new WebRequestCallback() {
+                    @Override
+                    public void onFinish(JSONObject output) {
+                        try {
+                            cb.onFinish(output.getJSONArray("data"));
+                        } catch( JSONException e ){
+                            e.printStackTrace();
+                        }
+                    }
+                });
             }
         });
         th.setDaemon(true);

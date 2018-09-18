@@ -19,6 +19,10 @@ public class EmployeeGroup {
 
     }
 
+    public EmployeeGroup( String name ){
+        mName = name;
+    }
+
     public EmployeeGroup(JSONObject data ){
         try {
             mName = data.getString("name");
