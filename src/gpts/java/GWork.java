@@ -246,7 +246,7 @@ public class GWork {
         } ,cb );
     }
 
-    private boolean encodeSubItems( Map<Integer, GWorkSubItemBox> subItems ){
+    public boolean encodeSubItems( Map<Integer, GWorkSubItemBox> subItems ){
         GWorkSubItem tempSubItem;
         ArrayList<String> subItemsSerialized = new ArrayList<>();
         for (Map.Entry<Integer, GWorkSubItemBox> entry : subItems.entrySet()) {
@@ -341,5 +341,8 @@ public class GWork {
     }
     public boolean getTemplateFlag(){
         return mTemplateFlag;
+    }
+    public String getSubItemsEncoded(){
+        return mSubItemsEncoded;
     }
 }

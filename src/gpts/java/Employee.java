@@ -9,6 +9,7 @@ import javafx.application.Platform;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import javax.swing.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -114,9 +115,7 @@ public class Employee {
         th.start();
     }
 
-    public void defineWork( String workTemplateID, GWorkDefinitionData input ){
 
-    }
 
     public static void search( String keyword, ReadJACallback cb ){
         Thread th = new Thread(new Runnable() {

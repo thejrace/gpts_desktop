@@ -66,6 +66,9 @@ public class GWorkFormController extends PopupFormBaseController implements Init
     @FXML private JFXTextField uiPeriodicIntervalInput;
     @FXML private JFXComboBox uiPeriodicIntervalComboBox;
     @FXML private JFXButton uiDefineWorkBtn;
+    @FXML private DatePicker uiStartDateInput;
+    @FXML private JFXTextField uiStartDateHoursInput;
+    @FXML private JFXTextField uiStartDateMinsInput;
 
     // GWork status list, has to same with the server-side one
     private String[] mStatusList = { "Aktif", "Tamamlandı", "Süre Aşımı", "İptal" };
@@ -246,7 +249,7 @@ public class GWorkFormController extends PopupFormBaseController implements Init
 
         /* select emp group  */
         uiEmpGroupSelectBtn.setOnMouseClicked( ev -> {
-            mSelectedTemplate = null;
+            mSelectedEmployee = null;
             mSelectedEmployeeGroup = new EmployeeGroup( uiEmpGroupInput.getSelectionModel().getSelectedItem().toString() );
             uiRightFormHeaderLbl.setText("Seçili Personel/Grup: " + mSelectedEmployeeGroup.getName());
         });
@@ -257,16 +260,63 @@ public class GWorkFormController extends PopupFormBaseController implements Init
 
         /* define work */
         uiDefineWorkBtn.setOnMouseClicked( ev -> {
+            outputError("");
             GWorkDefinitionData defData = new GWorkDefinitionData();
             defData.setPeriodicFlag( uiPeriodicCheckbox.isSelected() );
-            if( defData.getPeriodicFlag() ){
-                defData.setPDueDate( Integer.valueOf(uiPeriodicDueDateInput.getText()), uiPeriodicDueDateComboBox.getSelectionModel().getSelectedIndex() );
-                defData.setPPeriod( Integer.valueOf(uiPeriodicIntervalInput.getText()), uiPeriodicIntervalComboBox.getSelectionModel().getSelectedIndex() );
+            try {
+                defData.setStartDate( uiStartDateInput.getValue().toString(), uiStartDateHoursInput.getText(), uiStartDateMinsInput.getText() );
+            } catch( NullPointerException e ){
 
-            } else {
-                defData.setDueDate( uiDueDateInput.getValue().toString(), uiDueDateHoursInput.getText(), uiDueDateMinsInput.getText() );
             }
-            System.out.println(defData.toString());
+            if( defData.getPeriodicFlag() ){
+                // required
+                try {
+                    defData.setPPeriod( Integer.valueOf(uiPeriodicIntervalInput.getText()), uiPeriodicIntervalComboBox.getSelectionModel().getSelectedIndex() );
+                } catch( NullPointerException | NumberFormatException e ){
+                    outputError("Tanımlanma sıklığı boş bırakılamaz.");
+                    return;
+                }
+                // optional
+                try {
+                    defData.setPDueDate( Integer.valueOf(uiPeriodicDueDateInput.getText()), uiPeriodicDueDateComboBox.getSelectionModel().getSelectedIndex() );
+                } catch( NullPointerException e ){
+
+                }
+            } else {
+                // optional
+                try {
+                    defData.setDueDate( uiDueDateInput.getValue().toString(), uiDueDateHoursInput.getText(), uiDueDateMinsInput.getText() );
+                } catch( NullPointerException e ){
+                    //e.printStackTrace();
+                }
+            }
+            if( mSelectedEmployee != null ){
+                defData.defineToEmpOrGroup(false, mSelectedTemplate.getID(), mSelectedTemplate, new ActionCallback() {
+                    @Override
+                    public void onSuccess(String... params) {
+
+                    }
+
+                    @Override
+                    public void onError(int type) {
+
+                    }
+                });
+            } else if( mSelectedEmployeeGroup != null ){
+                defData.defineToEmpOrGroup(true, mSelectedTemplate.getID(), mSelectedTemplate, new ActionCallback() {
+                    @Override
+                    public void onSuccess(String... params) {
+
+                    }
+
+                    @Override
+                    public void onError(int type) {
+
+                    }
+                });
+            } else {
+                outputError("Tanımlanacak Personel veya Personel Grubu seçilmedi.");
+            }
         });
 
     }

@@ -210,9 +210,17 @@
                                           </VBox>
                                        </children>
                                     </VBox>
-                                    <VBox prefHeight="200.0" prefWidth="350.0" spacing="15.0">
+                                    <VBox prefWidth="350.0" spacing="15.0">
                                        <children>
                                           <Label fx:id="uiRightFormHeaderLbl" styleClass="ctext-white" text="Seçili Personel/Grup: SEÇİLMEDİ" />
+                                          <Label layoutX="10.0" layoutY="42.0" prefHeight="34.0" prefWidth="306.0" styleClass="ctext-white" text="Başlangıç tarihi. Boş bırakılırsa hemen tanımlanır." wrapText="true" />
+                                          <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="91.0" prefWidth="200.0" spacing="10.0">
+                                             <children>
+                                                <DatePicker fx:id="uiStartDateInput" styleClass="text-field-popup-style" />
+                                                <JFXTextField fx:id="uiStartDateHoursInput" labelFloat="true" prefColumnCount="2" prefHeight="25.0" prefWidth="40.0" promptText="Saat" styleClass="text-field-popup-style" text="00" />
+                                                <JFXTextField fx:id="uiStartDateMinsInput" labelFloat="true" layoutX="172.0" layoutY="12.0" prefColumnCount="2" prefWidth="40.0" promptText="Dakika" styleClass="text-field-popup-style" text="00" />
+                                             </children>
+                                          </HBox>
                                           <Label prefHeight="34.0" prefWidth="306.0" styleClass="ctext-white" text="Tamamlanma tarihi. Periyodik olmayan tanımlamalar için. ( Boş bırakılabilir. )" wrapText="true" />
                                           <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="43.0" prefWidth="200.0" spacing="10.0">
                                              <children>
@@ -232,7 +240,7 @@
                                              <children>
                                                 <HBox alignment="CENTER_LEFT" prefWidth="200.0" spacing="10.0">
                                                    <children>
-                                                      <JFXTextField fx:id="uiPeriodicDueDateInput" labelFloat="true" prefHeight="25.0" prefWidth="103.0" promptText="Süre" styleClass="text-field-popup-style" text="00" />
+                                                      <JFXTextField fx:id="uiPeriodicDueDateInput" labelFloat="true" prefHeight="25.0" prefWidth="103.0" promptText="Süre" styleClass="text-field-popup-style" />
                                                       <JFXComboBox fx:id="uiPeriodicDueDateComboBox" promptText="Aralık" styleClass="text-field-popup-style" />
                                                       <Label layoutX="10.0" layoutY="14.0" styleClass="ctext-white" text="tamamlanma süresi. " />
                                                    </children>
@@ -240,7 +248,7 @@
                                                 <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefWidth="200.0" spacing="10.0">
                                                    <children>
                                                       <Label styleClass="ctext-white" text="Her" />
-                                                      <JFXTextField fx:id="uiPeriodicIntervalInput" labelFloat="true" prefHeight="25.0" prefWidth="103.0" promptText="Süre" styleClass="text-field-popup-style" text="00" />
+                                                      <JFXTextField fx:id="uiPeriodicIntervalInput" labelFloat="true" prefHeight="25.0" prefWidth="103.0" promptText="Süre" styleClass="text-field-popup-style" />
                                                       <JFXComboBox fx:id="uiPeriodicIntervalComboBox" promptText="Aralık" styleClass="text-field-popup-style" />
                                                       <Label layoutX="10.0" layoutY="14.0" styleClass="ctext-white" text="'da bir tanımla" />
                                                    </children>
