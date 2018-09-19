@@ -27,21 +27,7 @@ public class GTask {
     }
 
     public void downloadData( WebRequestCallback cb ){
-        Thread th = new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-
-                try {
-                    Thread.sleep(500);
-                } catch( InterruptedException e ){
-                    e.printStackTrace();
-                }
-                cb.onFinish( new JSONObject() );
-            }
-        });
-        th.setDaemon(true);
-        th.start();
+        System.out.println("buraları değiştirdim şimdi bne nolcak");
     }
 
     public String getName(){
