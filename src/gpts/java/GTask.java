@@ -23,7 +23,7 @@ public class GTask {
     }
 
     public GTask(){
-
+        System.out.println("sealm beybe");
     }
 
     public void downloadData( WebRequestCallback cb ){
