@@ -16,7 +16,7 @@ import java.util.Map;
 public class Employee {
 
     private String mName, mNick, mEmail, mID, mGroup, mPhone1, mPhone2;
-    private int mTaskCount, mTaskStatus;
+    private int mWorkStatus, mWorkCount;
     private String mReturnText;
 
     // empty constructor
@@ -35,8 +35,8 @@ public class Employee {
             mEmail = data.getString("email");
             mID = data.getString("id");
             mGroup = data.getString("employee_group");
-            mTaskCount = data.getInt("task_count");
-            mTaskStatus = data.getInt("task_status");
+            mWorkStatus = data.getInt("work_status");
+            mWorkCount = data.getInt("work_count");
         } catch( JSONException e ){
             e.printStackTrace();
         }
@@ -162,11 +162,11 @@ public class Employee {
     public String getPhone2(){
         return mPhone2;
     }
-    public int getTaskCount(){
-        return mTaskCount;
+    public int getWorkStatus(){
+        return mWorkStatus;
     }
-    public int getTaskStatus(){
-        return mTaskStatus;
+    public int getWorkCount(){
+        return mWorkCount;
     }
     public String getReturnText(){
         return mReturnText;

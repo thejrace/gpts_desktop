@@ -84,13 +84,13 @@ public class EmpBoxController implements Initializable {
         mEmployee = employee;
         uiEmpName.setText( employee.getName() );
         uiEmpGroup.setText( employee.getGroup() );
-        uiEmpTaskCount.setText( "5" );
+        uiEmpTaskCount.setText( String.valueOf(employee.getWorkCount()) );
         uiLed.getStyleClass().remove(1);
-        uiLed.getStyleClass().add(mTaskStatusClasses[employee.getTaskStatus()]);
+        uiLed.getStyleClass().add(mTaskStatusClasses[employee.getWorkStatus()]);
         try {uiContainer.getStyleClass().remove(1);
 
         } catch( IndexOutOfBoundsException e ){}
-        uiContainer.getStyleClass().add(mBoxClasses[employee.getTaskStatus()]);
+        uiContainer.getStyleClass().add(mBoxClasses[employee.getWorkStatus()]);
     }
 }
 
