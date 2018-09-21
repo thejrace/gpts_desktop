@@ -214,31 +214,31 @@ public class GWork {
             public void onFinish(JSONObject output) {
                 mReturnText = output.getString(WebRequest.RETURN_TEXT);
                 if( output.getInt(WebRequest.STATUS_FLAG) == 1 ){
-                    Platform.runLater(() -> {
-                        mName = name;
-                        mDetails = details;
-                        JSONObject successData = output.getJSONObject("data");
-                        mID = Integer.valueOf(successData.getString("id"));
-                        mDateAdded = successData.getString("date_added");
-                        mStatus = status;
-                        // set added subItems IDs
-                        JSONArray subItemIDs = successData.getJSONArray("added_sub_items_data");
-                        for( int k = 0; k < subItemIDs.length(); k++ ){
-                            JSONObject idObject = subItemIDs.getJSONObject(k);
-                            for( GWorkSubItem subItem : mSubItems ){
-                                if(String.valueOf(subItem.getStepOrder()).equals( idObject.getString("step_order") ) ){
-                                    subItem.setID( Integer.valueOf(idObject.getString("id")) );
-                                    subItem.setStatus( idObject.getInt("status"));
-                                    break;
-                                }
+                    mName = name;
+                    mDetails = details;
+                    JSONObject successData = output.getJSONObject("data");
+                    mID = Integer.valueOf(successData.getString("id"));
+                    mDateAdded = successData.getString("date_added");
+                    mStatus = status;
+                    // set added subItems IDs
+                    JSONArray subItemIDs = successData.getJSONArray("added_sub_items_data");
+                    for( int k = 0; k < subItemIDs.length(); k++ ){
+                        JSONObject idObject = subItemIDs.getJSONObject(k);
+                        for( GWorkSubItem subItem : mSubItems ){
+                            if(String.valueOf(subItem.getStepOrder()).equals( idObject.getString("step_order") ) ){
+                                subItem.setID( Integer.valueOf(idObject.getString("id")) );
+                                subItem.setStatus( idObject.getInt("status"));
+                                break;
                             }
                         }
+                    }
+                    Platform.runLater(() -> {
                         cb.onSuccess( successData.getString("id") );
                     });
                 } else {
+                    // clear sub items data if there is an error
+                    mSubItems = new ArrayList<>();
                     Platform.runLater(() -> {
-                        // clear sub items data if there is an error
-                        mSubItems = new ArrayList<>();
                         cb.onError( ActionStatusCode.ERROR );
                     });
                 }
@@ -246,7 +246,7 @@ public class GWork {
         } ,cb );
     }
 
-    public boolean encodeSubItems( Map<Integer, GWorkSubItemBox> subItems ){
+    private boolean encodeSubItems( Map<Integer, GWorkSubItemBox> subItems ){
         GWorkSubItem tempSubItem;
         ArrayList<String> subItemsSerialized = new ArrayList<>();
         for (Map.Entry<Integer, GWorkSubItemBox> entry : subItems.entrySet()) {
@@ -263,6 +263,7 @@ public class GWork {
         mSubItemsEncoded = Common.stringArrayListJoin(subItemsSerialized, "|");
         return true;
     }
+
 
     /*
     *  also calculates percentage

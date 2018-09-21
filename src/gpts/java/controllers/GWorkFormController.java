@@ -291,27 +291,25 @@ public class GWorkFormController extends PopupFormBaseController implements Init
                 }
             }
             if( mSelectedEmployee != null ){
-                defData.defineToEmpOrGroup(false, mSelectedTemplate.getID(), mSelectedTemplate, new ActionCallback() {
+                defData.defineToEmpOrGroup("employee_id", mSelectedEmployee.getID(), mSelectedTemplate, new ActionCallback() {
                     @Override
                     public void onSuccess(String... params) {
-
+                        PopupLoader.showMessage(defData.getReturnText(), PopupLoader.MESSAGE_SUCCESS );
                     }
-
                     @Override
                     public void onError(int type) {
-
+                        outputError(defData.getReturnText());
                     }
                 });
             } else if( mSelectedEmployeeGroup != null ){
-                defData.defineToEmpOrGroup(true, mSelectedTemplate.getID(), mSelectedTemplate, new ActionCallback() {
+                defData.defineToEmpOrGroup("employee_group_name", mSelectedEmployeeGroup.getName(), mSelectedTemplate, new ActionCallback() {
                     @Override
                     public void onSuccess(String... params) {
-
+                        PopupLoader.showMessage(defData.getReturnText(), PopupLoader.MESSAGE_SUCCESS );
                     }
-
                     @Override
                     public void onError(int type) {
-
+                        outputError(defData.getReturnText());
                     }
                 });
             } else {
