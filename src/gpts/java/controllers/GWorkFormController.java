@@ -402,6 +402,7 @@ public class GWorkFormController extends PopupFormBaseController implements Init
         mSubItems = new HashMap<>();
         uiWorkStatusInput.getSelectionModel().select( mSelectedTemplate.getStatus());
         for( int k = 0; k < mSelectedTemplate.getSubItems().size(); k++ ){
+            System.out.println(mSelectedTemplate.getSubItems().get(k).getTemplateFlag());
             addSubItem( new GWorkSubItemBox( mSelectedTemplate.getSubItems().get(k) ) );
         }
     }

@@ -132,6 +132,7 @@ public class GWork {
                         mName = name;
                         mDetails = details;
                         mID = Integer.valueOf(output.getString("data"));
+                        for( GWorkSubItem subItem : mSubItems ) subItem.setTemplateFlag(true);
                         cb.onSuccess( output.getString("data") );
                     });
                 } else {
