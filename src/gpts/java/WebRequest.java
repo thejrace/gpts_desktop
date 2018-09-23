@@ -16,8 +16,8 @@ public class WebRequest {
     private String mURL, mOutput;
     private Map<String, String> mParams;
 
-    //public static String SERVICE_URL = "http://localhost/gpts/service.php";
-    public static String SERVICE_URL = "http://178.18.206.163/gpts_web_service/service.php";
+    public static String SERVICE_URL = "http://localhost/gpts/service.php";
+    //public static String SERVICE_URL = "http://178.18.206.163/gpts_web_service/service.php";
 
     public static String STATUS_FLAG = "ok",
                          RETURN_TEXT = "text";
