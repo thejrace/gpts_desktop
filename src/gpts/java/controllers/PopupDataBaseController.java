@@ -9,7 +9,7 @@ import javafx.fxml.FXML;
 /* super class for;
  *      - EmpDetailsPopupController
   *     - EmpMessagePopupController
-  *     - EmpTasksPopupController
+  *     - EmpWorksPopupController
   *     - EmpPlanPopupController
   *
   *     */

@@ -2,25 +2,19 @@
 package gpts.java.controllers;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDialog;
 import gpts.java.Employee;
 import gpts.java.interfaces.WebRequestCallback;
 import gpts.java.ui.PopupDataBase;
 import gpts.java.ui.PopupLoader;
+import gpts.java.ui.EmpPlanPopup;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -94,42 +88,3 @@ public class EmpBoxController implements Initializable {
     }
 }
 
-class EmpMessagePopup extends PopupDataBase {
-    private Employee mEmployee;
-}
-
-class EmpDetailsPopup extends PopupDataBase{
-    private Employee mEmployee;
-}
-
-class EmpTasksPopup extends PopupDataBase {
-    private Employee mEmployee;
-}
-
-class EmpPlanPopup extends PopupDataBase {
-    private Employee mEmployee;
-    private EmpPlanPopupController mController;
-    public EmpPlanPopup( Employee employee ){
-        mEmployee = employee;
-    }
-    public void initUI(){
-        // get the loade from base class
-        FXMLLoader loader = super.initFXMLLoader( "emp_plan_popup" );
-        try {
-            // get controller as our own object type
-            mController = loader.getController();
-            updateUI();
-        } catch( NullPointerException e ){
-            e.printStackTrace();
-        }
-    }
-    public void show( MouseEvent ev ){
-        super.show( ev );
-        mController.setDialog( mDialog );
-    }
-    public void updateUI(){
-        mController.setData( mEmployee );
-    }
-
-
-}
