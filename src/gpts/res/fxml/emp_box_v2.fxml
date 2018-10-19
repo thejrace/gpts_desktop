@@ -37,7 +37,7 @@
                         <FontAwesomeIconView glyphName="CALENDAR" size="14" styleClass="emp-box-btn-icon" />
                      </graphic>
                   </JFXButton>
-                  <JFXButton fx:id="uiEmpTasksBtn" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="24.0" prefWidth="24.0" ripplerFill="#7b3275" styleClass="emp-box-btn">
+                  <JFXButton fx:id="uiEmpWorksBtn" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="24.0" prefWidth="24.0" ripplerFill="#7b3275" styleClass="emp-box-btn">
                      <graphic>
                         <FontAwesomeIconView glyphName="TASKS" size="14" styleClass="emp-box-btn-icon" />
                      </graphic>

@@ -51,6 +51,9 @@
 .ctext-gitas {
     -fx-text-fill:#a754bb;
 }
+.ctext-yellow {
+    -fx-text-fill: #ffd835;
+}
 .ctext-h2 {
      -fx-font-size:25;
  }

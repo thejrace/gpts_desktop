@@ -4,6 +4,7 @@ package gpts.java.controllers;
 import com.jfoenix.controls.JFXButton;
 import gpts.java.Employee;
 import gpts.java.interfaces.WebRequestCallback;
+import gpts.java.ui.EmpWorksPopup;
 import gpts.java.ui.PopupDataBase;
 import gpts.java.ui.PopupLoader;
 import gpts.java.ui.EmpPlanPopup;
@@ -26,7 +27,7 @@ public class EmpBoxController implements Initializable {
     @FXML private HBox uiLed;
 
     @FXML private JFXButton uiEmpPlanBtn;
-    @FXML private JFXButton uiEmpTasksBtn;
+    @FXML private JFXButton uiEmpWorksBtn;
     @FXML private JFXButton uiEmpDetailsBtn;
     @FXML private JFXButton uiEmpMessageBtn;
     @FXML private AnchorPane uiContainer;
@@ -42,6 +43,7 @@ public class EmpBoxController implements Initializable {
     };
 
     private EmpPlanPopup mEmpPlanPopup;
+    private EmpWorksPopup mEmpWorksPopup;
     private Employee mEmployee;
 
     @Override
@@ -71,6 +73,21 @@ public class EmpBoxController implements Initializable {
                 });
             }
         });
+
+        uiEmpWorksBtn.setOnMouseClicked(ev->{
+            PopupLoader.show("Veri alınıyor...");
+            if( mEmployee == null ){
+                return;
+            } else {
+                if( mEmpWorksPopup == null ){
+                    mEmpWorksPopup = new EmpWorksPopup( mEmployee );
+                    mEmpWorksPopup.initUI();
+                }
+                mEmpWorksPopup.updateUI();
+                mEmpWorksPopup.show( ev );
+            }
+        });
+
     }
 
     // set data for ui components
