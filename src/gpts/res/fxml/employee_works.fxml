@@ -37,7 +37,7 @@
             </HBox>
             <HBox AnchorPane.leftAnchor="0.0">
                <children>
-                  <Label styleClass="content-header" text="İşlerim">
+                  <Label styleClass="content-header" text="İşler">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

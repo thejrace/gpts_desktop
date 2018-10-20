@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.StackPane;
 
@@ -22,12 +23,14 @@ import java.util.ResourceBundle;
 
 public class EmployeeWorksController extends BaseContentController implements Initializable {
 
+    @FXML private Label uiHeaderLabel;
     @FXML private JFXButton uiAddBtn;
     @FXML private JFXComboBox uiFilterInput;
     @FXML private JFXButton uiFilterActionBtn;
 
     private String[] mFilterStatusList = { "Aktif", "Tamamlandı", "Süre Aşımı", "İptal" };
     private EmployeeWorksPage mPage;
+    private boolean mPortableFlag = false;
 
     @Override
     public void initialize(URL url, ResourceBundle res ){
@@ -89,7 +92,12 @@ public class EmployeeWorksController extends BaseContentController implements In
     }
 
 
-
+    public void setPortableFlag( boolean flag ){
+        mPortableFlag = flag;
+        if( flag ){
+            uiAddBtn.setVisible(false);
+        }
+    }
     public void setPageObject( EmployeeWorksPage page ){
         mPage = page;
     }

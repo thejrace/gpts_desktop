@@ -115,6 +115,30 @@ public class Employee {
         th.start();
     }
 
+    public void downloadWorks( ReadJACallback cb ){
+        Thread th = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Map<String, String> params = new HashMap<>();
+                params.put("req", "employee_works_download");
+                params.put("employee_id", mID );
+                WebRequest request = new WebRequest( WebRequest.SERVICE_URL, params );
+                request.action(new WebRequestCallback() {
+                    @Override
+                    public void onFinish(JSONObject output) {
+                        try {
+                            cb.onFinish(output.getJSONArray("data"));
+                        } catch( JSONException e ){
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+        });
+        th.setDaemon(true);
+        th.start();
+    }
+
 
 
     public static void search( String keyword, ReadJACallback cb ){

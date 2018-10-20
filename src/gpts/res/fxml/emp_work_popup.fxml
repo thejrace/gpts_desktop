@@ -11,7 +11,6 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
@@ -39,20 +38,7 @@
               <tabs>
                   <Tab fx:id="tabWorks" closable="false" text="Tanımlı İşler">
                      <content>
-                        <ScrollPane fitToWidth="true">
-                           <content>
-                              <VBox alignment="CENTER">
-                                 <children>
-                                    <Label styleClass="ctext-white" text="Tanımlı İşler;" />
-                                    <FlowPane fx:id="uiWorksContainer" alignment="CENTER" hgap="10.0" vgap="10.0" VBox.vgrow="ALWAYS">
-                                       <padding>
-                                          <Insets bottom="15.0" top="15.0" />
-                                       </padding>
-                                    </FlowPane>
-                                 </children>
-                              </VBox>
-                           </content>
-                        </ScrollPane>
+                        <ScrollPane fx:id="uiWorksPageContainer" fitToWidth="true" />
                      </content>
                   </Tab>
                   <Tab fx:id="tabPeriodicWorks" closable="false" text="Periyodik Tanımlamalar">

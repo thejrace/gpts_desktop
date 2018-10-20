@@ -18,9 +18,16 @@ public class EmployeeWorksPage extends BasePage {
     protected Map<String, GWorkBox> mRows = new HashMap<>();
     protected Map<String, GWorkBox> mSearchRows = new HashMap<>();
     private EmployeeWorksController mController;
-
+    private boolean mPortableFlag;
+    private int mPortableEmployeeID;
+    private String mItemDataKey = "name";
     public EmployeeWorksPage(){
-        mItemDataKey = "name";
+
+    }
+    // constructor for using the page portable for see other employees' works ( EmpWorksPopup )
+    public EmployeeWorksPage( boolean portableFlag, int employeeID ){
+        mPortableFlag = portableFlag;
+        mPortableEmployeeID = employeeID;
     }
 
     @Override
@@ -28,6 +35,7 @@ public class EmployeeWorksPage extends BasePage {
         super.initUI(fxml);
         mController = (EmployeeWorksController)mBaseController;
         downloadData();
+        mController.setPortableFlag( mPortableFlag );
         mController.setPageObject( this );
     }
 
@@ -50,6 +58,7 @@ public class EmployeeWorksPage extends BasePage {
                 } else {
                     downloadParams.put("req", "employee_works_download");
                 }
+                if( mPortableFlag ) downloadParams.put("employee_id", String.valueOf(mPortableEmployeeID) );
 
                 downloadParams.put("status_filter", String.valueOf(mController.getStatusFilterInput()));
                 downloadParams.put("start_index", String.valueOf(mLastItemIndex));
