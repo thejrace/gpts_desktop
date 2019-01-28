@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="500.0" styleClass="main-bg-color" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpts.java.controllers.LoginScreenController">
+   <children>
+      <ImageView fitHeight="40.0" fitWidth="70.0" layoutX="220.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="220.0">
+         <image>
+            <Image url="@../img/glogo.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="uiVersionLbl" layoutX="233.0" layoutY="86.0" styleClass="ctext-gray1" text="v1.0.0" />
+      <Label layoutX="170.0" layoutY="67.0" text="Personel Takip Sistemi">
+         <styleClass>
+            <String fx:value="ctext-white" />
+            <String fx:value="ctext-h4" />
+         </styleClass>
+      </Label>
+      <Label layoutX="218.0" layoutY="131.0" text="GİRİŞ">
+         <styleClass>
+            <String fx:value="ctext-white" />
+            <String fx:value="ctext-h2" />
+         </styleClass>
+      </Label>
+      <VBox layoutX="12.0" layoutY="250.0" prefHeight="200.0" prefWidth="475.0" spacing="25.0">
+         <children>
+            <HBox alignment="CENTER" prefWidth="200.0">
+               <children>
+                  <FontAwesomeIconView fill="#989898" glyphName="USER" size="14">
+                     <HBox.margin>
+                        <Insets right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </FontAwesomeIconView>
+                  <JFXTextField fx:id="uiEmailInput" prefHeight="25.0" prefWidth="202.0" promptText="Eposta" styleClass="text-field-popup-style" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefWidth="200.0">
+               <children>
+                  <FontAwesomeIconView fill="#989898" glyphName="LOCK" size="14">
+                     <HBox.margin>
+                        <Insets right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </FontAwesomeIconView>
+                  <JFXPasswordField fx:id="uiPassInput" prefHeight="25.0" prefWidth="202.0" promptText="Şifre" styleClass="text-field-popup-style" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="60.0" prefWidth="200.0" spacing="20.0">
+               <children>
+                  <JFXButton fx:id="uiLoginBtn" text="Giriş Yap">
+                     <styleClass>
+                        <String fx:value="content-btn" />
+                        <String fx:value="content-btn-gitas" />
+                     </styleClass>
+                  </JFXButton>
+                  <JFXButton fx:id="uiCancelBtn" layoutX="212.0" layoutY="10.0" text="İptal">
+                     <styleClass>
+                        <String fx:value="content-btn" />
+                        <String fx:value="content-btn-danger" />
+                     </styleClass>
+                  </JFXButton>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="110.0" prefWidth="200.0">
+               <children>
+                  <Label style="-fx-cursor: hand;" styleClass="ctext-gray1" text="Şifremi unuttum." />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Label fx:id="uiNotfLabel" alignment="CENTER" layoutX="11.0" layoutY="201.0" prefHeight="17.0" prefWidth="475.0" textAlignment="CENTER">
+         <styleClass>
+            <String fx:value="ctext-danger" />
+            <String fx:value="ctext-h5" />
+         </styleClass>
+      </Label>
+   </children>
+</AnchorPane>

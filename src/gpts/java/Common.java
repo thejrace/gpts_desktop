@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXComboBox;
 import gpts.java.interfaces.ReadJACallback;
 import gpts.java.interfaces.ReadJOCallback;
 import gpts.java.interfaces.WebRequestCallback;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -68,6 +69,8 @@ public class Common {
                 sb.append(System.lineSeparator());
                 line = br.readLine();
             }
+            br.close();
+            fr.close();
             return sb.toString();
         } catch( IOException | JSONException e ){
             e.printStackTrace();
@@ -112,6 +115,7 @@ public class Common {
         }
     }
 
+
     public static String getComputerName(){
         String hostname = "Bilinmiyor";
         try {
@@ -122,6 +126,10 @@ public class Common {
             System.out.println("Bilgisayar adi alinamadi.");
         }
         return hostname;
+    }
+
+    public static String getDeviceHash(){
+        return DigestUtils.sha256Hex(Common.getComputerName());
     }
 
     // YYYY-MM-DD HH:MM:SS to DD-MM-YYYY HH:MM:SS

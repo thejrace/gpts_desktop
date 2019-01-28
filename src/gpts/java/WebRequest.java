@@ -16,16 +16,25 @@ public class WebRequest {
     private String mURL, mOutput;
     private Map<String, String> mParams;
 
-    //public static String SERVICE_URL = "http://localhost/gpts/service.php";
-    public static String SERVICE_URL = "http://178.18.206.163/gpts_web_service/service.php";
+    public static String SERVICE_URL = "http://localhost/gpts/service.php";
+    //public static String SERVICE_URL = "http://178.18.206.163/gpts_web_service/service.php";
 
     public static String STATUS_FLAG = "ok",
                          RETURN_TEXT = "text";
+
+    private boolean mAppendApiUserData = true, mAppendDeviceData = true;
 
     // @todo internet baglantisi yoksa hata ver
     public WebRequest( String url, Map<String, String> params ) {
         mURL = url;
         mParams = params;
+    }
+
+    public void appendApiUserData( boolean status ){
+        mAppendApiUserData = status;
+    }
+    public void appendDeviceData( boolean status ){
+        mAppendDeviceData = status;
     }
 
     public void action( WebRequestCallback callback ){
@@ -51,12 +60,16 @@ public class WebRequest {
                 paramsSerializedArray.add( param.getKey() + "=" + param.getValue() );
             }
             // test user params
-            paramsSerializedArray.add("api_email=ahmet@obarey.com");
-            paramsSerializedArray.add("api_password=wazzabii308");
-            paramsSerializedArray.add("api_device_hash=test hash 3");
-            paramsSerializedArray.add("api_device_name=test device name 2");
-            paramsSerializedArray.add("api_device_type=1");
-            paramsSerializedArray.add("api_device_os=Windows");
+            if( mAppendApiUserData ){
+                paramsSerializedArray.add("api_email="+ApiUser.EMAIL);
+            }
+            if( mAppendDeviceData ){
+                paramsSerializedArray.add("api_device_hash="+Common.getDeviceHash());
+                paramsSerializedArray.add("api_device_name="+Common.getComputerName());
+                paramsSerializedArray.add("api_device_type=1");
+                paramsSerializedArray.add("api_device_os=Windows");
+            }
+
             String serializedParams = Common.stringArrayListJoin(paramsSerializedArray, "&");
 
             URL url = new URL(mURL);

@@ -54,6 +54,10 @@
 .ctext-yellow {
     -fx-text-fill: #ffd835;
 }
+
+.ctext-danger {
+    -fx-text-fill: #ef2906;
+}
 .ctext-h2 {
      -fx-font-size:25;
  }
@@ -101,6 +105,13 @@
     -fx-border-color: #559fd8;
     -fx-text-fill:#fff;
 }
+
+.content-btn-gitas {
+    -fx-background-color: #6f4283;
+    -fx-border-color: #734887;
+    -fx-text-fill:#fff;
+}
+
 
 .content-btn-icon {
     -fx-fill: #f1f1f1;
