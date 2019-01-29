@@ -3,6 +3,7 @@ package gpts.java.controllers;
 
 import gpts.java.ApiUser;
 import gpts.java.ApiUserPermissions;
+import gpts.java.Common;
 import gpts.java.ui.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -31,6 +32,9 @@ public class SideBarController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb ){
+
+        Map<String, Double> resData = Common.calculateAppWindowSize();
+        uiContainer.setPrefHeight( resData.get("H") );
 
         uiSideBarBtn0.setOnMouseClicked( ev -> {
             // check if we already in this page
@@ -66,17 +70,6 @@ public class SideBarController implements Initializable {
         }
 
         if( ApiUser.checkPermission(ApiUserPermissions.AC_TASKS) ) {
-            /*uiSideBarBtn2.setOnMouseClicked(ev -> {
-                if( mPageIndex == 2 ) return;
-                if( !mPages.containsKey(2) ){
-                    TasksPage page = new TasksPage();
-                    page.initUI("tasks");
-                    mPages.put(2, page );
-                }
-                // set content
-                MainController.UICONTENTMAIN.setContent( mPages.get(2).getUI());
-                mPageIndex = 2;
-            });*/
             uiSideBarBtn2.setOnMouseClicked(ev -> {
                 if( mPageIndex == 2 ) return;
                 if( !mPages.containsKey(2) ){
@@ -108,7 +101,8 @@ public class SideBarController implements Initializable {
             uiContainer.getChildren().remove(5);
         }
 
-        if( ApiUser.checkPermission(ApiUserPermissions.AC_EMPLOYEE_GROUPS) ) {
+        uiContainer.getChildren().remove(4);
+        /*if( ApiUser.checkPermission(ApiUserPermissions.AC_EMPLOYEE_GROUPS) ) {
             uiSideBarBtn5.setOnMouseClicked(ev -> {
                 if( mPageIndex == 5 ) return;
                 if( !mPages.containsKey(5) ){
@@ -122,7 +116,7 @@ public class SideBarController implements Initializable {
             });
         } else {
             uiContainer.getChildren().remove(4);
-        }
+        }*/
 
         uiSideBarBtn6.setOnMouseClicked(ev -> {
             if( mPageIndex == 6 ) return;

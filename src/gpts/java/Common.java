@@ -22,7 +22,6 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Common {
-
     public static String[] TIMEINTERVAL_LIST = { "Dakika", "Saat", "Gün", "Ay", "Yıl" };
 
     public static boolean writeStaticData( String file, String content ){
@@ -163,6 +162,17 @@ public class Common {
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         int width = gd.getDisplayMode().getWidth();
         int height = gd.getDisplayMode().getHeight();
+        out.put("W", width );
+        out.put("H", height );
+        return out;
+    }
+
+    public static Map<String, Double> calculateAppWindowSize(){
+        Map<String, Integer> resData = getScreenRes();
+        Map<String, Double> out = new HashMap<>();
+        double width = resData.get("W") * 0.5, height = resData.get("H") * 0.5;
+        if( width < 1224 ) width = 1224;
+        if( height < 768 ) height = 768;
         out.put("W", width );
         out.put("H", height );
         return out;

@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="popup-form-container" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpts.java.controllers.GWorkFormController">
+<ScrollPane fitToHeight="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="popup-form-container" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpts.java.controllers.GWorkFormController">
    <content>
       <VBox spacing="15.0">
          <children>
@@ -117,7 +117,7 @@
                   </Tab>
                 <Tab fx:id="tabDetails" closable="false" text="Detaylar">
                      <content>
-                        <ScrollPane fitToWidth="true">
+                        <ScrollPane fitToHeight="true" fitToWidth="true">
                            <content>
                               <VBox spacing="15.0">
                                  <children>
@@ -135,7 +135,7 @@
                 </Tab>
                 <Tab fx:id="tabBundle" closable="false" text="Paket">
                      <content>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="600.0">
+                        <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="-Infinity">
                            <content>
                               <VBox>
                                  <children>
@@ -154,7 +154,7 @@
                                           <Insets bottom="10.0" top="20.0" />
                                        </VBox.margin>
                                     </JFXButton>
-                                    <VBox fx:id="uiSubTasksContainer" spacing="15.0">
+                                    <VBox fx:id="uiSubTasksContainer" spacing="15.0" VBox.vgrow="ALWAYS">
                                        <padding>
                                           <Insets left="10.0" top="25.0" />
                                        </padding>

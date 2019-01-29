@@ -94,6 +94,9 @@ public class GWorkFormController extends PopupFormBaseController implements Init
     public void initialize(URL url, ResourceBundle rb ){
         super.initCommonEvents();
 
+        Map<String, Double> resData = Common.calculateAppWindowSize();
+        uiTabPane.setPrefHeight(resData.get("H")*0.8);
+
         // hide def tab on initialize, we only show it when mTemplateFlag is set
         uiTabPane.getTabs().remove( tabDefinitions );
 

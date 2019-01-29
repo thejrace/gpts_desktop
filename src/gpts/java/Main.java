@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.util.Map;
 
 public class Main extends Application {
 
@@ -65,14 +66,14 @@ public class Main extends Application {
     }
 
     private void initMainUI( Stage primaryStage ){
-        System.out.println("geldim");
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/gpts/res/fxml/main.fxml"));
             Parent content = loader.load();
             primaryStage.initStyle(StageStyle.UNDECORATED);
-            primaryStage.setTitle("GPTS");
-            primaryStage.setScene(new Scene(content, 1224, 768));
+            primaryStage.setTitle("Gitaş PTS");
+            Map<String, Double> resData = Common.calculateAppWindowSize();
+            primaryStage.setScene(new Scene(content, resData.get("W"), resData.get("H") ));
             stage = primaryStage;
             ServerSync.start();
             primaryStage.show();
@@ -96,7 +97,6 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        System.out.println("helo");
         launch(args);
     }
 

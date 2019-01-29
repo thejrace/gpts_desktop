@@ -2,6 +2,7 @@
 package gpts.java.controllers;
 
 import com.jfoenix.controls.JFXButton;
+import gpts.java.ApiUser;
 import gpts.java.Main;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -33,7 +34,7 @@ public class ContentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb ){
 
-        uiUserInfoLbl.setText("Hoşgeldin, @obarey");
+        uiUserInfoLbl.setText("Hoşgeldin, " + ApiUser.EMAIL );
 
         // right top close btn
         uiAppTerminateBtn.setOnMouseClicked(ev -> {

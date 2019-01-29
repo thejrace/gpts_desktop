@@ -34,16 +34,16 @@
                   </JFXButton>
                </children>
             </AnchorPane>
-            <TabPane fx:id="uiTabPane" prefHeight="600.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane fx:id="uiTabPane" minWidth="600.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                   <Tab fx:id="tabWorks" closable="false" text="Tanımlı İşler">
                      <content>
-                        <ScrollPane fx:id="uiWorksPageContainer" fitToWidth="true" />
+                        <ScrollPane fx:id="uiWorksPageContainer" fitToHeight="true" fitToWidth="true" />
                      </content>
                   </Tab>
                   <Tab fx:id="tabPeriodicWorks" closable="false" text="Periyodik Tanımlamalar">
                      <content>
-                        <ScrollPane fitToWidth="true">
+                        <ScrollPane fitToHeight="true" fitToWidth="true">
                            <content>
                               <HBox>
                                  <children>

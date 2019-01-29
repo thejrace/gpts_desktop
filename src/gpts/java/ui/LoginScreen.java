@@ -20,7 +20,7 @@ public class LoginScreen extends Application {
 
         Parent content = loader.load();
         primaryStage.initStyle(StageStyle.UNDECORATED);
-        primaryStage.setTitle("GPTS");
+        primaryStage.setTitle("Gitaş PTS Giriş");
         primaryStage.setScene(new Scene(content, 500, 440));
         stage = primaryStage;
         primaryStage.show();
