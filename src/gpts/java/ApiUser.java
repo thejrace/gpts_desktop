@@ -90,7 +90,7 @@ public class ApiUser {
     }
 
     public static void checkLocalLoginData( ActionCallback cb ){
-        if( Common.checkStaticData("api_user") ){
+        if( Common.checkStaticData("api_user", Common.FJSONObject) ){
             Common.readStaticDataJO("api_user", new ReadJOCallback() {
                 @Override
                 public void onFinish(JSONObject output) {

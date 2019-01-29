@@ -14,7 +14,7 @@ import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.Map;
 
 public class Main extends Application {

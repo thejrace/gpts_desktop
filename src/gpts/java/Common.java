@@ -11,10 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.text.DateFormat;
@@ -23,10 +20,11 @@ import java.util.*;
 
 public class Common {
     public static String[] TIMEINTERVAL_LIST = { "Dakika", "Saat", "Gün", "Ay", "Yıl" };
+    public static int FJSONObject = 1, FJSONArray = 2;
 
     public static boolean writeStaticData( String file, String content ){
         try{
-            PrintWriter writer = new PrintWriter("src/gpts/config/"+file+".json", "UTF-8");
+            PrintWriter writer = new PrintWriter(Main.class.getResource("/gpts/config/"+file+".json").getFile(), "UTF-8");
             writer.println(content);
             writer.close();
             return true;
@@ -47,11 +45,16 @@ public class Common {
         return sb.toString();
     }
 
-    public static boolean checkStaticData( String file ){
+    public static boolean checkStaticData( String file, int type ){
+        String out = readStaticData(file);
         try {
-            FileReader fr = new FileReader("src/gpts/config/"+file+".json");
+            if( type == FJSONArray ){
+                new JSONArray( out );
+            } else {
+                new JSONObject( out );
+            }
             return true;
-        } catch( IOException e ){
+        } catch ( JSONException e ){
             //e.printStackTrace();
             return false;
         }
@@ -59,8 +62,8 @@ public class Common {
 
     public static String readStaticData( String file ){
         try {
-            FileReader fr = new FileReader("src/gpts/config/"+file+".json");
-            BufferedReader br = new BufferedReader(fr);
+            InputStream in = Main.class.getResourceAsStream("/gpts/config/"+file+".json");
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
             StringBuilder sb = new StringBuilder();
             String line = br.readLine();
             while (line != null) {
@@ -69,7 +72,7 @@ public class Common {
                 line = br.readLine();
             }
             br.close();
-            fr.close();
+            in.close();
             return sb.toString();
         } catch( IOException | JSONException e ){
             e.printStackTrace();

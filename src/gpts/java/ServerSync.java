@@ -29,13 +29,14 @@ public class ServerSync {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
+                downloadCachedData();
                 while( ACTIVE ){
                     if( CACHEDDATADOWNLOADFLAG ) continue;
                     // first check cached data
-                    if( !checkCachedData() ){
+                    /*if( !checkCachedData() ){
                         downloadCachedData();
                         continue;
-                    }
+                    }*/
                     MainController.CONTENT_CONTROLLER.updateSyncStatus("Senkron yapılıyor..");
                     // sync
                     WebRequest req = new WebRequest(WebRequest.SERVICE_URL, PARAMS);
@@ -63,7 +64,7 @@ public class ServerSync {
     }
 
     private static boolean checkCachedData(){
-        return Common.checkStaticData("plan_schemas") && Common.checkStaticData("user_groups");
+        return Common.checkStaticData("plan_schemas", Common.FJSONArray) && Common.checkStaticData("user_groups", Common.FJSONArray);
     }
 
     public static void downloadCachedData(){
@@ -75,7 +76,7 @@ public class ServerSync {
         req.actionAsync(new WebRequestCallback() {
             @Override
             public void onFinish(JSONObject output) {
-                if( Common.writeStaticData("user_groups", output.getJSONObject("data").getString("user_groups")) &&
+                if( Common.writeStaticData("user_groups", output.getJSONObject("data").getString("employee_groups")) &&
                     Common.writeStaticData("permissions_template", output.getJSONObject("data").getString("permissions_template")) &&
                     Common.writeStaticData("plan_schemas", output.getJSONObject("data").getString("plan_schemas")) ){
                     MainController.CONTENT_CONTROLLER.updateSyncStatus("CDownload tamamlandı.");
