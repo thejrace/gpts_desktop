@@ -2,9 +2,10 @@
 package gpts.java;
 
 import com.jfoenix.controls.JFXComboBox;
+import gpts.java.interfaces.ActionCallback;
+import gpts.java.interfaces.NoParamCallback;
 import gpts.java.interfaces.ReadJACallback;
 import gpts.java.interfaces.ReadJOCallback;
-import gpts.java.interfaces.WebRequestCallback;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,24 +15,64 @@ import java.awt.*;
 import java.io.*;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Common {
     public static String[] TIMEINTERVAL_LIST = { "Dakika", "Saat", "Gün", "Ay", "Yıl" };
-    public static int FJSONObject = 1, FJSONArray = 2;
+    public static int FJSONObject, FJSONArray ;
+    public static String STATIC_LOCATION = "C://gpts/";
+
+    static {
+        FJSONObject = 1;
+        FJSONArray = 2;
+    }
+
+    public static void checkStaticFileLocation(NoParamCallback cb ){
+        try {
+            if( !checkDirectory( STATIC_LOCATION ) ){
+                createFile(  "api_user", "{ \"init\" : true }" );
+                createFile(  "employee_groups", "[]" );
+                createFile(  "permissions_template", "[]" );
+            }
+            cb.action();
+        } catch( Exception e ){
+            e.printStackTrace();
+        }
+    }
+
+    public static void createFile(String name, String content){
+        try {
+            // create directory
+            Path path = Paths.get(STATIC_LOCATION +  name + ".json" );
+            Files.createDirectories(path.getParent());
+            Files.createFile(path);
+            writeStaticData( name, content );
+        } catch ( Exception e ) {
+            e.printStackTrace();
+            //System.out.println("already exists: " + e.getMessage());
+        }
+    }
+
+    public static boolean checkDirectory( String path ){
+        File f = new File( path );
+        return f.exists() && f.isDirectory();
+    }
 
     public static boolean writeStaticData( String file, String content ){
         try{
-            PrintWriter writer = new PrintWriter(Main.class.getResource("/gpts/config/"+file+".json").getFile(), "UTF-8");
-            writer.println(content);
+            PrintWriter writer = new PrintWriter( STATIC_LOCATION + file + ".json", "UTF-8");
+            writer.print(content);
             writer.close();
             return true;
         } catch (IOException e) {
             e.printStackTrace();
-            return false;
         }
+        return false;
     }
 
     // join an arraylist with connector character
@@ -46,7 +87,7 @@ public class Common {
     }
 
     public static boolean checkStaticData( String file, int type ){
-        String out = readStaticData(file);
+        String out = readStaticData( file );
         try {
             if( type == FJSONArray ){
                 new JSONArray( out );
@@ -60,24 +101,24 @@ public class Common {
         }
     }
 
-    public static String readStaticData( String file ){
+    public static String readStaticData( String src ){
         try {
-            InputStream in = Main.class.getResourceAsStream("/gpts/config/"+file+".json");
-            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+            FileReader fr = new FileReader( STATIC_LOCATION + src + ".json");
+            BufferedReader br = new BufferedReader(fr);
             StringBuilder sb = new StringBuilder();
             String line = br.readLine();
-            while (line != null) {
+            while( line != null ){
                 sb.append(line);
                 sb.append(System.lineSeparator());
                 line = br.readLine();
             }
             br.close();
-            in.close();
+            fr.close();
             return sb.toString();
-        } catch( IOException | JSONException e ){
+        } catch( IOException e ){
             e.printStackTrace();
+            return null;
         }
-        return null;
     }
 
     public static void readStaticDataJO( String filename, ReadJOCallback cb ){

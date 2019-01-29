@@ -4,6 +4,9 @@ package gpts.java;
 import gpts.java.interfaces.ActionCallback;
 import gpts.java.interfaces.ReadJOCallback;
 import gpts.java.interfaces.WebRequestCallback;
+import gpts.java.ui.LoginScreen;
+import javafx.application.Platform;
+import javafx.stage.Stage;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -84,33 +87,59 @@ public class ApiUser {
         th.start();
     }
 
+    public static void logout(){
+        Thread th = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ApiUser.EMAIL = null;
+                Common.writeStaticData("api_user", "{ \"init\": true }" );
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Main.stage.close();
+                            LoginScreen loginScreen = new LoginScreen();
+                            loginScreen.start( new Stage() );
+                        } catch( Exception e ){
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+        });
+        th.setDaemon(true);
+        th.start();
+    }
+
     public static void loginSuccessCallback( String email ){
         ApiUser.EMAIL = email;
         Common.writeStaticData("api_user", "{ \"api_email\":\""+email+"\" }");
     }
 
     public static void checkLocalLoginData( ActionCallback cb ){
-        if( Common.checkStaticData("api_user", Common.FJSONObject) ){
-            Common.readStaticDataJO("api_user", new ReadJOCallback() {
-                @Override
-                public void onFinish(JSONObject output) {
-                    try {
-                        if( output.has("init") ){
-                            cb.onError(NO_DATA_ERROR);
-                        } else {
-                            ApiUser.EMAIL = output.getString("api_email");
-                            cb.onSuccess();
+        try {
+            if( Common.checkStaticData("api_user", Common.FJSONObject) ){
+                Common.readStaticDataJO("api_user", new ReadJOCallback() {
+                    @Override
+                    public void onFinish(JSONObject output) {
+                        try {
+                            if( output.has("init") ){
+                                cb.onError(NO_DATA_ERROR);
+                            } else {
+                                ApiUser.EMAIL = output.getString("api_email");
+                                cb.onSuccess();
+                            }
+                        } catch ( JSONException e ){
+                            cb.onError(NO_FILE_ERROR);
+                            e.printStackTrace();
                         }
-                    } catch ( JSONException e ){
-                        cb.onError(NO_FILE_ERROR);
-                        e.printStackTrace();
                     }
-                }
-            });
-        } else {
-            cb.onError(NO_FILE_ERROR);
+                });
+            } else {
+                cb.onError(NO_FILE_ERROR);
+            }
+        } catch( Exception e ){
+            e.printStackTrace();
         }
     }
-
-
 }

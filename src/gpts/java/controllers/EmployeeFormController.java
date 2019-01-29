@@ -31,7 +31,7 @@ public class EmployeeFormController extends PopupFormBaseController implements I
     public void initialize(URL url, ResourceBundle rb ){
         super.initCommonEvents();
 
-        Common.readStaticDataJA("user_groups", new ReadJACallback() {
+        Common.readStaticDataJA("employee_groups", new ReadJACallback() {
             @Override
             public void onFinish(JSONArray output) {
                 Platform.runLater(new Runnable() {

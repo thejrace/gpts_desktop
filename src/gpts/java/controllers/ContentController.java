@@ -54,6 +54,7 @@ public class ContentController implements Initializable {
         });
 
         uiAppLogoutBtn.setOnMouseClicked( ev -> {
+            ApiUser.logout();
         });
 
         // toggle side bar event

@@ -2,6 +2,7 @@
 package gpts.java;
 
 import gpts.java.interfaces.ActionCallback;
+import gpts.java.interfaces.NoParamCallback;
 import gpts.java.ui.LoginScreen;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -13,8 +14,6 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
-import java.io.*;
 import java.util.Map;
 
 public class Main extends Application {
@@ -24,45 +23,51 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        ApiUser.checkLocalLoginData(new ActionCallback() {
+        Common.checkStaticFileLocation(new NoParamCallback() {
             @Override
-            public void onSuccess(String... params) {
-                try {
-                    ApiUser.checkDevice(new ActionCallback() {
-                        @Override
-                        public void onSuccess(String... params) {
-                            Platform.runLater(new Runnable() {
+            public void action() {
+                ApiUser.checkLocalLoginData(new ActionCallback() {
+                    @Override
+                    public void onSuccess(String... params) {
+                        try {
+                            ApiUser.checkDevice(new ActionCallback() {
                                 @Override
-                                public void run() {
-                                    initMainUI( new Stage() );
+                                public void onSuccess(String... params) {
+                                    Platform.runLater(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            initMainUI( new Stage() );
+                                        }
+                                    });
+                                }
+                                @Override
+                                public void onError(int type) {
+                                    Platform.runLater(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                                            alert.setTitle("Gitaş Filo Personel Takip Sistemi");
+                                            alert.setHeaderText("Hata oluştu. Kod: KYB_1");
+                                            alert.setContentText("Sistem yöneticisine hatayı bildirin.");
+                                            ButtonType cancelBtn = new ButtonType("İptal", ButtonBar.ButtonData.CANCEL_CLOSE);
+                                            alert.getButtonTypes().setAll(cancelBtn );
+                                            alert.showAndWait();
+                                        }
+                                    });
                                 }
                             });
+                        } catch( Exception e ){
+                            e.printStackTrace();
                         }
-                        @Override
-                        public void onError(int type) {
-                            Platform.runLater(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                                    alert.setTitle("Gitaş Filo Personel Takip Sistemi");
-                                    alert.setHeaderText("Hata oluştu. Kod: KYB_1");
-                                    alert.setContentText("Sistem yöneticisine hatayı bildirin.");
-                                    ButtonType cancelBtn = new ButtonType("İptal", ButtonBar.ButtonData.CANCEL_CLOSE);
-                                    alert.getButtonTypes().setAll(cancelBtn );
-                                    alert.showAndWait();
-                                }
-                            });
-                        }
-                    });
-                } catch( Exception e ){
-                    e.printStackTrace();
-                }
-            }
-            @Override
-            public void onError(int type) {
-                initLoginUI();
+                    }
+                    @Override
+                    public void onError(int type) {
+                        initLoginUI();
+                    }
+                });
             }
         });
+
     }
 
     private void initMainUI( Stage primaryStage ){
@@ -75,9 +80,9 @@ public class Main extends Application {
             Map<String, Double> resData = Common.calculateAppWindowSize();
             primaryStage.setScene(new Scene(content, resData.get("W"), resData.get("H") ));
             stage = primaryStage;
-            ServerSync.start();
             primaryStage.show();
-        } catch( IOException e ){
+            ServerSync.start();
+        } catch( Exception e ){
             e.printStackTrace();
         }
 
