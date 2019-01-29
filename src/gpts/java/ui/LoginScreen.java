@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -23,6 +24,7 @@ public class LoginScreen extends Application {
         primaryStage.setTitle("Gitaş PTS Giriş");
         primaryStage.setScene(new Scene(content, 500, 440));
         stage = primaryStage;
+        stage.getIcons().add(new Image(getClass().getResource("/gpts/res/img/gpts_ico.png").toExternalForm()));
         primaryStage.show();
     }
 

@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.util.Map;
@@ -80,6 +81,7 @@ public class Main extends Application {
             Map<String, Double> resData = Common.calculateAppWindowSize();
             primaryStage.setScene(new Scene(content, resData.get("W"), resData.get("H") ));
             stage = primaryStage;
+            stage.getIcons().add(new Image(getClass().getResource("/gpts/res/img/gpts_ico.png").toExternalForm()));
             primaryStage.show();
             ServerSync.start();
         } catch( Exception e ){
