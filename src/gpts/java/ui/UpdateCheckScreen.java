@@ -20,7 +20,7 @@ public class UpdateCheckScreen extends Application {
         Parent content = loader.load();
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setTitle("Gitaş PTS Versiyon Kontrol");
-        primaryStage.setScene(new Scene(content, 500, 210));
+        primaryStage.setScene(new Scene(content, 500, 258));
         stage = primaryStage;
         stage.getIcons().add(new Image(getClass().getResource("/gpts/res/img/gpts_ico.png").toExternalForm()));
         primaryStage.show();

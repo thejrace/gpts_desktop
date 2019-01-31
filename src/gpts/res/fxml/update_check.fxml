@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXSpinner?>
 <?import java.lang.String?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="210.0" prefWidth="500.0" styleClass="main-bg-color" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpts.java.controllers.UpdateCheckScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="258.0" prefWidth="500.0" styleClass="main-bg-color" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpts.java.controllers.UpdateCheckScreenController">
    <children>
       <ImageView fitHeight="40.0" fitWidth="70.0" layoutX="220.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="220.0">
          <image>
@@ -25,11 +26,12 @@
             <String fx:value="ctext-h2" />
          </styleClass>
       </Label>
-      <Label fx:id="uiNotfLabel" alignment="CENTER" layoutX="12.0" layoutY="166.0" prefHeight="17.0" prefWidth="475.0" textAlignment="CENTER">
+      <Label fx:id="uiNotfLabel" alignment="CENTER" layoutX="12.0" layoutY="228.0" prefHeight="17.0" prefWidth="475.0" textAlignment="CENTER">
          <styleClass>
-            <String fx:value="ctext-danger" />
+            <String fx:value="ctext-gray1" />
             <String fx:value="ctext-h5" />
          </styleClass>
       </Label>
+      <JFXSpinner layoutX="227.0" layoutY="155.0" />
    </children>
 </AnchorPane>

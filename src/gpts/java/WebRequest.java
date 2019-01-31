@@ -17,8 +17,8 @@ public class WebRequest {
     private Map<String, String> mParams;
 
 
-    //public static String URL_PREFIX = "http://178.18.206.163/gpts_web_service/";
-    public static String URL_PREFIX = "http://localhost/gpts/";
+    public static String URL_PREFIX = "http://178.18.206.163/gpts_web_service/";
+    //public static String URL_PREFIX = "http://localhost/gpts/";
     public static String SERVICE_URL = URL_PREFIX + "service.php";
     public static String VERSION_SERVICE_URL = URL_PREFIX + "version_service.php";
 

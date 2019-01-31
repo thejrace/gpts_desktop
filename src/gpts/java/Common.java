@@ -15,6 +15,7 @@ import java.awt.*;
 import java.io.*;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.nio.channels.FileChannel;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -61,6 +62,34 @@ public class Common {
         } catch ( Exception e ) {
             e.printStackTrace();
             //System.out.println("already exists: " + e.getMessage());
+        }
+    }
+
+    public static boolean deleteFile( String path ){
+        try{
+            File f = new File( path );
+            return (f.exists() && f.delete() );
+        } catch( Exception e ){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static void copyFile(File source, File dest) {
+        FileChannel sourceChannel = null;
+        FileChannel destChannel = null;
+        try {
+            sourceChannel = new FileInputStream(source).getChannel();
+            destChannel = new FileOutputStream(dest).getChannel();
+            destChannel.transferFrom(sourceChannel, 0, sourceChannel.size());
+        } catch( Exception e ) {
+            e.printStackTrace();
+        }
+        try {
+            sourceChannel.close();
+            destChannel.close();
+        } catch( NullPointerException | IOException e ){
+
         }
     }
 
