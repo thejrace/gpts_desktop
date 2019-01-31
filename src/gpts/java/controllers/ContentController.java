@@ -45,6 +45,7 @@ public class ContentController implements Initializable {
                     System.exit(0);
                 }
             });
+            Platform.setImplicitExit(true);
             Main.stage.close();
         });
 

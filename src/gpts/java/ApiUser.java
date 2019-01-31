@@ -73,12 +73,17 @@ public class ApiUser {
                 req.action(new WebRequestCallback() {
                     @Override
                     public void onFinish(JSONObject output) {
-                        int statusFlag = output.getInt(WebRequest.STATUS_FLAG);
-                        if( statusFlag == 1 ){
-                            cb.onSuccess();
-                        } else {
-                            cb.onError( UNKNOWN_DEVICE );
+                        try {
+                            int statusFlag = output.getInt(WebRequest.STATUS_FLAG);
+                            if( statusFlag == 1 ){
+                                cb.onSuccess();
+                            } else {
+                                cb.onError( UNKNOWN_DEVICE );
+                            }
+                        } catch( JSONException e ){
+                            e.printStackTrace();
                         }
+
                     }
                 });
             }

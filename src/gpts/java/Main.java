@@ -34,6 +34,10 @@ public class Main extends Application {
                             ApiUser.checkDevice(new ActionCallback() {
                                 @Override
                                 public void onSuccess(String... params) {
+                                    // prevent ending the process when last window is closed.
+                                    // process is killed when terminate buttons is clicked
+                                    // https://docs.oracle.com/javase/8/javafx/api/javafx/application/Platform.html#setImplicitExit-boolean-
+                                    Platform.setImplicitExit(false);
                                     Platform.runLater(new Runnable() {
                                         @Override
                                         public void run() {
@@ -94,6 +98,8 @@ public class Main extends Application {
             @Override
             public void run() {
                 try {
+                    // again set the 'dont kill the process' flag
+                    Platform.setImplicitExit(false);
                     LoginScreen loginScreen = new LoginScreen();
                     loginScreen.start( new Stage() );
                 } catch( Exception e ){

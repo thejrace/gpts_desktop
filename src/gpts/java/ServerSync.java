@@ -75,14 +75,19 @@ public class ServerSync {
         req.action(new WebRequestCallback() {
             @Override
             public void onFinish(JSONObject output) {
-                if( Common.writeStaticData("employee_groups", output.getJSONObject("data").getString("employee_groups")) &&
-                    Common.writeStaticData("permissions_template", output.getJSONObject("data").getString("permissions_template")) &&
-                    Common.writeStaticData("plan_schemas", output.getJSONObject("data").getString("plan_schemas")) ){
-                    MainController.CONTENT_CONTROLLER.updateSyncStatus("CDownload tamamlandı.");
-                } else {
-                    MainController.CONTENT_CONTROLLER.updateSyncStatus("CDownload yazım hatası. Tekrar deneniyor.");
+                try {
+                    if( Common.writeStaticData("employee_groups", output.getJSONObject("data").getString("employee_groups")) &&
+                            Common.writeStaticData("permissions_template", output.getJSONObject("data").getString("permissions_template")) &&
+                            Common.writeStaticData("plan_schemas", output.getJSONObject("data").getString("plan_schemas")) ){
+                        MainController.CONTENT_CONTROLLER.updateSyncStatus("CDownload tamamlandı.");
+                    } else {
+                        MainController.CONTENT_CONTROLLER.updateSyncStatus("CDownload yazım hatası. Tekrar deneniyor.");
+                    }
+                    CACHEDDATADOWNLOADFLAG = false;
+                } catch ( Exception e ){
+                    e.printStackTrace();
                 }
-                CACHEDDATADOWNLOADFLAG = false;
+
             }
         });
     }

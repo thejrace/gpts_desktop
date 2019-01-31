@@ -40,6 +40,10 @@ public class LoginScreenController implements Initializable {
                     System.exit(0);
                 }
             });
+            // during the switches between stages we set this true to keep the process going.
+            // when user terminates the app, we set this flag back to default to kill the process.
+            // otherwise process is kept active even though user closes the application.
+            Platform.setImplicitExit(true);
             LoginScreen.stage.close();
         });
 
