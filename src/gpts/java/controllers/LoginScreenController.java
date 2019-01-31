@@ -8,6 +8,7 @@ import gpts.java.ApiUser;
 import gpts.java.Main;
 import gpts.java.interfaces.ActionCallback;
 import gpts.java.ui.LoginScreen;
+import gpts.java.ui.MainScreen;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -56,8 +57,8 @@ public class LoginScreenController implements Initializable {
                         @Override
                         public void run() {
                             try {
-                                Main mainStage = new Main();
-                                mainStage.start(new Stage());
+                                MainScreen mainScreen = new MainScreen();
+                                mainScreen.start(new Stage());
                                 LoginScreen.stage.close();
                             } catch( Exception e ){
                                 e.printStackTrace();

@@ -5,6 +5,7 @@ import gpts.java.interfaces.ActionCallback;
 import gpts.java.interfaces.ReadJOCallback;
 import gpts.java.interfaces.WebRequestCallback;
 import gpts.java.ui.LoginScreen;
+import gpts.java.ui.MainScreen;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 import org.json.JSONException;
@@ -102,7 +103,7 @@ public class ApiUser {
                     @Override
                     public void run() {
                         try {
-                            Main.stage.close();
+                            MainScreen.stage.close();
                             LoginScreen loginScreen = new LoginScreen();
                             loginScreen.start( new Stage() );
                         } catch( Exception e ){

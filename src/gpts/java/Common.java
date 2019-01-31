@@ -34,11 +34,17 @@ public class Common {
 
     public static void checkStaticFileLocation(NoParamCallback cb ){
         try {
-            if( !checkDirectory( STATIC_LOCATION ) ){
+
+            if( !checkDirectory( STATIC_LOCATION ) ) createStaticDirectory();
+            if( !checkFile( STATIC_LOCATION + "api_user.json"  ) ) createFile(  "api_user", "{ \"init\" : true }" );
+            if( !checkFile( STATIC_LOCATION + "employee_groups.json"  ) ) createFile(  "employee_groups", "[]" );
+            if( !checkFile( STATIC_LOCATION + "permissions_template.json"  ) ) createFile(  "permissions_template", "[]");
+
+            /*if( !checkDirectory( STATIC_LOCATION ) ){
                 createFile(  "api_user", "{ \"init\" : true }" );
                 createFile(  "employee_groups", "[]" );
                 createFile(  "permissions_template", "[]" );
-            }
+            }*/
             cb.action();
         } catch( Exception e ){
             e.printStackTrace();
@@ -61,6 +67,15 @@ public class Common {
     public static boolean checkDirectory( String path ){
         File f = new File( path );
         return f.exists() && f.isDirectory();
+    }
+
+    public static boolean checkFile( String path ){
+        File f = new File( path );
+        return f.exists();
+    }
+
+    public static void createStaticDirectory(){
+        new File(STATIC_LOCATION ).mkdirs();
     }
 
     public static boolean writeStaticData( String file, String content ){

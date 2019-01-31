@@ -1,7 +1,7 @@
 /* Gitaş - Obarey Inc 2018 */
 package gpts.java.controllers;
 
-import gpts.java.Main;
+import gpts.java.ui.MainScreen;
 import gpts.java.ui.PopupLoader;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -73,16 +73,16 @@ public class MainController implements Initializable {
         mBorderPane.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Main.stage.setX(event.getScreenX() - xOffset);
-                Main.stage.setY(event.getScreenY() - yOffset);
-                Main.stage.setOpacity(0.7f);
+                MainScreen.stage.setX(event.getScreenX() - xOffset);
+                MainScreen.stage.setY(event.getScreenY() - yOffset);
+                MainScreen.stage.setOpacity(0.7f);
             }
         });
         mBorderPane.setOnDragDone((e) -> {
-            Main.stage.setOpacity(1.0f);
+            MainScreen.stage.setOpacity(1.0f);
         });
         mBorderPane.setOnMouseReleased((e) -> {
-            Main.stage.setOpacity(1.0f);
+            MainScreen.stage.setOpacity(1.0f);
         });
     }
 

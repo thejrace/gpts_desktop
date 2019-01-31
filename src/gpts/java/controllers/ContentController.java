@@ -3,7 +3,7 @@ package gpts.java.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import gpts.java.ApiUser;
-import gpts.java.Main;
+import gpts.java.ui.MainScreen;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -38,7 +38,7 @@ public class ContentController implements Initializable {
 
         // right top close btn
         uiAppTerminateBtn.setOnMouseClicked(ev -> {
-            Main.stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            MainScreen.stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 @Override
                 public void handle(WindowEvent e) {
                     Platform.exit();
@@ -46,12 +46,12 @@ public class ContentController implements Initializable {
                 }
             });
             Platform.setImplicitExit(true);
-            Main.stage.close();
+            MainScreen.stage.close();
         });
 
         // minimize windows
         uiAppMinimizeBtn.setOnMouseClicked( ev -> {
-            Main.stage.setIconified(true);
+            MainScreen.stage.setIconified(true);
         });
 
         uiAppLogoutBtn.setOnMouseClicked( ev -> {
