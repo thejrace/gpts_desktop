@@ -67,6 +67,9 @@
 .ctext-h4 {
     -fx-font-size:15;
 }
+.ctext-small {
+    -fx-font-size:9;
+}
 
 
 .content-btn {

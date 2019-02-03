@@ -4,13 +4,19 @@ package gpts.java.controllers;
 import gpts.java.ApiUser;
 import gpts.java.ApiUserPermissions;
 import gpts.java.Common;
+import gpts.java.Main;
 import gpts.java.ui.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -25,16 +31,20 @@ public class SideBarController implements Initializable {
     @FXML private HBox uiSideBarBtn5; // employee groups
     @FXML private HBox uiSideBarBtn6; // employee works
     @FXML private VBox uiContainer;
+    @FXML private Label uiVersionInfoLabel;
 
     private int mPageIndex = -1;
     private Map<Integer, BasePage> mPages = new HashMap<>();
     private DashboardPage mDashboardPage; // dashboard doesn't extend BasePage
+    private ArrayList<String> mRemovedNavIDs = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle rb ){
 
         Map<String, Double> resData = Common.calculateAppWindowSize();
         uiContainer.setPrefHeight( resData.get("H") );
+
+        uiVersionInfoLabel.setText( "v." + Main.APP_VERSION);
 
         uiSideBarBtn0.setOnMouseClicked( ev -> {
             // check if we already in this page
@@ -66,7 +76,8 @@ public class SideBarController implements Initializable {
                 mPageIndex = 1;
             });
         } else {
-            uiContainer.getChildren().remove(3);
+            mRemovedNavIDs.add("navEmployees");
+            //uiContainer.getChildren().remove(4);
         }
 
         if( ApiUser.checkPermission(ApiUserPermissions.AC_TASKS) ) {
@@ -82,7 +93,10 @@ public class SideBarController implements Initializable {
                 mPageIndex = 2;
             });
         } else {
-            uiContainer.getChildren().remove(6,8);
+            //mRemovedNavIDs.add("navHeaderWorks");
+            //mRemovedNavIDs.add("navEmpWorks");
+            mRemovedNavIDs.add("navWorkTemplates");
+            //uiContainer.getChildren().remove(7,9);
         }
 
         if( ApiUser.checkPermission(ApiUserPermissions.AC_PLANS) ) {
@@ -98,10 +112,13 @@ public class SideBarController implements Initializable {
                 mPageIndex = 4;
             });
         } else {
-            uiContainer.getChildren().remove(5);
+            mRemovedNavIDs.add("navPlans");
+            //uiContainer.getChildren().remove(6);
         }
 
-        uiContainer.getChildren().remove(4);
+
+        mRemovedNavIDs.add("navEmployeeGroups");
+        //uiContainer.getChildren().remove(5);
         /*if( ApiUser.checkPermission(ApiUserPermissions.AC_EMPLOYEE_GROUPS) ) {
             uiSideBarBtn5.setOnMouseClicked(ev -> {
                 if( mPageIndex == 5 ) return;
@@ -115,6 +132,7 @@ public class SideBarController implements Initializable {
                 mPageIndex = 5;
             });
         } else {
+            mRemovedNavIDs.add("navEmpGroups");
             uiContainer.getChildren().remove(4);
         }*/
 
@@ -142,6 +160,9 @@ public class SideBarController implements Initializable {
             mPageIndex = 3;
         });
 
+        // edit nav buttons according to the user's permissions
+        removeNavs();
+
     }
 
     // triggered when sideBar and content UI's are ready
@@ -150,6 +171,18 @@ public class SideBarController implements Initializable {
         mDashboardPage.initUI();
         MainController.UICONTENTMAIN.setContent( mDashboardPage.getUI() );
         mPageIndex = 0;
+    }
+
+    private void removeNavs(){
+        ObservableList<Node> navElems = FXCollections.observableArrayList();
+        try {
+            for( int k = 0; k < uiContainer.getChildren().size(); k++ ){
+                if( !mRemovedNavIDs.contains(uiContainer.getChildren().get(k).getId()) ) navElems.add( uiContainer.getChildren().get(k) );
+            }
+            uiContainer.getChildren().setAll( navElems );
+        }  catch( Exception e ){
+            e.printStackTrace();
+        }
     }
 
 }

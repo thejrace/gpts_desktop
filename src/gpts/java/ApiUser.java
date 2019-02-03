@@ -77,6 +77,8 @@ public class ApiUser {
                         try {
                             int statusFlag = output.getInt(WebRequest.STATUS_FLAG);
                             if( statusFlag == 1 ){
+                                JSONObject data = output.getJSONObject("data");
+                                ApiUser.PERMISSONS = data.getString("permissions");
                                 cb.onSuccess();
                             } else {
                                 cb.onError( UNKNOWN_DEVICE );

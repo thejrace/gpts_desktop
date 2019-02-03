@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -19,6 +20,12 @@
             <Insets bottom="20.0" top="5.0" />
          </VBox.margin>
       </ImageView>
+      <Label fx:id="uiVersionInfoLabel" alignment="CENTER" layoutX="10.0" layoutY="101.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="172.0" textFill="#b8b1b1">
+         <styleClass>
+            <String fx:value="ctext-yellow" />
+            <String fx:value="ctext-small" />
+         </styleClass>
+      </Label>
       <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" text="Personel" textFill="#b8b1b1">
 
          <padding>
@@ -28,7 +35,7 @@
             <Insets bottom="10.0" top="10.0" />
          </VBox.margin>
       </Label>
-      <HBox fx:id="uiSideBarBtn0" alignment="CENTER_LEFT" layoutX="10.0" layoutY="128.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" styleClass="sidebar-btn">
+      <HBox id="navMain" fx:id="uiSideBarBtn0" alignment="CENTER_LEFT" layoutX="10.0" layoutY="128.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" styleClass="sidebar-btn">
          <padding>
             <Insets left="20.0" />
          </padding>
@@ -41,7 +48,7 @@
             </Label>
          </children>
       </HBox>
-      <HBox fx:id="uiSideBarBtn1" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" styleClass="sidebar-btn">
+      <HBox id="navEmployees" fx:id="uiSideBarBtn1" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" styleClass="sidebar-btn">
          <VBox.margin>
             <Insets />
          </VBox.margin>
@@ -58,7 +65,7 @@
             </Label>
          </children>
       </HBox>
-      <HBox fx:id="uiSideBarBtn5" alignment="CENTER_LEFT" layoutX="10.0" layoutY="128.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" styleClass="sidebar-btn">
+      <HBox id="navEmployeeGroups" fx:id="uiSideBarBtn5" alignment="CENTER_LEFT" layoutX="10.0" layoutY="128.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" styleClass="sidebar-btn">
          <padding>
             <Insets left="20.0" />
          </padding>
@@ -71,7 +78,7 @@
             </Label>
          </children>
       </HBox>
-      <HBox fx:id="uiSideBarBtn4" alignment="CENTER_LEFT" layoutX="10.0" layoutY="163.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" styleClass="sidebar-btn">
+      <HBox id="navPlans" fx:id="uiSideBarBtn4" alignment="CENTER_LEFT" layoutX="10.0" layoutY="163.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" styleClass="sidebar-btn">
          <padding>
             <Insets left="20.0" />
          </padding>
@@ -84,7 +91,7 @@
             </Label>
          </children>
       </HBox>
-      <Label layoutX="10.0" layoutY="101.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" text="İş" textFill="#b8b1b1">
+      <Label id="navHeaderWorks" layoutX="10.0" layoutY="101.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" text="İş" textFill="#b8b1b1">
 
          <padding>
             <Insets left="10.0" />
@@ -93,7 +100,7 @@
             <Insets bottom="10.0" top="10.0" />
          </VBox.margin>
       </Label>
-      <HBox fx:id="uiSideBarBtn6" alignment="CENTER_LEFT" layoutX="10.0" layoutY="128.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" styleClass="sidebar-btn">
+      <HBox id="navEmpWorks" fx:id="uiSideBarBtn6" alignment="CENTER_LEFT" layoutX="10.0" layoutY="128.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" styleClass="sidebar-btn">
          <padding>
             <Insets left="20.0" />
          </padding>
@@ -107,7 +114,7 @@
             </Label>
          </children>
       </HBox>
-      <HBox fx:id="uiSideBarBtn2" alignment="CENTER_LEFT" layoutX="10.0" layoutY="305.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" styleClass="sidebar-btn">
+      <HBox id="navWorkTemplates" fx:id="uiSideBarBtn2" alignment="CENTER_LEFT" layoutX="10.0" layoutY="305.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" styleClass="sidebar-btn">
          <padding>
             <Insets left="20.0" />
          </padding>
@@ -128,7 +135,7 @@
             <Insets bottom="10.0" top="10.0" />
          </VBox.margin>
       </Label>
-      <HBox fx:id="uiSideBarBtn3" alignment="CENTER_LEFT" layoutX="10.0" layoutY="163.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" styleClass="sidebar-btn">
+      <HBox id="navSettings" fx:id="uiSideBarBtn3" alignment="CENTER_LEFT" layoutX="10.0" layoutY="163.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" styleClass="sidebar-btn">
          <padding>
             <Insets left="20.0" />
          </padding>

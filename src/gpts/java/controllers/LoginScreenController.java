@@ -33,6 +33,8 @@ public class LoginScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb ){
 
+        uiVersionLbl.setText( "v." + Main.APP_VERSION);
+
         uiCancelBtn.setOnMouseClicked( ev -> {
             LoginScreen.stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 @Override

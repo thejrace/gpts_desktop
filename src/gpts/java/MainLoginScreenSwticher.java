@@ -34,7 +34,7 @@ public class MainLoginScreenSwticher {
                                     Platform.runLater(new Runnable() {
                                         @Override
                                         public void run() {
-                                            initMainUI( new Stage() );
+                                            initMainUI();
                                         }
                                     });
                                 }
@@ -50,6 +50,7 @@ public class MainLoginScreenSwticher {
                                             ButtonType cancelBtn = new ButtonType("İptal", ButtonBar.ButtonData.CANCEL_CLOSE);
                                             alert.getButtonTypes().setAll(cancelBtn );
                                             alert.showAndWait();
+                                            Platform.exit();
                                         }
                                     });
                                 }
@@ -67,7 +68,7 @@ public class MainLoginScreenSwticher {
         });
     }
 
-    private void initMainUI( Stage primaryStage ){
+    private void initMainUI(){
         Platform.runLater(new Runnable() {
             @Override
             public void run() {

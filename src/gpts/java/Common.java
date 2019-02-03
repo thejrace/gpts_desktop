@@ -26,7 +26,7 @@ import java.util.*;
 public class Common {
     public static String[] TIMEINTERVAL_LIST = { "Dakika", "Saat", "Gün", "Ay", "Yıl" };
     public static int FJSONObject, FJSONArray ;
-    public static String STATIC_LOCATION = "C://gpts/";
+    public static String STATIC_LOCATION;
 
     static {
         FJSONObject = 1;
@@ -145,6 +145,27 @@ public class Common {
         }
     }
 
+    public static String readJSONFile( String src ){
+        try {
+            FileReader fr = new FileReader( src);
+            BufferedReader br = new BufferedReader(fr);
+            StringBuilder sb = new StringBuilder();
+            String line = br.readLine();
+            while( line != null ){
+                sb.append(line);
+                sb.append(System.lineSeparator());
+                line = br.readLine();
+            }
+            br.close();
+            fr.close();
+            return sb.toString();
+        } catch( IOException e ){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    // todo topla bunları
     public static String readStaticData( String src ){
         try {
             FileReader fr = new FileReader( STATIC_LOCATION + src + ".json");
