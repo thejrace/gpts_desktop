@@ -13,8 +13,8 @@ import org.json.JSONObject;
 public class Main extends Application {
 
     public static String APP_VERSION = "1.0.12";
-    private String mDebugFilePrefix = ""; // release
-    //private String mDebugFilePrefix = "C://gpts/"; // debug
+    //private String mDebugFilePrefix = ""; // release
+    private String mDebugFilePrefix = "C://gpts/"; // debug
 
     @Override
     public void start(Stage primaryStage) throws Exception{

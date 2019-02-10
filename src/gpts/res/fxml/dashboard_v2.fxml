@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -7,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" styleClass="main-bg-color" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpts.java.controllers.DashboardController">
+<VBox alignment="CENTER" styleClass="main-bg-color" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpts.java.controllers.DashboardController">
    <stylesheets>
       <URL value="@../css/main.css" />
    </stylesheets>
@@ -29,5 +31,11 @@
             <Insets left="10.0" right="10.0" />
          </padding>
       </AnchorPane>
+      <JFXButton fx:id="uiWindowToggleBtn" text="Window Toggle">
+         <styleClass>
+            <String fx:value="content-btn" />
+            <String fx:value="content-btn-danger" />
+         </styleClass>
+      </JFXButton>
    </children>
 </VBox>
