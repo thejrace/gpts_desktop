@@ -819,3 +819,11 @@
     -fx-pref-width:150;
     -fx-max-width:150;
 }
+
+.message-left-container {
+    -fx-padding:10;
+    -fx-font-size:10;
+    -fx-background-color: #2d2b2b;
+    -fx-border-color: #403e3e;
+    -fx-border-width:1 1 1 1;
+}

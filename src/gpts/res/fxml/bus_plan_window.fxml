@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToHeight="true" fitToWidth="true" minHeight="400.0" minWidth="850.0" styleClass="main-bg-color" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <VBox alignment="TOP_CENTER" fillWidth="false">
+         <children>
+            <HBox alignment="CENTER" layoutX="258.0" layoutY="52.0" spacing="15.0" />
+            <HBox alignment="CENTER" spacing="15.0">
+               <children>
+                  <Label text="Geçmiş plan sorgula:">
+                     <styleClass>
+                        <String fx:value="ctext-gray1" />
+                        <String fx:value="ctext-small" />
+                     </styleClass>
+                  </Label>
+                  <DatePicker />
+                  <JFXButton text="Getir">
+                     <styleClass>
+                        <String fx:value="content-btn" />
+                        <String fx:value="content-btn-gitas" />
+                     </styleClass>
+                  </JFXButton>
+                  <JFXButton text="Excel Çıktısı Al">
+                     <styleClass>
+                        <String fx:value="content-btn" />
+                        <String fx:value="content-btn-warning" />
+                     </styleClass>
+                  </JFXButton>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <Separator prefHeight="2.0" prefWidth="539.0">
+               <VBox.margin>
+                  <Insets bottom="20.0" top="20.0" />
+               </VBox.margin>
+               <styleClass>
+                  <String fx:value="main-bg-separator" />
+                  <String fx:value="main-bg-separator-horizontal" />
+               </styleClass>
+            </Separator>
+            <Label text="Filonun yaptığı genel plan değişiklikleri kontrol edilip versiyonlanarak kaydedilir. En yüksek versiyon aktif planı gösterir.">
+               <styleClass>
+                  <String fx:value="ctext-yellow" />
+                  <String fx:value="ctext-small" />
+               </styleClass>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Label>
+            <HBox alignment="CENTER" layoutX="253.0" layoutY="10.0" spacing="15.0">
+               <children>
+                  <Label text="Plan versiyonu seç:">
+                     <styleClass>
+                        <String fx:value="ctext-gray1" />
+                        <String fx:value="ctext-small" />
+                     </styleClass>
+                  </Label>
+                  <JFXButton text="V1">
+                     <styleClass>
+                        <String fx:value="content-btn" />
+                        <String fx:value="content-btn-danger" />
+                     </styleClass>
+                  </JFXButton>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </HBox>
+            <VBox minHeight="300.0" minWidth="700.0" styleClass="main-bg-color">
+               <children>
+                  <VBox fillWidth="false">
+                     <children>
+                        <HBox>
+                           <children>
+                              <Label alignment="CENTER" text="NO">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-thead" />
+                                    <String fx:value="bus-plan-td-37" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" text="YÖN">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-thead" />
+                                    <String fx:value="bus-plan-td-80" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="47.0" layoutY="10.0" text="SÜRÜCÜ">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-thead" />
+                                    <String fx:value="bus-plan-td-150" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="127.0" layoutY="10.0" text="GELİŞ">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-thead" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="277.0" layoutY="10.0" text="ORER">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-thead" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="337.0" layoutY="10.0" text="BEKLEME">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-thead" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="397.0" layoutY="10.0" text="AMİR">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-thead" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="457.0" layoutY="10.0" text="GİDİŞ">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-thead" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="517.0" layoutY="10.0" text="TAHMİN">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-thead" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="577.0" layoutY="10.0" text="BİTİŞ">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-thead" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="637.0" layoutY="10.0" text="SÜRE">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-thead" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="697.0" layoutY="10.0" text="DKODU">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-thead" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="757.0" layoutY="10.0" text="VER">
+                                 <styleClass>
+                                    <String fx:value="ctext-gray1" />
+                                    <String fx:value="bus-plan-thead" />
+                                    <String fx:value="bus-plan-td-37" />
+                                 </styleClass>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="10.0">
+                           <children>
+                              <Label alignment="CENTER" text="1">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-37" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" text="15BK_D3331">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-td-80" />
+                                    <String fx:value="bus-plan-tbody-main" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="47.0" layoutY="10.0" text="VELİ KONSTANTİN">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-td-150" />
+                                    <String fx:value="bus-plan-tbody-main" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="127.0" layoutY="10.0" text="12:00">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="277.0" layoutY="10.0" text="12:30">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="337.0" layoutY="10.0" text="10 DK">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="397.0" layoutY="10.0" text="-">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="457.0" layoutY="10.0" text="12:30">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="517.0" layoutY="10.0" text="15:00">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="577.0" layoutY="10.0" text="-">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="637.0" layoutY="10.0" text="-">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="697.0" layoutY="10.0" text="AR">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="757.0" layoutY="10.0" text="1">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-37" />
+                                 </styleClass>
+                              </Label>
+                           </children>
+                           <styleClass>
+                              <String fx:value="bus-plan-tr-finished" />
+                              <String fx:value="bus-plan-tr" />
+                           </styleClass>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="48.0">
+                           <children>
+                              <Label alignment="CENTER" text="1">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-37" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" text="15BK_D3331">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-td-80" />
+                                    <String fx:value="bus-plan-tbody-main" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="47.0" layoutY="10.0" text="VELİ KONSTANTİN">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-td-150" />
+                                    <String fx:value="bus-plan-tbody-main" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="127.0" layoutY="10.0" text="12:00">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="277.0" layoutY="10.0" text="12:30">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="337.0" layoutY="10.0" text="10 DK">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="397.0" layoutY="10.0" text="-">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="457.0" layoutY="10.0" text="12:30">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="517.0" layoutY="10.0" text="15:00">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="577.0" layoutY="10.0" text="-">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="637.0" layoutY="10.0" text="-">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="697.0" layoutY="10.0" text="AR">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="757.0" layoutY="10.0" text="1">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-37" />
+                                 </styleClass>
+                              </Label>
+                           </children>
+                           <styleClass>
+                              <String fx:value="bus-plan-tr-active" />
+                              <String fx:value="bus-plan-tr" />
+                           </styleClass>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="86.0">
+                           <children>
+                              <Label alignment="CENTER" text="1">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-37" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" text="15BK_D3331">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-td-80" />
+                                    <String fx:value="bus-plan-tbody-main" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="47.0" layoutY="10.0" text="VELİ KONSTANTİN">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-td-150" />
+                                    <String fx:value="bus-plan-tbody-main" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="127.0" layoutY="10.0" text="12:00">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="277.0" layoutY="10.0" text="12:30">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="337.0" layoutY="10.0" text="10 DK">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="397.0" layoutY="10.0" text="-">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="457.0" layoutY="10.0" text="12:30">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="517.0" layoutY="10.0" text="15:00">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="577.0" layoutY="10.0" text="-">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="637.0" layoutY="10.0" text="-">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="697.0" layoutY="10.0" text="AR">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="757.0" layoutY="10.0" text="1">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-37" />
+                                 </styleClass>
+                              </Label>
+                           </children>
+                           <styleClass>
+                              <String fx:value="bus-plan-tr-waiting" />
+                              <String fx:value="bus-plan-tr" />
+                           </styleClass>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="124.0">
+                           <children>
+                              <Label alignment="CENTER" text="1">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-37" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" text="15BK_D3331">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-td-80" />
+                                    <String fx:value="bus-plan-tbody-main" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="47.0" layoutY="10.0" text="VELİ KONSTANTİN">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-td-150" />
+                                    <String fx:value="bus-plan-tbody-main" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="127.0" layoutY="10.0" text="12:00">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="277.0" layoutY="10.0" text="12:30">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="337.0" layoutY="10.0" text="10 DK">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="397.0" layoutY="10.0" text="-">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="457.0" layoutY="10.0" text="12:30">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="517.0" layoutY="10.0" text="15:00">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="577.0" layoutY="10.0" text="-">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="637.0" layoutY="10.0" text="-">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="697.0" layoutY="10.0" text="AR">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="757.0" layoutY="10.0" text="1">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-37" />
+                                 </styleClass>
+                              </Label>
+                           </children>
+                           <styleClass>
+                              <String fx:value="bus-plan-tr-stopped" />
+                              <String fx:value="bus-plan-tr" />
+                           </styleClass>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="162.0">
+                           <children>
+                              <Label alignment="CENTER" text="1">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-37" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" text="15BK_D3331">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-td-80" />
+                                    <String fx:value="bus-plan-tbody-main" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="47.0" layoutY="10.0" text="VELİ KONSTANTİN">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-td-150" />
+                                    <String fx:value="bus-plan-tbody-main" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="127.0" layoutY="10.0" text="12:00">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="277.0" layoutY="10.0" text="12:30">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="337.0" layoutY="10.0" text="10 DK">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="397.0" layoutY="10.0" text="-">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="457.0" layoutY="10.0" text="12:30">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="517.0" layoutY="10.0" text="15:00">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="577.0" layoutY="10.0" text="-">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="637.0" layoutY="10.0" text="-">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="697.0" layoutY="10.0" text="AR">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-60" />
+                                 </styleClass>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="757.0" layoutY="10.0" text="1">
+                                 <styleClass>
+                                    <String fx:value="bus-plan-tbody-main" />
+                                    <String fx:value="bus-plan-td-37" />
+                                 </styleClass>
+                              </Label>
+                           </children>
+                           <styleClass>
+                              <String fx:value="bus-plan-tr-cancelled" />
+                              <String fx:value="bus-plan-tr" />
+                           </styleClass>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets top="20.0" />
+         </padding>
+      </VBox>
+   </content>
+</ScrollPane>
