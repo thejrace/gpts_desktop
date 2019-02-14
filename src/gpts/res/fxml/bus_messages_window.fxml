@@ -59,7 +59,7 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </Label>
-            <VBox minHeight="300.0" minWidth="700.0" styleClass="main-bg-color">
+            <VBox minHeight="300.0" minWidth="700.0" spacing="10.0" styleClass="main-bg-color">
                <children>
                   <HBox alignment="CENTER_LEFT">
                      <children>
@@ -67,6 +67,49 @@
                            <styleClass>
                               <String fx:value="ctext-white" />
                               <String fx:value="message-left-container" />
+                              <String fx:value="bus-message-container" />
+                           </styleClass>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </Label>
+                        <VBox>
+                           <children>
+                              <Label maxWidth="500.0" minWidth="400.0" styleClass="ctext-white" text="A-1733 Veli Konstantin" wrapText="true">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </Label>
+                              <Label alignment="BOTTOM_LEFT" layoutX="10.0" layoutY="10.0" maxWidth="500.0" minWidth="400.0" styleClass="ctext-white" text="17.35" wrapText="true">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0">
+                     <children>
+                        <VBox>
+                           <children>
+                              <Label alignment="CENTER_RIGHT" maxWidth="500.0" minWidth="400.0" styleClass="ctext-white" text="Filo Sistem" wrapText="true">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </Label>
+                              <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" maxWidth="500.0" minWidth="400.0" styleClass="ctext-white" text="17.35" wrapText="true">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <Label maxWidth="500.0" minWidth="400.0" text="     Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı galerisini alarak karıştırdığı 1500'lerden beri endüstri standardı sahte metinler olarak kullanılmıştır." wrapText="true">
+                           <styleClass>
+                              <String fx:value="ctext-white" />
+                              <String fx:value="message-right-container" />
+                              <String fx:value="bus-message-container" />
                            </styleClass>
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
