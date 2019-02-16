@@ -824,14 +824,9 @@
     -fx-font-size:10;
 }
 .message-left-container {
-    -fx-background-color:   linear-gradient(#343333 0%, #1f2429 20%, #191d22 100%),
-    linear-gradient(#203b25, #191d22),
-    radial-gradient(center 50% 0%, radius 100%, rgba(52, 51, 51, 0.9), rgba(255,255,255,0));
+    -fx-background-color: linear-gradient(#3d3f41, #191d22);
 
 }
 .message-right-container {
-    -fx-background-color:   linear-gradient(#0089d4 0%, #1f2429 20%, #191d22 100%),
-    linear-gradient(#002c44, #191d22),
-    radial-gradient(center 50% 0%, radius 100%, rgba(52, 51, 51, 0.9), rgba(255,255,255,0));
-
+    -fx-background-color: linear-gradient(#3d3f41, #191d22);
 }

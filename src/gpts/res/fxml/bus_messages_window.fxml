@@ -80,10 +80,14 @@
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
                               </Label>
-                              <Label alignment="BOTTOM_LEFT" layoutX="10.0" layoutY="10.0" maxWidth="500.0" minWidth="400.0" styleClass="ctext-white" text="17.35" wrapText="true">
+                              <Label alignment="BOTTOM_LEFT" layoutX="10.0" layoutY="10.0" maxWidth="500.0" minWidth="400.0" text="17.35" wrapText="true">
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
+                                 <styleClass>
+                                    <String fx:value="ctext-white" />
+                                    <String fx:value="ctext-small" />
+                                 </styleClass>
                               </Label>
                            </children>
                         </VBox>
@@ -98,10 +102,14 @@
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
                               </Label>
-                              <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" maxWidth="500.0" minWidth="400.0" styleClass="ctext-white" text="17.35" wrapText="true">
+                              <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" maxWidth="500.0" minWidth="400.0" text="17.35" wrapText="true">
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
+                                 <styleClass>
+                                    <String fx:value="ctext-white" />
+                                    <String fx:value="ctext-small" />
+                                 </styleClass>
                               </Label>
                            </children>
                         </VBox>
